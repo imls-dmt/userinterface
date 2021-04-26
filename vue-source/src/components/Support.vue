@@ -1,5 +1,5 @@
 <template>
-  This is the Support page
+  <div>This is the Support page</div>
 </template>
 
 <script>

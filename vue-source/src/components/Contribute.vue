@@ -1,5 +1,5 @@
 <template>
-    This is the Contribute page
+    <div>This is the Contribute page</div>
 </template>
 
 <script>

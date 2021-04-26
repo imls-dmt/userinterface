@@ -1,5 +1,5 @@
 <template>
-  This is the About page
+  <div>This is the About page</div>
 </template>
 
 <script>

@@ -1,9 +1,10 @@
 <template>
+    <div>
     <SearchBar
         :value_in="quick_search_string"
         @value_out="updateResults"
     ></SearchBar>
-
+    
     <div v-if="error" class="error">Sorry, unable to query server!</div>
     <div v-else>
         <!-- <div
@@ -68,6 +69,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </template>
 
