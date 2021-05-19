@@ -6,7 +6,7 @@
                 <div class="search-container">
                     <input
                         type="text"
-                        placeholder=" Enter search word "
+                        placeholder=" Enter search text"
                         v-model="search_string"
                         class="full"
                         @keyup.enter="getSearchResults"
