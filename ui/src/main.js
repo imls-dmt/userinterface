@@ -8,6 +8,7 @@ import Search from "./components/Search.vue";
 import Support from "./components/Support.vue";
 import Resource from "./components/Resource.vue";
 import Login from "./components/Login.vue";
+import Blog from "./components/Blog.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -18,10 +19,22 @@ const router = createRouter({
     { path: "/contribute", name: "Contribute", component: Contribute },
     { path: "/search", name: "Search", component: Search },
     { path: "/support", name: "Support", component: Support },
-    { path: "/resource/:id", name: "Resource", component: Resource },
+    {
+      path: "/resource/:id",
+      name: "Resource",
+      component: Resource,
+      props: true,
+    },
     { path: "/login", name: "Login", component: Login },
+    { path: "/blog", name: "Blog", component: Blog },
   ],
 });
 
 const app = createApp(App);
 app.use(router), app.mount("#app");
+
+// add global properties that will be used across components
+// https://v3.vuejs.org/api/application-config.html#globalproperties
+app.config.globalProperties.$searchResult = {}; // the current search result JSON object
+app.config.globalProperties.$currentSearch = {}; // the current search JSON object
+app.config.globalProperties.$searchHistory = []; // the search history array with new search JSON objects prepended at index 0

@@ -1,8 +1,10 @@
 <template>
-  <Navbar></Navbar>
-  <router-view></router-view>
-  <hr />
-  <Footer></Footer>
+  <div>
+    <Navbar></Navbar>
+    <hr />
+    <router-view></router-view>
+    <Footer></Footer>
+  </div>
 </template>
 
 <script>

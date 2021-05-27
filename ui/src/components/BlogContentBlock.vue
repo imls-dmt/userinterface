@@ -34,7 +34,7 @@ export default {
     getMDContent() {
       this.isLoaded = false;
       // console.log("block : ", this.block);
-      console.log(this.block.content);
+      //console.log(this.block.content);
       if (this.block.content.startsWith("http")) {
         // console.log("if...");
         // fetch(url_root + this.block.content, {

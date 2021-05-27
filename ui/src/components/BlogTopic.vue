@@ -32,6 +32,8 @@ export default {
     getItems() {
       console.log("entering getItems");
       this.isLoaded = false;
+      console.log(this.$blog);
+      console.log("retrieving blog metadata");
       fetch("http://static.dmtc-devel.org/source/blog.json", {
         method: "GET",
       })
@@ -43,6 +45,8 @@ export default {
           }
         })
         .then((result) => {
+          this.$blog = result;
+          console.log(this.$blog);
           this.items = result[this.topic];
           this.isLoaded = true;
         })

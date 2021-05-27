@@ -17,6 +17,9 @@
         <router-link :to="{ name: 'Support' }"> Support </router-link>
       </span>
       <span class="link">
+        <router-link :to="{ name: 'Blog' }"> Blog </router-link>
+      </span>
+      <span class="link">
         <router-link :to="{ name: 'About' }"> About </router-link>
       </span>
     </div>
