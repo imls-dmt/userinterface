@@ -1,46 +1,51 @@
 <template>
-  <h1>Login</h1>
-  <form @submit.prevent="processLogin">
-    <table>
-      <tr>
-        <td><label for="username">Username:</label></td>
-        <td>
-          <input
-            type="text"
-            v-model="username"
-            name="username"
-            id="username"
-            placeholder="username"
-          />
-        </td>
-      </tr>
-      <tr>
-        <td><label for="password">Password:</label></td>
-        <td>
-          <input
-            type="password"
-            v-model="password"
-            name="password"
-            id="password"
-            placeholder="password"
-          />
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><input type="submit" name="submit" /></td>
-      </tr>
-    </table>
-  </form>
-
   <div>
-    Interim login/logout option:<br />
-    <a href="https://esip-dev-02.edacnm.org/login/" target="_blank">login</a
-    ><br />
-    <a href="https://esip-dev-02.edacnm.org/logout/" target="_blank">logout</a>
-  </div>
+    <h1>Login</h1>
+    <!-- <form action="https://esip-dev-02.edacnm.org/login/" method="post"> -->
+    <form @submit.prevent="processLogin">
+      <table>
+        <tr>
+          <td><label for="username">Username:</label></td>
+          <td>
+            <input
+              type="text"
+              v-model="username"
+              name="username"
+              id="username"
+              placeholder="username"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="password">Password:</label></td>
+          <td>
+            <input
+              type="password"
+              v-model="password"
+              name="password"
+              id="password"
+              placeholder="password"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><input type="submit" name="submit" /></td>
+        </tr>
+      </table>
+    </form>
 
-  <div>{{ result }}</div>
+    <!-- <div>
+      Interim login/logout option:<br />
+      <a href="https://esip-dev-02.edacnm.org/login/" target="_blank">login</a
+      ><br />
+      <a href="https://esip-dev-02.edacnm.org/logout/" target="_blank"
+        >logout</a
+      >
+    </div> -->
+
+    <div>{{ result }}</div>
+  </div>
 </template>
 
 <script>
@@ -64,7 +69,7 @@ export default {
       let body = post_content;
       //console.log("body: ", body);
 
-      fetch("https://esip-dev-02.edacnm.org/login/", {
+      fetch("https://esip-dev-02.edacnm.org/login_json", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -81,9 +86,12 @@ export default {
           }
         })
         .then((result) => {
+          console.log(result);
           this.result = result;
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log("error generated");
+          console.log(err);
           this.error = true;
         });
     },
