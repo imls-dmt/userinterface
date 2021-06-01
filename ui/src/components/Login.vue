@@ -1,6 +1,6 @@
 <template>
   <h1>Login</h1>
-  <!-- <form @submit.prevent="processLogin">
+  <form @submit.prevent="processLogin">
     <table>
       <tr>
         <td><label for="username">Username:</label></td>
@@ -26,12 +26,12 @@
           />
         </td>
       </tr>
-     <tr>
+      <tr>
         <td></td>
         <td><input type="submit" name="submit" /></td>
       </tr>
     </table>
-  </form> -->
+  </form>
 
   <div>
     Interim login/logout option:<br />
