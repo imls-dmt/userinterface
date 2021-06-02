@@ -3,14 +3,19 @@
     https://thewebdev.info/2021/01/14/create-an-image-slider-app-with-vue-3-and-javascript/
     2 other component options:
     https://ismail9k.github.io/vue3-carousel/#quick-start and 
-    https://www.vuescript.com/modern-carousel/ for image carousel components -->
+    https://www.vuescript.com/modern-carousel/ for image carousel components
 -->
 <template>
-    <img
-        :src="image.image_link"
-        :alt="image.description"
-        @error="remove(index)"
-    />
+    <div class="img-box">
+        <img
+            :src="image.image_link"
+            :alt="image.description"
+            @error="remove(index)"
+        /><br/>
+        <div class=caption>
+            {{image.description}}
+        </div>
+    </div>
 </template>
 
 <script>
@@ -25,7 +30,7 @@ export default {
             image: this.data[0],
             images: this.data,
             index: 0,
-            interval: 2000, // milliseconds
+            interval: 5000, // milliseconds
         };
     },
 
@@ -42,7 +47,7 @@ export default {
             }, this.interval);
         },
 
-        // change the currnet image to display
+        // change the current image to display
         next() {
             this.index = (this.index + 1) % this.images.length;
             this.image = this.images[this.index];
@@ -66,5 +71,19 @@ export default {
     font-size: x-large;
     font-weight: bold;
     padding: 20px;
+}
+
+.img-box {
+    flex: 0 1 300px;
+    margin:auto;
+}
+
+.caption {
+    font-size:8pt;
+    text-align:center
+}
+
+img {
+    width:100%;
 }
 </style>

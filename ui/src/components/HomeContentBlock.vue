@@ -1,5 +1,4 @@
 <template>
-    <!-- <div class="title">{{ block.title }}</div> -->
     <div v-if="isLoaded" class="content">
         <VueMarkdownIt :source="content" />
     </div>
@@ -13,7 +12,7 @@ import VueMarkdownIt from "vue3-markdown-it";
 // const url_root = "http://static.dmtc-devel.org/";
 
 export default {
-    name: "ContentBlock",
+    name: "HomeContentBlock",
     props: {
         block: {},
     },
@@ -73,6 +72,7 @@ export default {
 <style scoped>
 .content {
     padding: 0px 30px 10px;
+    flex: 1 1 200px;
 }
 
 .title {
