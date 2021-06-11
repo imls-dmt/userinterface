@@ -1,5 +1,7 @@
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
+//import Vue from "vue";
+import axios from "axios";
 import App from "./App.vue";
 import About from "./components/About.vue";
 import Contribute from "./components/Contribute.vue";
@@ -9,6 +11,7 @@ import Support from "./components/Support.vue";
 import Resource from "./components/Resource.vue";
 import Login from "./components/Login.vue";
 import Blog from "./components/Blog.vue";
+//import VueCookies from "vue-cookies";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -32,9 +35,12 @@ const router = createRouter({
 
 const app = createApp(App);
 app.use(router), app.mount("#app");
+app.use(axios);
 
 // add global properties that will be used across components
 // https://v3.vuejs.org/api/application-config.html#globalproperties
 app.config.globalProperties.$searchResult = {}; // the current search result JSON object
 app.config.globalProperties.$currentSearch = {}; // the current search JSON object
 app.config.globalProperties.$searchHistory = []; // the search history array with new search JSON objects prepended at index 0
+app.config.globalProperties.$loginStatus = {}; // login status
+app.config.globalProperties.$loginUser = ""; // logged in user

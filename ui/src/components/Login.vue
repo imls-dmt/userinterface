@@ -44,7 +44,8 @@
       >
     </div> -->
 
-    <div>{{ result }}</div>
+    <div>{{ this.$loginStatus }}</div>
+    <div>{{ this.$loginUser }}</div>
   </div>
 </template>
 
@@ -69,13 +70,10 @@ export default {
       let body = post_content;
       //console.log("body: ", body);
 
-      fetch("https://esip-dev-02.edacnm.org/login_json", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      })
+      this.axios
+        .post("https://esip-dev-02.edacnm.org/login_json", body, {
+          withCredentials: true,
+        })
         .then((response) => {
           if (response.ok) {
             // DO NOT do anything to the response, including console.log
@@ -88,6 +86,27 @@ export default {
         .then((result) => {
           console.log(result);
           this.result = result;
+          this.$loginStatus = result;
+          this.$loginUser = this.username;
+          this.password = "";
+          this.username = "";
+          console.log(document.cookie);
+          // https://esip-dev-02.edacnm.org/user/groups
+          // xquery additional parameter for request: xhrFields: { withCredentials: true },
+          this.axios
+            .get("https://esip-dev-02.edacnm.org/user/groups", {
+              withCredentials: true,
+            })
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                throw new Error();
+              }
+            })
+            .then((result) => {
+              console.log(result);
+            });
         })
         .catch((err) => {
           console.log("error generated");
