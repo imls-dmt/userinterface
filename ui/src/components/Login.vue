@@ -44,74 +44,42 @@
       >
     </div> -->
 
-    <div>{{ this.$loginStatus }}</div>
-    <div>{{ this.$loginUser }}</div>
+    <!-- <div>{{ this.$loginStatus }}</div>
+    <div>{{ this.$loginUser }}</div> -->
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "Login",
   data() {
     return {
-      username: "",
-      password: "",
-      error: false,
-      result: "",
+      username: '',
+      password: '',
+      error: null,
+      result: '',
+      success: false
     };
   },
   methods: {
-    processLogin: function () {
+    processLogin: async function () {
       console.log("processing login information");
-      let post_content = {};
-      post_content.username = this.username;
-      post_content.password = this.password;
-      this.error = false;
-      let body = post_content;
+      const post_content = {
+        username: this.username,
+        password: this.password,
+      };
+      const headers = {
+        'Content-Type': 'application/json',
+      }
+      const url = "https://esip-dev-02.edacnm.org/login_json";
+      this.error = null;
       //console.log("body: ", body);
-
-      this.axios
-        .post("https://esip-dev-02.edacnm.org/login_json", body, {
-          withCredentials: true,
-        })
-        .then((response) => {
-          if (response.ok) {
-            // DO NOT do anything to the response, including console.log
-            // or else it will cause an error that response is "disturbed"
-            return response.json();
-          } else {
-            throw new Error();
-          }
-        })
-        .then((result) => {
-          console.log(result);
-          this.result = result;
-          this.$loginStatus = result;
-          this.$loginUser = this.username;
-          this.password = "";
-          this.username = "";
-          console.log(document.cookie);
-          // https://esip-dev-02.edacnm.org/user/groups
-          // xquery additional parameter for request: xhrFields: { withCredentials: true },
-          this.axios
-            .get("https://esip-dev-02.edacnm.org/user/groups", {
-              withCredentials: true,
-            })
-            .then((response) => {
-              if (response.ok) {
-                return response.json();
-              } else {
-                throw new Error();
-              }
-            })
-            .then((result) => {
-              console.log(result);
-            });
-        })
-        .catch((err) => {
-          console.log("error generated");
-          console.log(err);
-          this.error = true;
+      axios.post(url, post_content, {
+        headers: headers
+      })
+        .then(response => {
+          console.log(JSON.stringify(response.data))
         });
     },
   },

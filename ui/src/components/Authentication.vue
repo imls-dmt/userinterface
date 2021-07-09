@@ -1,6 +1,6 @@
 <template>
   <!-- <a href="https://esip-dev-02.edacnm.org/login/"> -->
-  <router-link :to="{ name: 'Login' }">
+  <router-link :to="{ name: 'LoginTest' }">
     <img alt="Login" src="@/assets/person.png" class="login" /> Login
   </router-link>
 </template>
