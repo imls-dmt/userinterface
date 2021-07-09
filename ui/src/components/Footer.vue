@@ -1,18 +1,17 @@
 <template>
     <div>
+        <hr/>
         <p>
             Questions or issues with the website? Please contact
             <a href="mailto:clearinghouseEd@esipfed.org"
                 >clearinghouseEd@esipfed.org</a
             >
-        </p>
-        <p>
+       <br/>
             DMTC would like to acknowledge
             <a href="https://www.esipfed.org">ESIP</a>,
             <a href="https://www.imls.gov">IMLS</a> and
             <a href="https://sciencegateways.org">SGCI</a> for their support.
-        </p>
-        <p>
+       <br/>
             ESIP is a collaboration among many partner organizations, activities
             are sponsored by <a href="https://www.nasa.gov">NASA</a>,
             <a href="https://www.noaa.gov">NOAA</a> and
