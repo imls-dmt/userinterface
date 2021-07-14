@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<html>
+
+<body>
+
+
+    <div id="frm"></div>
+</body>
+
+</html>
+<script>
+    server="https://esip-dev-03.edacnm.org/"
+    uuid="5654dbe7-1b18-4c31-b1f9-40de52e2c736"
+    $.getJSON(server+"/api/get_survey/"+uuid, function (data) {
+        console.log(data)
+        $('#frm').append(obj2string(data))
+    });
+    function uuidv4() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+      }
+    function obj2string(data){
+        fs = '<div class="formdiv">'
+            fs = fs + '<h1 class="formheader">' + data['label'] + '</h1>'
+            fs = fs + '<form action="'+server+'/api/submit_survey/'+uuid+'" method="post">'
+            fs = fs + '<input type="hidden" id="submitterid" name="submitter" value="'+uuidv4()+'">'    
+            for (var j = 0; j < data['question_groups'].length; j++) {
+                fs = fs + '<fieldset class="formfieldset" ><legend>' + data['question_groups'][j]['label'] + '</legend>'
+                    for (var k = 0; k < data['question_groups'][j]['questions'].length; k++) {
+                        q=data['question_groups'][j]['questions'][k]
+                        if (q['element']=='input'){
+                            fs = fs + '<br><label class="formlabel" for="'+q['id']+'">'+q['label']+'</label><br>'
+                            fs = fs + '<input class="forminput" type="'+q['input_type']+'" id="'+q['id']+'" name="'+q['id']+'" ><br>'
+                        }
+                        if (q['element']=='select'){
+                            fs = fs +'<br><label for="'+q['id']+'">'+q['label']+'</label>'
+                            fs = fs +'<select class="formoption" name="'+q['id']+'" id="'+q['id']+'">'
+                                for (var l = 0; l < q['options'].length; l++) {
+                                    fs = fs +'<option value="'+q['options'][l]['value']+'">'+q['options'][l]['key']+'</option>'
+                                }
+                            fs = fs +'</select>'
+                        }
+                    }
+                fs = fs + '</fieldset>'
+                fs=fs+'   <input type="submit" value="Submit"> </form>'
+            }
+            fs = fs + '</div>'
+        return fs
+    }
+</script>
