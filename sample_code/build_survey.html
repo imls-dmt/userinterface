@@ -13,8 +13,8 @@
 
 </html>
 <script>
-    server="https://esip-dev-03.edacnm.org/"
-    uuid="5654dbe7-1b18-4c31-b1f9-40de52e2c736"
+    server="https://esip-dev-02.edacnm.org/"
+    uuid="05f62af9-111d-4549-bbef-977e61dbecd9"
     $.getJSON(server+"/api/get_survey/"+uuid, function (data) {
         console.log(data)
         $('#frm').append(obj2string(data))
@@ -35,8 +35,18 @@
                     for (var k = 0; k < data['question_groups'][j]['questions'].length; k++) {
                         q=data['question_groups'][j]['questions'][k]
                         if (q['element']=='input'){
-                            fs = fs + '<br><label class="formlabel" for="'+q['id']+'">'+q['label']+'</label><br>'
-                            fs = fs + '<input class="forminput" type="'+q['input_type']+'" id="'+q['id']+'" name="'+q['id']+'" ><br>'
+                            
+                            if (q["input_type"]=="range"){
+                                console.log(q["options"][0]['key'])
+                                fs = fs + '<br><label class="formlabel" for="'+q['id']+'">'+q['label']+'</label><br>'
+                               // fs = fs + '<span><input class="forminput" type="'+q['input_type']+'" id="'+q['id']+'" name="'+q['id']+'" >''</span><br>'
+
+                                fs = fs + '<span>'+q["options"][0]['key']+'<input class="forminput" type="'+q['input_type']+'" id="'+q['id']+'" name="'+q['id']+'" min="'+q["options"][0]['value']+'" max="'+ q["options"][1]['value']+'" >'+q["options"][1]['key']+'</span><br>'
+
+                            }else{
+                                fs = fs + '<br><label class="formlabel" for="'+q['id']+'">'+q['label']+'</label><br>'
+                                fs = fs + '<input class="forminput" type="'+q['input_type']+'" id="'+q['id']+'" name="'+q['id']+'" ><br>'
+                            }
                         }
                         if (q['element']=='select'){
                             fs = fs +'<br><label for="'+q['id']+'">'+q['label']+'</label>'
@@ -44,7 +54,7 @@
                                 for (var l = 0; l < q['options'].length; l++) {
                                     fs = fs +'<option value="'+q['options'][l]['value']+'">'+q['options'][l]['key']+'</option>'
                                 }
-                            fs = fs +'</select>'
+                            fs = fs +'</select><br>'
                         }
                     }
                 fs = fs + '</fieldset>'
