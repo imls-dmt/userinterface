@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div>
+    <div class="title">
       <span v-if="$route.name != 'Resource'">{{ index }}. </span>
       <router-link :to="`/Resource/${item.id}`"> {{ item.title }} </router-link>
       <img :src="license" class="license" />
@@ -305,7 +305,7 @@ export default {
   border: none;
   color: blue;
   display: inline;
-  font-size: unset;
+  font-size: x-large;
   font-style: normal;
   font-weight: bold;
   text-align: left;

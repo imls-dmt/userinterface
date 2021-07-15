@@ -14,6 +14,7 @@ import Home from "./components/Home.vue";
 import Search from "./components/Search.vue";
 import Support from "./components/Support.vue";
 import Resource from "./components/Resource.vue";
+import Survey from "./components/Survey.vue";
 //import Login from "./components/Login.vue";
 import Blog from "./components/Blog.vue";
 import Profile from "./components/Profile.vue";
@@ -35,7 +36,13 @@ const router = createRouter({
       component: Resource,
       props: true,
     },
-    //{ path: "/login", name: "Login", component: Login },
+    {
+      path: "/survey/:id",
+      name: "Survey",
+      component: Survey,
+      props: true,
+    },
+ //{ path: "/login", name: "Login", component: Login },
     { path: "/blog", name: "Blog", component: Blog },
     { path: "/logintest", name: "LoginTest", component: LoginTest },
     { path: "/profile", name: "Profile", component: Profile }

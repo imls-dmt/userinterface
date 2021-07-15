@@ -1,32 +1,170 @@
 <template>
-    <div>This is the Contribute page</div>
+    <div>
+        <div v-if="!loggedin">
+            <p>If you are <router-link :to="{ name: 'LoginTest' }">logged into</router-link> the Clearinghouse you may submit new materials including:</p>
+            <ul>
+                <li>New learning resources</li>
+                <li>New assessment questions</li>
+                <li>New assessment question groups for use in learning resource surveys</li>
+            </ul>
+        </div>
+        <div v-else>
+            <p>You are logged in as {{ username }} and are allowed to:</p>
+            <ul>
+                <li>Submit new learning resources</li>
+                <li>Submit new assessment questions</li>
+                <li v-if="qPriv">Update existing assessment questions</li>
+                <li v-if="qPriv">Delete existing assessment questions</li>
+                <li> Create new assessment question groups</li>
+                <li v-if="gPriv">Update existing question groups</li>
+                <li v-if="gPriv">Delete existing question groups</li>
+            </ul>
+            <h1>Submit a New Learning Resource</h1>
+            
+            <hr/>
+            <h1>Assessment</h1>
+            <p>Clearinghouse assessment capabilities are built up from <span class="emph">individual questions</span> which are then combined into <span class="emph">question groups</span> that are then used to build <span class="emph">surveys</span> that are linked to specific learning resources. In support of maximum reusability of the assessment tools in the Clearinghouse all questions and question groups are publicly shared and reusable in multiple surveys. Individual surveys are linked to user accounts so that their results may be linked to specific learning events and activities managed by individual Clearinghouse users. </p>
+            
+            <p>Publicly accessible questions and question groups may be contributed through the tools below. Surveys for specific learning resources based on available question groups may be created through the summary page for each learning resource.</p>  
+            
+            <h2>Add/manage Assessment Questions</h2>
+            
+            <p>Here is a list of current questions available through the Clearinghouse. All registered Clearinghouse members may submit new questions for integration into the Clearinghouse. If you have sufficient permissions, you may also edit or delete existing questions <span class="emph"> that are not currently a part of a question group that is a component in a survey</span>.</p>
+            
+            <div>
+                <button class="btn btn-primary btn-block" @click="getQuestions" :disabled="loading">
+                    <span
+                        v-show="loading"
+                        class="spinner-border spinner-border-sm"
+                    ></span>
+                    <span>Re/Load Questions</span>
+                </button>
+            </div>
+            
+            <table>
+                <th>
+                    <td>Name</td>
+                    <td>Label</td>
+                    <td>Question</td>
+                    <td>Options</td>
+                    <td>Available Actions</td>
+                </th>
+                <tr v-for="question in questions" :key="question.id">
+                    <td>{{ question.name }}</td>
+                    <td>{{ question.label }}</td>
+                    <td>{{ question.element }}</td>
+                    <td>{{ question.options }}</td>
+                    <td>Actions ...</td>
+                </tr>
+            </table>
+            
+            <h2>Add/manage Assessment Question Groups</h2>
+            
+        </div>
+    </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import QuestionService from '../services/question.service';
+
 export default {
     name: "Contribute",
+    data() {
+        return {
+            loading: false,
+            qMode: 'initial',
+            displayQuestions: false,
+            qID: null,
+            newResource: {
+                title: '',
+                url: '',
+                access_cost: '',
+                submitter_name: '',
+                submitter_email: '',
+                authors: [{
+                    givenName: '',
+                    familyName: '',
+                    name_identifier: '',
+                    name_identifier_type: ''
+                }],
+                author_names: [],
+                author_org: [{
+                    name: '',
+                    name_identifier: '',
+                    name_identifier_type: ''
+                }],
+                contact: {
+                    name: '',
+                    org: '',
+                    email: ''
+                }
+            },
+            newQuestion: {
+                label: '',
+                name: '',
+                input_type: '',
+                element: '',
+                options: ''
+            },
+            currentQuestion: {},
+            questions: []
+        };
+    },
     props: {
         msg: String,
     },
-
-    mounted() {
-        console.log("Contribute mounted!");
+    computed: {
+    ...mapGetters([
+        'loggedin',
+        'username',
+        'groups',
+        ]),
+        qPriv() {
+            return this.$store.getters.groups.indexOf('editor') > 0 || this.$store.getters.groups.indexOf('admin') > 0;
+        },
+        gPriv() {
+            return this.$store.getters.groups.indexOf('editor') > 0 || this.$store.getters.groups.indexOf('admin') > 0;
+        },
+        noQuestions() {
+           return this.questions.length
+        }
     },
+    methods: {
+        qModeCreate() {
+            console.log("qModeCreate");
+            this.qMode = "create";
+        },
+        qModeDisplay() {
+            console.log("qModeDisplay")
+            this.qMode = "display";
+        },
+        qModeUpdate(id) {
+            console.log("qModeUpdate" + id)
+            this.qMode = "update";
+        },
+        qModeDelete(id) {
+            console.log("qModeDelete" + id)
+            this.qMode = "delete";
+        },
+        getQuestions() {
+            this.loading = true;
+            this.questions = QuestionService.getQuestions();
+            console.log(this.questions)
+            if (this.noQuestions > 0) {this.displayQuestions = true}
+            console.log(this.noQuestions)
+            this.loading = false;
+        }
+    }
 };
+
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
     margin: 40px 0 0;
-}
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-li {
-    display: inline-block;
-    margin: 0 10px;
 }
 a {
     color: #42b983;

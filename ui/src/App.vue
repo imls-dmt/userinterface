@@ -59,4 +59,8 @@ h3 {
   padding: 0px 30px 10px;
   flex: 1 1 200px;
 }
+
+.emph {
+  font-style: italic;
+}
 </style>

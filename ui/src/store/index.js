@@ -58,7 +58,6 @@ export default new Vuex.Store({
 		},
 		logout({ commit }) {
 			commit('setWorking', true);
-			AuthService.logout();
 			commit('logout');
 			commit('setWorking', false);
 		},

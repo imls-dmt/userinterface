@@ -22,10 +22,6 @@ class AuthService {
 				return response.data;
 			});
 	}
-
-	logout() {
-		localStorage.removeItem('loginResult');
-	}
 }
 
 export default new AuthService();
