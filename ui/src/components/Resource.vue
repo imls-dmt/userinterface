@@ -5,7 +5,11 @@
    <div class="container">
      <p>Available Assessment Surveys: </p>
      <ul v-if="this.surveys.length > 0">
-        <li v-for="(survey, index) in this.surveys" :key="index"><router-link :to="`/survey/${survey.id}`"> {{ survey.label }} </router-link></li>
+        <li v-for="(survey, index) in this.surveys" :key="index">
+            {{ survey.label }} 
+            <router-link :to="`/survey/${survey.id}`"><img src="@/assets/Pencil.png" style="width:36px;" /></router-link>
+            <router-link :to="`/survey-result/${survey.id}`"><img src="@/assets/Graph.png" style="width:36px;" /></router-link>
+        </li>
      </ul>
      <p v-else>No surveys are currently available for this learning resource</p>
    </div>

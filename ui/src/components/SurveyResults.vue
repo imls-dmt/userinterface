@@ -1,14 +1,14 @@
 <template>
     <div>
-        <h1>SAMPLE Survey: (not enterable)</h1>
-        <img src="@/assets/surveyQuestions.png" class="mockup" />
+        <h1>SAMPLE Survey Results</h1>
+        <img src="@/assets/responseMockUp.png" class="mockup" />
 
     </div>
 </template>
 
 <script>
 export default {
-    name: "Survey",
+    name: "SurveyResults",
     props: ["id"],
     data() {
         return {
@@ -19,10 +19,10 @@ export default {
         };
     },
     methods: {
-        fetchSurvey(id) {
-            console.log("entering fetchSurvey");
+        fetchResults(id) {
+            console.log("entering fetchResults");
             this.isLoaded = false;
-            //console.log("Trying to retrieve survey content for this survey: ", id);
+            //console.log("Trying to retrieve survey results for this survey: ", id);
             this.fetchURL = this.surveyBase.concat(id);
             console.log("Request URL: ", this.fetchURL);
             fetch(this.fetchURL, {

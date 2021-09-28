@@ -34,7 +34,7 @@ export default {
       this.isLoaded = false;
       console.log(this.$blog);
       console.log("retrieving blog metadata");
-      fetch("http://static.dmtc-devel.org/source/blog.json", {
+      fetch("/static/source/blog.json", {
         method: "GET",
       })
         .then((response) => {
