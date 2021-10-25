@@ -35,7 +35,7 @@ export default {
       this.isLoaded = false;
       // console.log("block : ", this.block);
       //console.log(this.block.content);
-      if (this.block.content.startsWith("http")) {
+      //if (this.block.content.startsWith("http")) {
         // console.log("if...");
         // fetch(url_root + this.block.content, {
         fetch(this.block.content, {
@@ -59,11 +59,11 @@ export default {
           .catch(() => {
             //this.error = true;
           });
-      } else {
-        this.content = this.block.content;
-        this.isLoaded = true;
-      }
-    },
+      } // else {
+        //this.content = this.block.content;
+        //this.isLoaded = true;
+      //}
+    //},
   },
 };
 </script>

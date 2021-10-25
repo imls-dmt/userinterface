@@ -54,7 +54,7 @@ export default {
     getHomeContent() {
       // console.log("entered getHomeContent()");
       this.isLoaded = false;
-      fetch("/static/source/home.json", {
+      fetch("/source/home.json", {
         method: "GET",
         // headers: { "Content-Type": "application/json" },
         // body: JSON.stringify(body),

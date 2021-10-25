@@ -12,7 +12,7 @@ import VueMarkdownIt from "vue3-markdown-it";
 // const url_root = "http://static.dmtc-devel.org/";
 
 export default {
-    name: "HomeContentBlock",
+    name: "AboutContentBlock",
     props: {
         block: {},
     },
@@ -35,7 +35,7 @@ export default {
             this.isLoaded = false;
             // console.log("block : ", this.block);
 
-//            if (this.block.content.startsWith("http")) {
+            //if (this.block.content.startsWith("http")) {
                 // console.log("if...");
                 // fetch(url_root + this.block.content, {
                 fetch(this.block.content, {
@@ -59,11 +59,10 @@ export default {
                     .catch(() => {
                         //this.error = true;
                     });
-            } 
-            //else {
-            //    this.content = this.block.content;
-            //    this.isLoaded = true;
-            //}
+            } //else {
+              //  this.content = this.block.content;
+              //  this.isLoaded = true;
+           // }
         //},
     },
 };
