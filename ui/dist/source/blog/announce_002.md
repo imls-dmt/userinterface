@@ -1,1 +1,0 @@
-Ham hock meatball jerky cow, swine pork belly boudin pork jowl. Pancetta drumstick venison, salami chuck corned beef tongue cow leberkas tail spare ribs sausage flank turducken. Ham t-bone corned beef meatball kevin jowl pork loin buffalo strip steak. Ribeye beef bacon, ground round meatball jowl sirloin alcatra tenderloin capicola turducken buffalo pastrami.

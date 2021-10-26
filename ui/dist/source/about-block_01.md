@@ -15,6 +15,9 @@ The descriptions of resources in the DMTC are designed to help both research dat
 The training and learning resources can include online webinars, tutorials, courses with modular units and lessons on specific topics, and educational curriculum guides.  Resources may be associated with specific educational frameworks such as skills, competencies and curricular frameworks, if applicable.   Resource descriptions may also contain annotations and recommendations from previous users, if available.
 
 
+## Why should I care?
+
+Because it is good for you
 
 
 
