@@ -1,6 +1,6 @@
 <template>
     <div v-if="isLoaded" class="content">
-        <VueMarkdownIt :source="content" />
+        <VueMarkdownIt html=true :source="content" />
     </div>
     <div v-else>{{ block.title }} (loading content...)</div>
 </template>
@@ -15,6 +15,7 @@ export default {
     name: "HomeContentBlock",
     props: {
         block: {},
+
     },
 
     components: { VueMarkdownIt },
