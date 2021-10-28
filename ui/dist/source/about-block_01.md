@@ -16,6 +16,5 @@ The training and learning resources can include online webinars, tutorials, cour
 
 
 
-## Why do we care?:
 
 
