@@ -21,6 +21,15 @@ Image by <a href="https://pixabay.com/users/ronymichaud-647623/?utm_source=link-
 Educators and trainers of research data skills in both formal settings such as universities and data centers and in more informal venues can be learners, but their needs as seekers of learning resources to use or adapt for teaching provide the motivation for the additional DMTC focus upon including the descriptive and assessment information about learning resources that will be most helpful to those who teach.  This focus is represented by the expanded metadata terms used to describe resources such as the *audience* to which a resource is targeted upon creation, and the *license* under which the resource can be reused.  In addition, assessment annotations made by users of the resources that have been submitted are visible as part of the descriptive information for each resource. Learn more about the metadata terms and assessment information used to describe DMTC resources on the Support pages.
 
 ## Code of Participation
+The learning resources registered in the DMTC come from a number of different training and education communities.  We welcome contributions from academia, non-profits, government agencies, for profit, and independent scholar educators whose focus is upon teaching data and data management skills important for conducting productive and responsible research, and creating useful, trustworthy scholarly research data.  Contributions to the DMTC may take the form of:
+
+* submitting learning resources to be considered for inclusion in the registry per the [Selection Guidelines](https://github.com/imls-dmt/resources-workflow/blob/master/Nov17_2018_SelectionCriteria.pdf)
+* augmenting metadata descriptions of learning resources submitted to the DMTC per the LRMI-adapted DMTC metadata schema used
+* performing quality assurance review and augmentation of learning resources descriptions per the LRMI-adapted DMTC metadata schema 
+* providing editorial review and final registration of the learning resources submitted to the DMTC
+* submitting assessment and user feedback on the learning resources registered in the DMTC
+
+As an affiliate of ESIP (Earth Science Information Partners), we ask our contributors to adhere to the ESIP Community Participation Guidelines found at:  https://www.esipfed.org/about/community-guidelines.
 
 ## Contact us
 
