@@ -92,6 +92,7 @@ export default {
         submitSurvey() {
             this.submission.respondent_id = this.uuidv4();
             this.submission = this.toString(this.submission);
+            this.submission = this.restructureSubmission(this.submission);
             console.log("Submission content:");
             console.log(JSON.stringify(this.submission));
             this.formSubmitted = false;
@@ -101,13 +102,13 @@ export default {
             fetch(this.fetchURL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(this.submission),
-                mode: 'no-cors'
+                body: JSON.stringify(this.submission)
             })
             .then((response) => {
                 if (response.ok) {
                     return response.json();
                 } else {
+                    console.log("No response was received or an error was encountered");
                     throw new Error();
                 }
             })
@@ -117,7 +118,10 @@ export default {
                 this.formSubmitted = true;
                 //console.log(obj2string(this.questions));
             })
-            .catch(() => {});
+            .catch(error => {
+                this.errorMessage = error;
+                console.error("there was an error!", error);
+            });
         },
         fetchResource(id) {
             console.log("entering fetchResources");
@@ -157,6 +161,16 @@ export default {
             o[k] = '' + o[k];
             });
             return o;
+        },
+        restructureSubmission(o) {
+            var newSubmission = {"respondent_id": o.respondent_id, "answers": []};
+            Object.keys(o).forEach(k => {
+                if ( k != 'respondent_id') {
+                    var newObject = {"question_id":k, "answer":o.[k]};
+                    newSubmission.answers.push(newObject);
+                 }
+            });
+            return newSubmission;        	
         },
     },
 

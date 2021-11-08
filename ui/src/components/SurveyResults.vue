@@ -2,7 +2,10 @@
     <div v-if="surveyLoaded && questionsLoaded && resourceLoaded" >
         <!-- <h1>SAMPLE Survey Results</h1><img src="@/assets/responseMockUp.png" class="mockup" /> -->
         <h1>Feedback for the <router-link :to="`/Resource/${resource.id}`" target="_blank"> <i>{{ resource.title }}</i> </router-link> learning resource from the "<span class="title">{{ survey.label }}</span>" survey</h1>
-        <div class="stars">
+        <div v-if="questions.length == 0">
+             No responses have been received. 
+        </div>
+        <div class="stars" v-else>
             <img class="stars_image" src="@/assets/five-star.png"  v-bind:style="{marginLeft: starsLeftMargin + 'px', zIndex: 1}" />
             <img class="stars_image" src="@/assets/110x20-white.png" v-bind:style="{ marginLeft: starsLeftMargin+(starsWidth*overallAverage/5) + 'px', zIndex: 2}" />
             <img class="stars_image" src="@/assets/five-star-hollow.png"  v-bind:style="{marginLeft: starsLeftMargin + 'px', zIndex: 3}"/> 
@@ -23,7 +26,7 @@
                                     <img class="stars_image" src="@/assets/five-star.png"  v-bind:style="{marginLeft: starsLeftMargin + 'px', zIndex: 1}" />
                                     <img class="stars_image" src="@/assets/110x20-white.png" v-bind:style="{ marginLeft: starsLeftMargin+(starsWidth*item.average/5) + 'px', zIndex: 2}" />
                                     <img class="stars_image" src="@/assets/five-star-hollow.png"  v-bind:style="{marginLeft: starsLeftMargin + 'px', zIndex: 3}"/> 
-                                    <div  v-bind:style="{ zIndex: 4 }">{{ item.average }}</div>
+                                    <div  v-bind:style="{ zIndex: 4 }">{{ item.average.toFixed(1) }}</div>
                                </div>
                             </div>               
                         </div>
