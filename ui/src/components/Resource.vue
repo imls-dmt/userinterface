@@ -1,18 +1,5 @@
 <template>
   <div>
-    <span v-if="!loggedin"><p><router-link :to="{ name: 'LoginTest' }">Login</router-link> to access assessment and workflow capabilities for this resource.</p></span>
-    
-   <div class="container">
-     <p>Available Assessment Surveys: </p>
-     <ul v-if="this.surveys.length > 0">
-        <li v-for="(survey, index) in this.surveys" :key="index">
-            {{ survey.label }} 
-            <router-link :to="`/survey/${survey.id}`"><img src="@/assets/Pencil.png" style="width:36px;" /></router-link>
-            <router-link :to="`/survey-result/${survey.id}`"><img src="@/assets/Graph.png" style="width:36px;" /></router-link>
-        </li>
-     </ul>
-     <p v-else>No surveys are currently available for this learning resource</p>
-   </div>
    
    <div v-for="(item, index) in this.resources" :key="item">
       <ResultItem
@@ -22,6 +9,23 @@
         :initialFull="initialFull"
       />
     </div>
+    
+   <div class="container">
+     <p>Resource Feedback:</p>
+     <ul v-if="this.surveys.length > 0">
+        <li v-for="(survey, index) in this.surveys" :key="index">
+            {{ survey.label }} survey<br>
+            <router-link :to="`/survey-result/${survey.id}`"><img src="@/assets/Graph.png" style="width:36px;" /></router-link> View feedback provided for this learning resource. <br/>
+            <router-link :to="`/survey/${survey.id}`"><img src="@/assets/Pencil.png" style="width:36px;" /></router-link> Provide feedback on this learning resource.
+        </li>
+     </ul>
+     <p v-else>No surveys are currently available for this learning resource</p>
+   </div>
+   
+   <span v-if="!loggedin"><p><router-link :to="{ name: 'LoginTest' }">Login</router-link> to access assessment and workflow capabilities for this resource.</p></span>
+    
+
+
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <div v-if="isLoaded" class="content">
-        <VueMarkdownIt html=true :source="content" />
+        <VueMarkdownIt :source="content" />
     </div>
     <div v-else>{{ block.title }} (loading content...)</div>
 </template>
