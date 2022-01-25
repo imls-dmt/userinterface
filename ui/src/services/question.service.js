@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://esip-dev-02.edacnm.org/';
+const API_URL = 'https://dmtc-devel.org/';
 
 class QuestionService {
 	getQuestions() {

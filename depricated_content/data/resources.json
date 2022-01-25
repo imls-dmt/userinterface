@@ -1,5 +1,5 @@
 {
-  "documentation": "https://esip-dev-02.edacnm.org/api/resources/documentation.html", 
+  "documentation": "https://dmtc-devel.org/api/resources/documentation.html", 
   "facets": {
     "accessibility_features.name": {
       "Control  - features that allow the user to control access to the learning resource, e.g., by pausing a timed interface when needed.": 1, 

@@ -1,6 +1,6 @@
 // Global Variables
 const verbose = true;
-const startup_request = "https://esip-dev-02.edacnm.org/api/resources/";
+const startup_request = "https://dmtc-devel.org/api/resources/";
 
 // Search-related global variables
 let search_string = "";

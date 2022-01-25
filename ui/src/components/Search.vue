@@ -160,7 +160,7 @@ export default {
       //console.log("currentSearch: ", this.$currentSearch);
       //console.log("searchHistory: ", this.$searchHistory);
 
-      fetch("https://esip-dev-02.edacnm.org/api/resources/", {
+      fetch("https://dmtc-devel.org/api/resources/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

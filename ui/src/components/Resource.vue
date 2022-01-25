@@ -44,8 +44,8 @@ export default {
     return {
       //resourceID: "32335b19-8e6f-3772-aacc-1379d70330bb",
       isLoaded: false,
-      fetchBase: "https://esip-dev-02.edacnm.org/api/resources/?id=",
-      surveyBase: "https://esip-dev-02.edacnm.org/api/surveys/?resourceid=",
+      fetchBase: "https://dmtc-devel.org/api/resources/?id=",
+      surveyBase: "https://dmtc-devel.org/api/surveys/?resourceid=",
       fetchURL: "",
       resources: [],
       surveys: [],

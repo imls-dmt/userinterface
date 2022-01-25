@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Login</h1>
-    <!-- <form action="https://esip-dev-02.edacnm.org/login/" method="post"> -->
+    <!-- <form action="https://dmtc-devel.org/login/" method="post"> -->
     <form @submit.prevent="processLogin">
       <table>
         <tr>
@@ -35,15 +35,6 @@
       </table>
     </form>
 
-    <!-- <div>
-      Interim login/logout option:<br />
-      <a href="https://esip-dev-02.edacnm.org/login/" target="_blank">login</a
-      ><br />
-      <a href="https://esip-dev-02.edacnm.org/logout/" target="_blank"
-        >logout</a
-      >
-    </div> -->
-
     <!-- <div>{{ this.$loginStatus }}</div>
     <div>{{ this.$loginUser }}</div> -->
   </div>
@@ -72,7 +63,7 @@ export default {
       const headers = {
         'Content-Type': 'application/json',
       }
-      const url = "https://esip-dev-02.edacnm.org/login_json";
+      const url = "https://dmtc-devel.org/api/login_json";
       this.error = null;
       //console.log("body: ", body);
       axios.post(url, post_content, {
