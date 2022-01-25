@@ -1,6 +1,6 @@
 // Global Variables
 const verbose = true;
-const startup_request = "https://www.dmtc-devel.org/api/resources/";
+const startup_request = "/api/resources/";
 
 // Search-related global variables
 let search_string = "";

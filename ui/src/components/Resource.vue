@@ -44,8 +44,8 @@ export default {
     return {
       //resourceID: "32335b19-8e6f-3772-aacc-1379d70330bb",
       isLoaded: false,
-      fetchBase: "https://www.dmtc-devel.org/api/resources/?id=",
-      surveyBase: "https://www.dmtc-devel.org/api/surveys/?resourceid=",
+      fetchBase: "/api/resources/?id=",
+      surveyBase: "/api/surveys/?resourceid=",
       fetchURL: "",
       resources: [],
       surveys: [],

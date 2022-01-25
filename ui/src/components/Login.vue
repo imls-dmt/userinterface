@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Login</h1>
-    <!-- <form action="https://www.dmtc-devel.org/login/" method="post"> -->
+    <!-- <form action="/login/" method="post"> -->
     <form @submit.prevent="processLogin">
       <table>
         <tr>
@@ -63,7 +63,7 @@ export default {
       const headers = {
         'Content-Type': 'application/json',
       }
-      const url = "https://www.dmtc-devel.org/api/login_json";
+      const url = "/api/login_json";
       this.error = null;
       //console.log("body: ", body);
       axios.post(url, post_content, {

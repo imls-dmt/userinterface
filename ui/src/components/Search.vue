@@ -160,7 +160,7 @@ export default {
       //console.log("currentSearch: ", this.$currentSearch);
       //console.log("searchHistory: ", this.$searchHistory);
 
-      fetch("https://www.dmtc-devel.org/api/resources/", {
+      fetch("/api/resources/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
