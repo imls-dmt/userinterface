@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://dmtc-devel.org/';
+const API_URL = 'https://www.dmtc-devel.org/';
 
 class AuthService {
 	login(user) {
