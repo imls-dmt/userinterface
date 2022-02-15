@@ -14,6 +14,7 @@ import Home from "./components/Home.vue";
 import Search from "./components/Search.vue";
 import Support from "./components/Support.vue";
 import Resource from "./components/Resource.vue";
+import ResourceEdit from "./components/ResourceEdit.vue";
 import Survey from "./components/Survey.vue";
 import SurveyResults from "./components/SurveyResults.vue";
 //import Login from "./components/Login.vue";
@@ -35,6 +36,12 @@ const router = createRouter({
       path: "/resource/:id",
       name: "Resource",
       component: Resource,
+      props: true,
+    },
+    {
+      path: "/resource-edit/:id",
+      name: "ResourceEdit",
+      component: ResourceEdit,
       props: true,
     },
     {
