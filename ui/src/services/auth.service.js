@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const API_URL = '/';
+const API_URL = 'https://www.dmtc-devel.org';
 
 class AuthService {
 	login(user) {
-		let url = API_URL + 'api/login_json';
+		let url = API_URL.concat('/api/login_json');
 		return axios({
 			url: url,
 			method: "POST",

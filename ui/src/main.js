@@ -20,7 +20,7 @@ import SurveyResults from "./components/SurveyResults.vue";
 //import Login from "./components/Login.vue";
 import Blog from "./components/Blog.vue";
 import Profile from "./components/Profile.vue";
-import LoginTest from "./components/logintest.vue";
+import Login from "./components/login.vue";
 //import VueCookies from "vue-cookies";
 
 const router = createRouter({
@@ -58,7 +58,7 @@ const router = createRouter({
     },
  //{ path: "/login", name: "Login", component: Login },
     { path: "/blog", name: "Blog", component: Blog },
-    { path: "/logintest", name: "LoginTest", component: LoginTest },
+    { path: "/login", name: "Login", component: Login },
     { path: "/profile", name: "Profile", component: Profile }
   ],
 });
@@ -76,6 +76,7 @@ app.mount("#app");
 // https://v3.vuejs.org/api/application-config.html#globalproperties
 app.config.globalProperties.$searchResult = {}; // the current search result JSON object
 app.config.globalProperties.$currentSearch = {}; // the current search JSON object
-app.config.globalProperties.$searchHistory = []; // the search history array with new search JSON objects prepended at index 0
+app.config.globalProperties.$searchHistory = []; // the search history array with new search JSON  prepended at index 0
+app.config.globalProperties.$apiBase = 'https://www.dmtc-devel.org'
 //app.config.globalProperties.$loginStatus = {}; // login status
 //app.config.globalProperties.$loginUser = ""; // logged in user

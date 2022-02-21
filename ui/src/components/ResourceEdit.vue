@@ -1,5 +1,9 @@
 <template>
   <div>
+   <p>You are a member of the following DMTC groups:</p>
+   <ul>
+     <li v-for="(group,index) in groups" :key="index">{{ group }} </li>
+   </ul>
    
    <div v-for="(item, index) in this.resources" :key="item">
       <ResultItem
@@ -18,7 +22,7 @@
 </template>
 
 <script>
-import ResultItem from "./ResultItem.vue";
+import ResultItem from "./ResultItemEdit.vue";
 import { mapGetters } from 'vuex';
 
 
@@ -42,6 +46,11 @@ export default {
   },
 
   created() {
+    this.$store.dispatch("getGroups").then(
+      () => {
+        console.log("getting the user's groups")
+      }
+    );
     this.fetchItem(this.id);
   },
 
@@ -64,7 +73,7 @@ export default {
       console.log("entering fetchItem");
       this.isLoaded = false;
       console.log("Trying to retrieve record ID: ", id);
-      this.fetchURL = this.fetchBase.concat(id);
+      this.fetchURL = this.$apiBase.concat(this.fetchBase, id);
       console.log("Request URL: ", this.fetchURL);
       fetch(this.fetchURL, {
         method: "GET",

@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'LoginTest' }">
+  <router-link :to="{ name: 'Login' }">
     <span v-if="working">
       <span class="spinner-border spinner-border-sm"></span>
     </span>

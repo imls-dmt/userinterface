@@ -1,80 +1,128 @@
 <template>
-  <div>
-    <h1>Login</h1>
-    <!-- <form action="/login/" method="post"> -->
-    <form @submit.prevent="processLogin">
-      <table>
-        <tr>
-          <td><label for="username">Username:</label></td>
-          <td>
-            <input
-              type="text"
-              v-model="username"
-              name="username"
-              id="username"
-              placeholder="username"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td><label for="password">Password:</label></td>
-          <td>
-            <input
-              type="password"
-              v-model="password"
-              name="password"
-              id="password"
-              placeholder="password"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><input type="submit" name="submit" /></td>
-        </tr>
-      </table>
-    </form>
-
-    <!-- <div>{{ this.$loginStatus }}</div>
-    <div>{{ this.$loginUser }}</div> -->
-  </div>
+<div class="col-md-12">
+	<span v-if="loggedin">
+		<p>You are logged in as: {{ username }}</p>
+		<p>You are a member of the following DMTC groups:</p>
+		<ul>
+			<li v-for="(group,index) in groups" :key="index">{{ group }} </li>
+		</ul>
+		<Form @submit="handleLogout">
+			<div class="form-group">
+				<button class="btn btn-primary btn-block">
+				<span>Logout</span>
+				</button>
+			</div>
+		</Form>
+	</span>
+	<span v-else>
+		<div class="card card-container">
+			<Form @submit="handleLogin" :validation-schema="schema">
+				<div class="form-group">
+					<label for="username">Username</label>
+					<Field name="username" type="text" class="form-control" />
+					<ErrorMessage name="username" class="error-feedback" />
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>
+					<Field name="password" type="password" class="form-control" />
+					<ErrorMessage name="password" class="error-feedback" />
+				</div>	
+				<div class="form-group">
+					<button class="btn btn-primary btn-block" :disabled="loading">
+					<span
+						v-show="loading"
+						class="spinner-border spinner-border-sm"
+					></span>
+					<span>Login</span>
+					</button>
+				</div>
+				<div class="form-group">
+					<div v-if="message" class="alert alert-danger" role="alert">
+						{{ message }}
+					</div>
+				</div>
+			</Form>
+		</div>
+	</span>
+</div>
 </template>
-
+	
 <script>
-import axios from "axios";
-export default {
-  name: "Login",
-  data() {
-    return {
-      username: '',
-      password: '',
-      error: null,
-      result: '',
-      success: false
-    };
-  },
-  methods: {
-    processLogin: async function () {
-      console.log("processing login information");
-      const post_content = {
-        username: this.username,
-        password: this.password,
-      };
-      const headers = {
-        'Content-Type': 'application/json',
-      }
-      const url = "/api/login_json";
-      this.error = null;
-      //console.log("body: ", body);
-      axios.post(url, post_content, {
-        headers: headers
-      })
-        .then(response => {
-          console.log(JSON.stringify(response.data))
-        });
-    },
-  },
-};
-</script>
+	import { Form, Field, ErrorMessage } from "vee-validate";
+	import * as yup from "yup";
+	import { mapGetters } from 'vuex';
 
-<style scoped></style>
+	export default {
+		name: "Login",
+		
+		components: {
+			Form,
+			Field,
+			ErrorMessage,
+		},
+		
+		data() {
+			const schema = yup.object().shape({
+				username: yup.string().required("Username is required!"),
+				password: yup.string().required("Password is required!"),
+			});
+	
+			return {
+				loading: false,
+				message: "",
+				schema,
+			};
+		},
+
+		computed: {
+			...mapGetters([
+				'loggedin',
+				'username',
+				'groups'
+			])
+		},
+		
+		methods: {
+			handleLogin(user) {
+				this.loading = true;
+				console.log("username: " + user.username)
+				//console.log(user);
+				this.$store.dispatch("login", user).then(
+					() => {
+						console.log("login did not throw an error")
+						this.loading = false;
+						//this.$router.push("/profile");
+					},
+					(error) => {
+						this.loading = false;
+						this.message =
+							(error.response &&
+							error.response.data &&
+							error.response.data.message) ||
+							error.message ||
+							error.toString();
+					}
+				);
+				this.$store.dispatch("getGroups").then(
+					() => {
+						console.log("getting the user's groups")
+					}
+				);
+					
+			},
+			handleLogout() {
+				this.$store.dispatch("logout");
+				this.$store.dispatch("getGroups").then(
+					() => {
+						console.log("getting the user's groups")
+					}
+				);
+				
+			}
+		},
+	};
+</script>
+	
+<style scoped>
+</style>
+	

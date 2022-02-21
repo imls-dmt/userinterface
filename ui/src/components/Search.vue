@@ -160,7 +160,7 @@ export default {
       //console.log("currentSearch: ", this.$currentSearch);
       //console.log("searchHistory: ", this.$searchHistory);
 
-      fetch("/api/resources/", {
+      fetch(this.$apiBase.concat("/api/resources/"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
