@@ -1,7 +1,6 @@
 <template>
   <div>
-   
-   <div v-for="(item, index) in this.resources" :key="item">
+    <div v-for="(item, index) in this.resources" :key="item">
       <ResultItem
         :index="index"
         :item="item"
@@ -9,34 +8,44 @@
         :initialFull="initialFull"
       />
     </div>
-    
-   <div class="container">
-     <p>Resource Feedback:</p>
-     <ul v-if="this.surveys.length > 0">
+
+    <div class="container">
+      <p>Resource Feedback:</p>
+      <ul v-if="this.surveys.length > 0">
         <li v-for="(survey, index) in this.surveys" :key="index">
-            {{ survey.label }} survey<br>
-            <router-link :to="`/survey-result/${survey.id}`"><img src="@/assets/Graph.png" style="width:36px;" /></router-link> View feedback provided for this learning resource. <br/>
-            <router-link :to="`/survey/${survey.id}`"><img src="@/assets/Pencil.png" style="width:36px;" /></router-link> Provide feedback on this learning resource.
+          {{ survey.label }} survey<br />
+          <router-link :to="`/survey-result/${survey.id}`"
+            ><img src="@/assets/Graph.png" style="width: 36px"
+          /></router-link>
+          View feedback provided for this learning resource. <br />
+          <router-link :to="`/survey/${survey.id}`"
+            ><img src="@/assets/Pencil.png" style="width: 36px"
+          /></router-link>
+          Provide feedback on this learning resource.
         </li>
-     </ul>
-     <p v-else>No surveys are currently available for this learning resource</p>
-   </div>
-   
-   <span v-if="!loggedin"><p><router-link :to="{ name: 'Login' }">Login</router-link> to access assessment and workflow capabilities for this resource.</p></span>
-    
-  <p>You are a member of the following DMTC groups:</p>
-  <ul>
-    <li v-for="(group,index) in groups" :key="index">{{ group }} </li>
-  </ul>
+      </ul>
+      <p v-else>
+        No surveys are currently available for this learning resource
+      </p>
+    </div>
 
+    <span v-if="!loggedin"
+      ><p>
+        <router-link :to="{ name: 'Login' }">Login</router-link> to access
+        assessment and workflow capabilities for this resource.
+      </p></span
+    >
 
+    <p>You are a member of the following DMTC groups:</p>
+    <ul>
+      <li v-for="(group, index) in groups" :key="index">{{ group }}</li>
+    </ul>
   </div>
 </template>
 
 <script>
 import ResultItem from "./ResultItem.vue";
-import { mapGetters } from 'vuex';
-
+import { mapGetters } from "vuex";
 
 export default {
   name: "Resource",
@@ -59,11 +68,9 @@ export default {
   },
 
   created() {
-  this.$store.dispatch("getGroups").then(
-    () => {
-      console.log("getting the user's groups")
-      }
-    );
+    this.$store.dispatch("getGroups").then(() => {
+      console.log("getting the user's groups");
+    });
     this.fetchItem(this.id);
     this.fetchSurveys(this.id);
   },
@@ -73,14 +80,10 @@ export default {
       this.nResources = this.resources.length;
     },
   },
-  
+
   computed: {
-    ...mapGetters([
-      'loggedin',
-      'username',
-      'groups'
-    ])
-    },
+    ...mapGetters(["loggedin", "username", "groups"]),
+  },
 
   methods: {
     fetchItem(id) {
@@ -117,17 +120,17 @@ export default {
       })
         .then((response) => {
           if (response.ok) {
-              return response.json();
-            } else {
-              throw new Error();
-            }
-          })
-          .then((result) => {
-            this.surveys = result["surveys"];
-            console.log(this.surveys);
-            console.log(this.surveys.length);
-          })
-          .catch(() => {});
+            return response.json();
+          } else {
+            throw new Error();
+          }
+        })
+        .then((result) => {
+          this.surveys = result["surveys"];
+          console.log(this.surveys);
+          console.log(this.surveys.length);
+        })
+        .catch(() => {});
     },
   },
 };
