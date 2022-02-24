@@ -112,11 +112,6 @@
 			},
 			handleLogout() {
 				this.$store.dispatch("logout");
-				this.$store.dispatch("getGroups").then(
-					() => {
-						console.log("getting the user's groups")
-					}
-				);
 				
 			}
 		},

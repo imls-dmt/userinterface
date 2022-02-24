@@ -22,7 +22,7 @@ import SurveyResults from "./components/SurveyResults.vue";
 //import Login from "./components/Login.vue";
 import Blog from "./components/Blog.vue";
 import Profile from "./components/Profile.vue";
-import Login from "./components/Login.vue";
+import Login from "./components/login.vue";
 //import VueCookies from "vue-cookies";
 
 const router = createRouter({

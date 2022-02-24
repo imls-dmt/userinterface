@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="!loggedin">
-            <p>If you are <router-link :to="{ name: 'LoginTest' }">logged into</router-link> the Clearinghouse you may submit new materials including:</p>
+            <p>If you are <router-link :to="{ name: 'Login' }">logged into</router-link> the Clearinghouse you may submit new materials including:</p>
             <ul>
                 <li>New learning resources</li>
                 <li>New assessment questions</li>
@@ -9,18 +9,25 @@
             </ul>
         </div>
         <div v-else>
-            <p>You are logged in as {{ username }} and are allowed to:</p>
+            You are logged in as <b>{{ username }}</b
+              >, and your assigned groups are
+              <span v-for="(group, index) in groups" :key="index">
+                <span v-if="index > 0">, </span>
+                <b>{{ group }}</b>
+              </span>
             <ul>
-                <li>Submit new learning resources</li>
+                <li>Submit new learning resources through our <router-link :to="{ name: 'ResourceCreate' }">learning resource creation form</router-link></li>
+                <!--
                 <li>Submit new assessment questions</li>
                 <li v-if="qPriv">Update existing assessment questions</li>
                 <li v-if="qPriv">Delete existing assessment questions</li>
                 <li> Create new assessment question groups</li>
                 <li v-if="gPriv">Update existing question groups</li>
                 <li v-if="gPriv">Delete existing question groups</li>
+            -->
             </ul>
-            <h1>Submit a New Learning Resource</h1>
             
+            <!--
             <hr/>
             <h1>Assessment</h1>
             <p>Clearinghouse assessment capabilities are built up from <span class="emph">individual questions</span> which are then combined into <span class="emph">question groups</span> that are then used to build <span class="emph">surveys</span> that are linked to specific learning resources. In support of maximum reusability of the assessment tools in the Clearinghouse all questions and question groups are publicly shared and reusable in multiple surveys. Individual surveys are linked to user accounts so that their results may be linked to specific learning events and activities managed by individual Clearinghouse users. </p>
@@ -59,7 +66,7 @@
             </table>
             
             <h2>Add/manage Assessment Question Groups</h2>
-            
+        -->
         </div>
     </div>
 </template>
