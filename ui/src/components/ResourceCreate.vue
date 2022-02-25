@@ -15,27 +15,34 @@
         <b>{{ group }}</b>
       </span>
     </span>
-    
-    <div 
-      v-if="groups.includes('admin') || 
-      groups.includes('editor') || 
-      groups.includes('reviewer') || 
-      groups.includes('submitter')">
+
+    <div
+      v-if="
+        groups.includes('admin') ||
+        groups.includes('editor') ||
+        groups.includes('reviewer') ||
+        groups.includes('submitter')
+      "
+    >
       <p>Advanced submission form</p>
-      <div class="card card-container">
+      <div>
         <Form @submit="handleSubmission">
-          <div v-for="value in this.flatMetadata" :key="value.keyName" class="card card-container">
-            <MetaElement 
-              :element="value" 
-            />
+          <div
+            v-for="value in this.flatMetadata"
+            :key="value.keyName"
+            class="card card-container"
+          >
+            <MetaElement :element="value" />
           </div>
         </Form>
       </div>
     </div>
-    
+
     <div v-else-if="groups.includes('lauth')">Basic submission form</div>
-    
-    <div v-else>Your assigned group is not authorized to submit new learning resources.</div>
+
+    <div v-else>
+      Your assigned group is not authorized to submit new learning resources.
+    </div>
     <!--<div v-for="item in this.metadata" :key="item.name">
       <p>{{ item["label"] }}</p>
     </div>-->
@@ -50,8 +57,8 @@ import MetaElement from "./metaElement.vue";
 
 export default {
   name: "ResourceCreate",
-  components: { 
-    MetaElement ,
+  components: {
+    MetaElement,
     Form,
   },
 
@@ -90,12 +97,12 @@ export default {
   created() {
     this.fetchTemplate();
   },
-  
-//  beforeUpdate() {
-//    this.$store.dispatch("getGroups").then(() => {
-//      console.log("getting the user's groups");
-//    });
-//  },
+
+  //  beforeUpdate() {
+  //    this.$store.dispatch("getGroups").then(() => {
+  //      console.log("getting the user's groups");
+  //    });
+  //  },
 
   computed: {
     ...mapGetters(["loggedin", "username", "groups"]),
@@ -128,23 +135,30 @@ export default {
       // refactor grouped metadata object into flat/combined group-field keys and expanded content
       this.flatMetadata = {};
       for (let group in this.metadata) {
-        for (let element in this.metadata[group]['fields']) {
-          if ('name' in this.metadata[group]['fields'][element]) {
-            this.keyName = this.metadata[group]['name'] + "___" + this.metadata[group]['fields'][element]['name']
-          } else if ('facet' in this.metadata[group]['fields'][element]) {
-            this.keyName = this.metadata[group]['name'] + "___" + this.metadata[group]['fields'][element]['facet']
+        for (let element in this.metadata[group]["fields"]) {
+          if ("name" in this.metadata[group]["fields"][element]) {
+            this.keyName =
+              this.metadata[group]["name"] +
+              "___" +
+              this.metadata[group]["fields"][element]["name"];
+          } else if ("facet" in this.metadata[group]["fields"][element]) {
+            this.keyName =
+              this.metadata[group]["name"] +
+              "___" +
+              this.metadata[group]["fields"][element]["facet"];
           } else {
-            this.keyName = this.metadata[group]['name'] + "___undefined"
+            this.keyName = this.metadata[group]["name"] + "___undefined";
           }
           this.keyName = this.keyName.replace(".", "__");
           //console.log(this.keyName);
           //console.log(this.metadata[group]['fields'][element])
-          this.flatMetadata[this.keyName] = this.metadata[group]['fields'][element];
-          this.flatMetadata[this.keyName]['keyName'] = this.keyName;
+          this.flatMetadata[this.keyName] =
+            this.metadata[group]["fields"][element];
+          this.flatMetadata[this.keyName]["keyName"] = this.keyName;
         }
       }
       console.log(this.flatMetadata);
-      
+
       //this.baseMetadataForRendering = [];
       //this.advancedMetadataForRendering = [];
       //// build base metadata element array
@@ -160,8 +174,8 @@ export default {
       //console.log(this.advancedMetadataForRendering)
     },
     handleSubmission() {
-      console.log("entering handle submission")
-    }
+      console.log("entering handle submission");
+    },
   },
 };
 </script>
