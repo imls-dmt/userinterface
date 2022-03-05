@@ -1,38 +1,43 @@
 <template>
   <div>
     <h1>Create a new learning resource</h1>
-    <span v-if="!loggedin"
-      ><p>
-        <router-link :to="{ name: 'Login' }">Login</router-link> to create and
-        submit a new learning resource.
-      </p></span
-    >
-    <span v-else>
-      You are logged in as <b>{{ username }}</b
-      >, and your assigned groups are
-      <span v-for="(group, index) in groups" :key="index">
-        <span v-if="index > 0">, </span>
-        <b>{{ group }}</b>
-      </span>
-    </span>
-
     <div
       v-if="
         groups.includes('admin') ||
         groups.includes('editor') ||
         groups.includes('reviewer') ||
         groups.includes('submitter')
-      "
-    >
-      <p>Advanced submission form</p>
+      ">
+      <h2>Advanced submission form</h2>
       <div>
         <Form @submit="handleSubmission">
           <div
-            v-for="value in this.flatMetadata"
-            :key="value.keyName"
-            class="card card-container"
+            v-for="(group, index) in this.advancedMetadataFields"
+            :key="index"
           >
-            <MetaElement :element="value" />
+            <div class="form-section-head">{{ group['groupTitle'] }}</div>
+            
+            <div v-if="group['group'] == 'authors'">
+              <MetaElementAuthors
+                :template="this.flatMetadata"
+                :authorFields="group['fields']" />
+            </div>
+            
+            <div v-else-if="group['group'] == 'author_org'">
+              <MetaElementAuthorOrgs
+                :template="this.flatMetadata"
+                :authorOrgFields="group['fields']" />
+            </div>
+            
+            <div v-else>
+              <div v-for="field in group['fields']" :key="field">
+                <MetaElement 
+                  :element='this.flatMetadata[field]'
+                  :fieldName='field' />
+                <p class="diagnostic"> {{ this.flatMetadata[field] }} </p>
+              </div>
+            </div>
+            
           </div>
         </Form>
       </div>
@@ -43,9 +48,24 @@
     <div v-else>
       Your assigned group is not authorized to submit new learning resources.
     </div>
-    <!--<div v-for="item in this.metadata" :key="item.name">
-      <p>{{ item["label"] }}</p>
-    </div>-->
+    
+    <span v-if="!loggedin"
+      ><p>
+        <router-link :to="{ name: 'Login' }">Login</router-link> to create and
+        submit a new learning resource.
+      </p></span
+    >
+    <span v-else>
+      <hr/>
+      You are logged in as <b>{{ username }}</b
+      >, and your assigned groups are
+      <span v-for="(group, index) in groups" :key="index">
+        <span v-if="index > 0">, </span>
+        <b>{{ group }}</b>
+      </span>
+    </span>
+    
+    
   </div>
 </template>
 
@@ -54,11 +74,15 @@ import { Form } from "vee-validate";
 //import * as yup from "yup";
 import { mapGetters } from "vuex";
 import MetaElement from "./metaElement.vue";
+import MetaElementAuthors from "./metaElementAuthors.vue";
+import MetaElementAuthorOrgs from "./metaElementAuthorOrgs.vue";
 
 export default {
   name: "ResourceCreate",
   components: {
     MetaElement,
+    MetaElementAuthors,
+    MetaElementAuthorOrgs,
     Form,
   },
 
@@ -76,19 +100,119 @@ export default {
       keyName: "",
       //schema,
       basicMetadataFields: [
-        "general___title",
-        "general___url",
-        "resource_contact___contact__name",
-        "resource_contact___contact__email",
+        {
+          "group": "general",
+          "groupTitle": "Core Information",
+          "fields": [
+            "general___submitter_name",
+            "general___submitter_email",
+            "general___title",
+            "general___abstract_data",
+          ],
+        },        
       ],
       baseMetadataForRendering: [],
       advancedMetadataFields: [
-        "general___title",
-        "general___abstract_data",
-        "general___url",
-        "resource_contact___contact__name",
-        "resource_contact___contact__email",
-        "resource_contact___citation",
+        {
+          "group": "general",
+          "groupTitle": "Core Information",
+          "fields": [
+            "general___submitter_name",
+            "general___submitter_email",
+            "general___title",
+            "general___abstract_data",
+            "general___keywords",
+            "general___url",
+            "general___language_primary",
+            "general___languages_secondary",
+            "general___media_type",
+            "general___publisher",
+            "general___resource_modification_date",
+            "general___usage_info",
+          ],
+        },
+        {
+          "group": "authors",
+          "groupTitle": "Authors",
+          "fields": [
+            "authors___authors__familyName",        
+            "authors___authors__givenName",        
+            "authors___authors__name_identifier",        
+            "authors___authors__name_identifier_type",                
+          ],
+        },
+        {
+          "group": "author_org",
+          "groupTitle": "Authoring Organizations",
+          "fields": [
+            "authors___author_org__name",        
+            "authors___author_org__name_identifier",        
+            "authors___author_org__name_identifier_type",               
+          ],
+        },
+        {
+          "group": "contributors",
+          "groupTitle": "Contributors",
+          "fields": [
+            "contributors___contributors__familyName",        
+            "contributors___contributors__givenName", 
+            "contributors___contributors__type",
+            "contributors___contributor_orgs__name",
+            "contributors___contributor_orgs__type",
+          ],
+        },
+        {
+          "group": "educational_information",
+          "groupTitle": "Educational Information",
+          "fields": [
+            "educational_information___lr_type",        
+            "educational_information___purpose", 
+            "educational_information___subject",
+            "educational_information___target_audience",
+          ],
+        },
+        {
+          "group": "ed_frameworks",
+          "groupTitle": "Educational Frameworks",
+          "fields": [
+            "educational_information___ed_frameworks__name",        
+            "educational_information___ed_frameworks__nodes.name", 
+            "educational_information___ed_frameworks__nodes.description",
+          ],
+        },
+        {
+          "group": "resource_contact",
+          "groupTitle": "Resource Contact Information",
+          "fields": [
+            "resource_contact___contact__name",        
+            "resource_contact___contact__org",              
+            "resource_contact___contact__email",              
+          ],
+        },
+        {
+          "group": "access_conditions",
+          "groupTitle": "Access Conditions",
+          "fields": [
+            "access_conditions___license",        
+            "access_constraints___access_cost",              
+          ],
+        },
+        {
+          "group": "accessibility",
+          "groupTitle": "Accessibiilty Features",
+          "fields": [
+            "accessibility___accessibility_features__name",        
+            "accessibility___accessibility_summary",              
+          ],
+        },
+        {
+          "group": "resource_location",
+          "groupTitle": "Resource Location",
+          "fields": [
+            "resource_location___locator_data",        
+            "resource_location___locator_type",              
+          ],
+        },
       ],
       advancedMetadataForRendering: [],
     };
@@ -158,20 +282,6 @@ export default {
         }
       }
       console.log(this.flatMetadata);
-
-      //this.baseMetadataForRendering = [];
-      //this.advancedMetadataForRendering = [];
-      //// build base metadata element array
-      //for (let element in this.basicMetadataFields) {
-      //  console.log(this.advancedMetadataFields[element]);
-      //  this.baseMetadataForRendering.push(this.metadata[this.advancedMetadataFields[element]])
-      //}
-      //for (let element in this.advancedMetadataFields) {
-      //  console.log(this.advancedMetadataFields[element]);
-      //  this.advancedMetadataForRendering.push(this.metadata[this.advancedMetadataFields[element]])
-      //}
-      //console.log(this.baseMetadataForRendering);
-      //console.log(this.advancedMetadataForRendering)
     },
     handleSubmission() {
       console.log("entering handle submission");

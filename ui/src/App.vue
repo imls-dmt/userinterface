@@ -33,16 +33,6 @@ export default {
   margin-right: auto;
 }
 
-h2 {
-  margin-bottom: 4px;
-  margin-top: 3px;
-}
-
-h3 {
-  margin-top: 3px;
-  margin-bottom: 0px;
-}
-
 .blog-item {
   display: flex;
   flex-direction: column;
@@ -63,4 +53,64 @@ h3 {
 .emph {
   font-style: italic;
 }
+
+.diagnostic {
+  display: none;
+  font-size: 8pt;
+  color: gray;
+  padding: 0px;
+  margin: 0px;
+}
+
+.alert {
+  color: red;
+}
+
+.form-section-head {
+  padding-top: 36px;
+  font-size: xx-large;
+  border-bottom: 1px solid black;
+}
+
+.checkbox-box {
+  display: inline;
+  margin-right: 6pt;
+}
+
+.list-container {
+  height: 3em;
+}
+
+form {
+    overflow: hidden;
+}
+
+.form-control-label {
+    padding-top: 12px;
+}
+ 
+.form-control {
+  width: 95%;
+}
+
+input[type=checkbox] {
+    vertical-align: middle;
+    position: relative;
+    bottom: 1px;
+}
+
+.checkbox-option {
+  padding-left: 18px ;
+  text-indent: -18px ;
+}
+
+.flexiList {
+  border: 1px solid black;
+}
+
+.flexiButton {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
 </style>
