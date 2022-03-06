@@ -9,23 +9,20 @@
             </ul>
         </div>
         <div v-else>
-            You are logged in as <b>{{ username }}</b
-              >, and your assigned groups are
+            <p>You are logged in as <b>{{ username }}</b>, and your assigned groups are
               <span v-for="(group, index) in groups" :key="index">
                 <span v-if="index > 0">, </span>
-                <b>{{ group }}</b>
-              </span>
-            <ul>
-                <li>Submit new learning resources through our <router-link :to="{ name: 'ResourceCreate' }">learning resource creation form</router-link></li>
-                <!--
-                <li>Submit new assessment questions</li>
-                <li v-if="qPriv">Update existing assessment questions</li>
-                <li v-if="qPriv">Delete existing assessment questions</li>
-                <li> Create new assessment question groups</li>
-                <li v-if="gPriv">Update existing question groups</li>
-                <li v-if="gPriv">Delete existing question groups</li>
-            -->
-            </ul>
+                <b>{{ group }}</b></span>. You can create and submit new learning resources for review and publication. 
+            </p>
+            <suspense>
+                <template #default>
+                    <ResourceCreate />
+                </template>
+                <template #fallback>
+                    <p>Loading metadata template ... </p>
+                </template>
+            </suspense>
+            
             
             <!--
             <hr/>
@@ -74,9 +71,11 @@
 <script>
 import { mapGetters } from 'vuex';
 import QuestionService from '../services/question.service';
+import ResourceCreate from './ResourceCreate.vue'
 
 export default {
     name: "Contribute",
+    components: {ResourceCreate},
     data() {
         return {
             loading: false,

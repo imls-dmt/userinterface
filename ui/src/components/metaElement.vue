@@ -9,9 +9,12 @@
     <!--authors__familyName-->
     <div v-if="element['keyName'] == 'authors___authors__familyName'">
       <div>
-        <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b> (select an existing value or enter a new one through the control below)</label>
-        <input :list="element['keyName']" class="form-control"/>
-        <datalist :id="element['keyName']">
+        <label :for="element['keyName'] + '-datalist'" class="form-control-label"><b>{{element["label"]}}</b> (select an existing value or enter a new one through the control below)</label>
+        <input 
+          :list="element['keyName'] + '-options'" 
+          :id="element['keyName'] + '-datalist'"
+          class="form-control"/>
+        <datalist :id="element['keyName'] + '-options'">
           <option
             v-for="(option, index) in element['options']"
             :key="index"
@@ -20,12 +23,16 @@
         </datalist>
       </div>
     </div>
+    
     <!--authors__givenName-->
     <div v-else-if="element['keyName'] == 'authors___authors__givenName'">
       <div>
-        <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b> (select an existing value or enter a new one through the control below)</label>
-        <input :list="element['keyName']" class="form-control"/>
-        <datalist :id="element['keyName']">
+        <label :for="element['keyName'] + '-datalist'" class="form-control-label"><b>{{element["label"]}}</b> (select an existing value or enter a new one through the control below)</label>
+        <input 
+          :list="element['keyName'] + '-options'"
+          :id="element['keyName'] + '-datalist'" 
+          class="form-control"/>
+        <datalist :id="element['keyName'] + '-options'">
           <option
             v-for="(option, index) in element['options']"
             :key="index"
@@ -34,6 +41,7 @@
         </datalist>
       </div>
     </div>
+    
     <!--org__name-->
     <div v-else-if="element['keyName'] == 'authors___author_org__name'">
       <div>
@@ -57,6 +65,7 @@
           <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b></label>
           <input  class="form-control"
             :name="element['keyName']"
+            :id="element['keyName']"
             :type="element['input_type']"
             :placeholder="'Enter the ' + element['label'] + ' text here' "
           />
@@ -71,10 +80,15 @@
           <input v-if="option['checked']"
                 :name="option['key']"
                 :type="element['input_type']"
+                :id="option['key'] + index.toString()"
                 checked
               />
-            <input v-else :name="option['key']" :type="element['input_type']" />
-             {{ option["key"] }}
+          <input v-else 
+            :name="option['key']" 
+            :type="element['input_type']"
+            :id="option['key'] + index.toString()"
+           />
+          <label :for="option['key'] + index.toString()">{{ option["key"] }}</label>
           </div>
         </div>
       </div>
@@ -103,7 +117,7 @@
           />
         </div>
       </div>
-      <!--Input-Email-->
+      <!--Input-url-->
       <div v-else-if="element['input_type'] == 'url'">
         <div>
           <label :for="element['keyName']" class="form-control-label"><b>{{ element["label"] }}</b></label>
@@ -136,17 +150,41 @@
     </div>
 
     <!--Select element-->
-    <!-- need to add support for multiple attribute -->
     <div v-else-if="element['element'] == 'select'">
       <div>
+        <span v-if="typeof element['attribute'] !== 'undefined' && element['attribute'].includes('multiple')">
+          <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b> (select one or more options from the pop-up list below)</label>
+          <select 
+            :name="element['keyName']"
+            :id="element['keyName']" 
+            class="form-control" 
+            multiple>
+            <option value="n/a" selected>n/a</option>
+            <option
+              v-for="(option, index) in element['options']"
+              :key="index"
+              :value="option['value']"
+            >
+            {{ option['value'] }}
+          </option>
+          </select>
+        </span>
+        <span v-else>
         <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b> (select one option from the pop-up list below)</label>
-        <select :name="element['keyName']" class="form-control">
+        <select 
+          :name="element['keyName']"
+          :id="element['keyName']"  
+          class="form-control">
+          <option value="n/a" selected>n/a</option>
           <option
             v-for="(option, index) in element['options']"
             :key="index"
             :value="option['value']"
-          />
+          >
+          {{ option['value'] }}
+        </option>
         </select>
+        </span>
       </div>
     </div>
 
@@ -154,8 +192,11 @@
     <div v-else-if="element['element'] == 'datalist'">
       <div>
         <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b> (select an existing value or enter a new one through the control below)</label>
-        <input :list="element['keyName']" class="form-control"/>
-        <datalist :id="element['keyName']">
+        <input 
+          :id="element['keyName'] + '-datalist'"
+          :list="element['keyName'] + '-options'" 
+          class="form-control"/>
+        <datalist :id="element['keyName'] + 'options'">
           <option
             v-for="(option, index) in element['options']"
             :key="index"
@@ -168,18 +209,22 @@
     <!--Flexdatalist element-->
     <div v-else-if="element['element'] == 'flexdatalist'">
       <div>
-        <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b> (select or enter a value and then click "add" to add it to the list)</label>
+        <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b> (select or enter a value and then click "add" to add it to the list. Uncheck an item in the list to prevent that item from being submitted.)</label>
         <div  class="form-control">
-          <div>This is where the selected items will be displayed</div>
-          <input :list="element['keyName']"/>
-          <datalist :id="element['keyName']">
+          <input 
+            :id="element['keyName'] + '-datalist'" 
+            :list="element['keyName'] + '-options'"
+          />
+          <datalist :id="element['keyName'] + '-options'">
             <option
               v-for="(option, index) in element['options']"
               :key="index"
               :value="option['value']"
             ></option>
           </datalist>
+          <button :id="element['keyName'] + 'button'" type="button" class="flexiButton" @click="flexDataListAdd">Add to list</button>
         </div>
+        <div :id="element['keyName'] + '-list'">This is where the selected items will be displayed</div>
       </div>
     </div>
 
@@ -206,6 +251,36 @@ export default {
       values: [],
     };
   },
+  methods: {
+    flexDataListAdd(event) {
+      const dlID = this.fieldName + "-datalist";
+      const dlID_selector = "#" + dlID;
+      const listID = this.fieldName + "-list"
+      const checkboxName = dlID + "-values"
+      const Value = document.querySelector(dlID_selector).value;
+      const checkboxID = dlID + "-" + Value
+      //console.log(dlID)
+      //console.log(Value)
+      if (Value !== "") {
+        if (document.getElementById(listID).innerHTML == "This is where the selected items will be displayed") {
+          document.getElementById(listID).innerHTML = "<input type=checkbox name=" + checkboxName + 
+          " id=" + checkboxID +
+          " value=" + Value +
+          " checked/>" + 
+          " <label for=" + checkboxID + ">" + Value + "</label>"
+        } else {
+          document.getElementById(listID).innerHTML += "<br/><input type=checkbox name=" + checkboxName + 
+            " id=" + checkboxID +
+            " value=" + Value +
+            " checked/>" + 
+            " <label for=" + checkboxID + ">" + Value + "</label>"
+        }
+      } else {
+        alert("You must select or enter a value before adding it to the list.")
+      }
+      document.querySelector(dlID_selector).value = ""
+    }
+  }
 };
 </script>
 

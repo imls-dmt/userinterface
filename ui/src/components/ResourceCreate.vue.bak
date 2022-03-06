@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Create a new learning resource</h1>
     <div
       v-if="
         groups.includes('admin') ||
@@ -7,7 +8,7 @@
         groups.includes('reviewer') ||
         groups.includes('submitter')
       ">
-      <h2>Advanced submission form for registering a new learning resource</h2>
+      <h2>Advanced submission form</h2>
       <div>
         <Form @submit="handleSubmission">
           <div
@@ -19,25 +20,25 @@
             <!-- Handle specialized field groups -->
             <div v-if="group['group'] == 'authors'">
               <MetaElementAuthors
-                :template="flatMetadata"
+                :template="this.flatMetadata"
                 :authorFields="group['fields']" />
             </div>
             
             <div v-else-if="group['group'] == 'author_org'">
               <MetaElementAuthorOrgs
-                :template="flatMetadata"
+                :template="this.flatMetadata"
                 :authorOrgFields="group['fields']" />
             </div>
             
             <div v-else-if="group['group'] == 'contributors'">
               <MetaElementContributors
-                :template="flatMetadata"
+                :template="this.flatMetadata"
                 :contributorFields="group['fields']" />
             </div>
             
             <div v-else-if="group['group'] == 'contributor_orgs'">
               <MetaElementContributorOrgs
-                :template="flatMetadata"
+                :template="this.flatMetadata"
                 :contributorOrgFields="group['fields']" />
             </div>
             
@@ -46,9 +47,9 @@
             <div v-else>
               <div v-for="field in group['fields']" :key="field">
                 <MetaElement 
-                  :element='flatMetadata[field]'
+                  :element='this.flatMetadata[field]'
                   :fieldName='field' />
-                <p class="diagnostic"> {{ flatMetadata[field] }} </p>
+                <p class="diagnostic"> {{ this.flatMetadata[field] }} </p>
               </div>
             </div>
             
@@ -83,7 +84,6 @@
   </div>
 </template>
 
-
 <script>
 import { Form } from "vee-validate";
 //import * as yup from "yup";
@@ -93,7 +93,6 @@ import MetaElementAuthors from "./metaElementAuthors.vue";
 import MetaElementAuthorOrgs from "./metaElementAuthorOrgs.vue";
 import MetaElementContributors from "./metaElementContributors.vue";
 import MetaElementContributorOrgs from "./metaElementContributorOrgs.vue";
-import { inject } from 'vue'
 
 export default {
   name: "ResourceCreate",
@@ -106,47 +105,6 @@ export default {
     Form,
   },
 
-  async setup () {
-    let apibase = inject('$appApiBase');
-    let fetchBase = "/api/resource/?metadata=true"
-    async function fetchTemplate() {
-      console.log("entering fetchTemplate");
-      let fetchURL = apibase.concat(fetchBase);
-      console.log("Request URL: ", fetchURL);
-      const res = await fetch(fetchURL, {method: "GET"});
-      return res.json()
-    }
-    function buildMetadataForRendering(metadata) {
-      // refactor grouped metadata object into flat/combined group-field keys and expanded content
-      console.log("metadta passed to buildMetatadataForRendering")
-      console.log(metadata)
-      let flatMetadata = {};
-      let keyName = "";
-      for (let group in metadata) {
-        for (let element in metadata[group]["fields"]) {
-          if ("name" in metadata[group]["fields"][element]) {
-            keyName = metadata[group]["name"] + "___" + metadata[group]["fields"][element]["name"];
-          } else if ("facet" in metadata[group]["fields"][element]) {
-            keyName = metadata[group]["name"] + "___" + metadata[group]["fields"][element]["facet"];
-          } else {
-            keyName = metadata[group]["name"] + "___undefined";
-          }
-          keyName = keyName.replace(".", "__");
-          flatMetadata[keyName] = metadata[group]["fields"][element];
-          flatMetadata[keyName]["keyName"] = keyName;
-        }
-      }
-      console.log(flatMetadata);
-      return flatMetadata
-    }
-    const metadata = await fetchTemplate();
-    console.log(metadata)
-    const flatMetadata = buildMetadataForRendering(metadata);
-    return {
-      metadata,
-      flatMetadata
-    }
-  },
 
   data() {
     //const schema = yup.object().shape({
@@ -155,11 +113,11 @@ export default {
     //});
     return {
       isLoaded: false,
-      //fetchBase: "/api/resource/?metadata=true",
-      //fetchURL: "",
-      //metadata: {},
-      //flatMetadata: {},
-      //keyName: "",
+      fetchBase: "/api/resource/?metadata=true",
+      fetchURL: "",
+      metadata: {},
+      flatMetadata: {},
+      keyName: "",
       //schema,
       basicMetadataFields: [
         {
@@ -287,8 +245,7 @@ export default {
   },
 
   created() {
-    console.log("Metadata: ", this.metadata)
-    console.log("Flat Metadata: ", this.flattMetadata)
+    this.fetchTemplate();
   },
 
   //  beforeUpdate() {
@@ -302,6 +259,56 @@ export default {
   },
 
   methods: {
+    fetchTemplate() {
+      console.log("entering fetchTemplate");
+      this.isLoaded = false;
+      this.fetchURL = this.$apiBase.concat(this.fetchBase);
+      console.log("Request URL: ", this.fetchURL);
+      fetch(this.fetchURL, {
+        method: "GET",
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error();
+          }
+        })
+        .then((result) => {
+          this.metadata = result;
+          console.log(this.metadata);
+          this.buildMetadataForRendering();
+        })
+        .catch(() => {});
+    },
+    buildMetadataForRendering() {
+      // refactor grouped metadata object into flat/combined group-field keys and expanded content
+      this.flatMetadata = {};
+      for (let group in this.metadata) {
+        for (let element in this.metadata[group]["fields"]) {
+          if ("name" in this.metadata[group]["fields"][element]) {
+            this.keyName =
+              this.metadata[group]["name"] +
+              "___" +
+              this.metadata[group]["fields"][element]["name"];
+          } else if ("facet" in this.metadata[group]["fields"][element]) {
+            this.keyName =
+              this.metadata[group]["name"] +
+              "___" +
+              this.metadata[group]["fields"][element]["facet"];
+          } else {
+            this.keyName = this.metadata[group]["name"] + "___undefined";
+          }
+          this.keyName = this.keyName.replace(".", "__");
+          //console.log(this.keyName);
+          //console.log(this.metadata[group]['fields'][element])
+          this.flatMetadata[this.keyName] =
+            this.metadata[group]["fields"][element];
+          this.flatMetadata[this.keyName]["keyName"] = this.keyName;
+        }
+      }
+      console.log(this.flatMetadata);
+    },
     handleSubmission() {
       console.log("entering handle submission");
     },

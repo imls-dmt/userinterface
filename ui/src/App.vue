@@ -17,6 +17,9 @@ export default {
     Navbar,
     Footer,
   },
+  provide: {
+    $appApiBase: "https://www.dmtc-devel.org"
+  }
 };
 </script>
 

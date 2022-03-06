@@ -82,6 +82,6 @@ app.mount("#app");
 app.config.globalProperties.$searchResult = {}; // the current search result JSON object
 app.config.globalProperties.$currentSearch = {}; // the current search JSON object
 app.config.globalProperties.$searchHistory = []; // the search history array with new search JSON  prepended at index 0
-app.config.globalProperties.$apiBase = "https://www.dmtc-devel.org";
+app.config.globalProperties.$apiBase = "https://www.dmtc-devel.org"; // use of this is depricated in favor of the provide/inject model supported by the App.vue component. This enables the use of injected variables in setup components, a feature not supported for variables defined with app.config.globalProperties. 
 //app.config.globalProperties.$loginStatus = {}; // login status
 //app.config.globalProperties.$loginUser = ""; // logged in user
