@@ -6,7 +6,7 @@
     <div v-else>
     
     <!--Handle special cases-->
-    <!--authors__familyName-->
+    <!--authors__familyName as datalist-->
     <div v-if="element['keyName'] == 'authors___authors__familyName'">
       <div>
         <label :for="element['keyName'] + '-datalist'" class="form-control-label"><b>{{element["label"]}}</b> (select an existing value or enter a new one through the control below)</label>
@@ -19,12 +19,13 @@
             v-for="(option, index) in element['options']"
             :key="index"
             :value="option['value']"
+            :id="genUUID()"
           ></option>
         </datalist>
       </div>
     </div>
     
-    <!--authors__givenName-->
+    <!--authors__givenName as datalist-->
     <div v-else-if="element['keyName'] == 'authors___authors__givenName'">
       <div>
         <label :for="element['keyName'] + '-datalist'" class="form-control-label"><b>{{element["label"]}}</b> (select an existing value or enter a new one through the control below)</label>
@@ -42,12 +43,15 @@
       </div>
     </div>
     
-    <!--org__name-->
+    <!--org__name as datalist-->
     <div v-else-if="element['keyName'] == 'authors___author_org__name'">
       <div>
         <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b> (select an existing value or enter a new one through the control below)</label>
-        <input :list="element['keyName']" class="form-control"/>
-        <datalist :id="element['keyName']">
+        <input 
+        :list="element['keyName'] + '-options'"
+        :id="element['keyName'] + '-datalist'"
+        class="form-control"/>
+        <datalist :id="element['keyName'] + '-options'">
           <option
             v-for="(option, index) in element['options']"
             :key="index"
@@ -56,6 +60,85 @@
         </datalist>
       </div>
     </div>
+    
+    <!--languages_secondary as a flexDataList - CHANGE TO SELECT MULTIPLE LIST-->
+    <div v-else-if="element['keyName'] == 'general___languages_secondary'">
+      <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b> (select one or more options from the pop-up list below)</label>
+      <select 
+        :name="element['keyName']"
+        :id="element['keyName']" 
+        class="form-control" 
+        multiple>
+        <option value="n/a" selected>n/a</option>
+        <option
+          v-for="(option, index) in element['options']"
+          :key="index"
+          :value="option['value']"
+        >
+        {{ option['value'] }}
+      </option>
+      </select>
+    </div>
+    
+    <!-- general___publisher as datalist-->
+    <div v-else-if="element['keyName'] == 'general___publisher'">
+      <div>
+        <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b> (select an existing value or enter a new one through the control below)</label>
+        <input 
+        :list="element['keyName'] + '-options'"
+        :id="element['keyName'] + '-datalist'"
+        class="form-control"/>
+        <datalist :id="element['keyName'] + '-options'">
+          <option
+            v-for="(option, index) in element['options']"
+            :key="index"
+            :value="option['value']"
+          ></option>
+        </datalist>
+      </div>
+    </div>
+    
+    <!-- ed_frameworks__name as select single -->
+    <div v-else-if="element['keyName'] == 'educational_information___ed_frameworks__name'">
+    <div>
+      <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b> (select one option from the pop-up list below)</label>
+      <select 
+        :name="element['keyName']"
+        :id="element['keyName']"  
+        class="form-control">
+        <option value="n/a" selected>n/a</option>
+        <option
+          v-for="(option, index) in element['options']"
+          :key="index"
+          :value="option['value']"
+        >
+        {{ option['value'] }}
+      </option>
+      </select>
+    </div>
+    </div>
+    
+    <!-- educational_information___ed_frameworks__nodes__name as select multiple -->
+    <div v-else-if="element['keyName'] == 'educational_information___ed_frameworks__nodes__name'">
+      <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b> (select one or more options from the pop-up list below)</label>
+      <select 
+        :name="element['keyName']"
+        :id="element['keyName']" 
+        class="form-control" 
+        multiple>
+        <option value="n/a" selected>n/a</option>
+        <option
+          v-for="(option, index) in element['options']"
+          :key="index"
+          :value="option['value']"
+        >
+        {{ option['value'] }}
+      </option>
+      </select>
+    </div>
+    
+    
+    
     
     <!--Default rendering of fields based on template-->
     <!--Input-Text-->
@@ -143,6 +226,7 @@
         <label :for="element['keyName']" class="form-control-label"><b>{{ element["label"] }}</b></label>
         <textarea 
           :name="element['keyName']" 
+          :id="element['keyName']" 
           rows="3" 
           class="form-control"
           :placeholder="'Enter the ' + element['label'] + ' text here' " />
@@ -196,7 +280,7 @@
           :id="element['keyName'] + '-datalist'"
           :list="element['keyName'] + '-options'" 
           class="form-control"/>
-        <datalist :id="element['keyName'] + 'options'">
+        <datalist :id="element['keyName'] + '-options'">
           <option
             v-for="(option, index) in element['options']"
             :key="index"
@@ -252,13 +336,14 @@ export default {
     };
   },
   methods: {
+    genUUID() {return self.crypto.randomUUID()},
     flexDataListAdd(event) {
       const dlID = this.fieldName + "-datalist";
       const dlID_selector = "#" + dlID;
       const listID = this.fieldName + "-list"
       const checkboxName = dlID + "-values"
-      const Value = document.querySelector(dlID_selector).value;
-      const checkboxID = dlID + "-" + Value
+      const Value = JSON.stringify(document.querySelector(dlID_selector).value);
+      const checkboxID = dlID + "-" + self.crypto.randomUUID()
       //console.log(dlID)
       //console.log(Value)
       if (Value !== "") {
@@ -266,13 +351,13 @@ export default {
           document.getElementById(listID).innerHTML = "<input type=checkbox name=" + checkboxName + 
           " id=" + checkboxID +
           " value=" + Value +
-          " checked/>" + 
+          " checked class='flexdatalist_checkbox' />" + 
           " <label for=" + checkboxID + ">" + Value + "</label>"
         } else {
           document.getElementById(listID).innerHTML += "<br/><input type=checkbox name=" + checkboxName + 
             " id=" + checkboxID +
             " value=" + Value +
-            " checked/>" + 
+            " checked class='flexdatalist_checkbox' />" + 
             " <label for=" + checkboxID + ">" + Value + "</label>"
         }
       } else {

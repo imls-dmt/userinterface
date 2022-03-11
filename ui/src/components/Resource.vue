@@ -136,4 +136,6 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+  h2 {background-color:bisque; }
+</style>

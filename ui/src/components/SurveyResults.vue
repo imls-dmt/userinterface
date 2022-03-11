@@ -80,7 +80,7 @@ export default {
             console.log("entering fetchSurvey");
             this.surveyLoaded = false;
             console.log("Trying to retrieve survey information for this survey: ", id);
-            this.fetchURL = this.surveyBase.concat(id);
+            this.fetchURL = this.$apiBase.concat(this.surveyBase, id);
             console.log("Request URL: ", this.fetchURL);
             fetch(this.fetchURL, {
                 method: "GET",
@@ -105,7 +105,7 @@ export default {
             console.log("entering fetchResults");
             this.questionsLoaded = false;
             console.log("Trying to retrieve survey results for this survey: ", id);
-            this.fetchURL = this.questionsBase.concat(id);
+            this.fetchURL = this.$apiBase.concat(this.questionsBase, id);
             console.log("Request URL: ", this.fetchURL);
             fetch(this.fetchURL, {
                 method: "GET",
@@ -130,7 +130,7 @@ export default {
             console.log("entering fetchResults");
             this.resourceLoaded = false;
             console.log("Trying to retrieve information for LR: ", id);
-            this.fetchURL = this.resourceBase.concat(id);
+            this.fetchURL = this.$apiBase.concat(this.resourceBase, id);
             console.log("Request URL: ", this.fetchURL);
             fetch(this.fetchURL, {
                 method: "GET",

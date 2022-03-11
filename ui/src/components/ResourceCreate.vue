@@ -9,7 +9,9 @@
       ">
       <h2>Advanced submission form for registering a new learning resource</h2>
       <div>
-        <Form @submit="handleSubmission">
+        <Form id="metadataForm">
+          <button type="button" class="flexiButton" @click="handleSubmission">Submit new learning resource information</button>
+          <button type="button" class="flexiButton" @click="loadDemoResource">Load demo resource values</button>
           <div
             v-for="(group, index) in this.advancedMetadataFields"
             :key="index"
@@ -23,12 +25,6 @@
                 :authorFields="group['fields']" />
             </div>
             
-            <div v-else-if="group['group'] == 'author_org'">
-              <MetaElementAuthorOrgs
-                :template="flatMetadata"
-                :authorOrgFields="group['fields']" />
-            </div>
-            
             <div v-else-if="group['group'] == 'contributors'">
               <MetaElementContributors
                 :template="flatMetadata"
@@ -39,6 +35,12 @@
               <MetaElementContributorOrgs
                 :template="flatMetadata"
                 :contributorOrgFields="group['fields']" />
+            </div>
+
+            <div v-else-if="group['group'] == 'ed_frameworks'">
+              <MetaElementFrameworks
+                :template="flatMetadata"
+                :frameworkFields="group['fields']" />
             </div>
             
             
@@ -90,19 +92,20 @@ import { Form } from "vee-validate";
 import { mapGetters } from "vuex";
 import MetaElement from "./metaElement.vue";
 import MetaElementAuthors from "./metaElementAuthors.vue";
-import MetaElementAuthorOrgs from "./metaElementAuthorOrgs.vue";
 import MetaElementContributors from "./metaElementContributors.vue";
 import MetaElementContributorOrgs from "./metaElementContributorOrgs.vue";
-import { inject } from 'vue'
+import MetaElementFrameworks from "./metaElementFrameworks.vue";
+import DemoResource from "../json/demoResource.json";
+import { inject } from 'vue';
 
 export default {
   name: "ResourceCreate",
   components: {
     MetaElement,
     MetaElementAuthors,
-    MetaElementAuthorOrgs,
     MetaElementContributors,
     MetaElementContributorOrgs,
+    MetaElementFrameworks,
     Form,
   },
 
@@ -161,6 +164,7 @@ export default {
       //flatMetadata: {},
       //keyName: "",
       //schema,
+      demoResource: DemoResource,
       basicMetadataFields: [
         {
           "group": "general",
@@ -169,8 +173,9 @@ export default {
             "general___submitter_name",
             "general___submitter_email",
             "general___title",
-            "general___abstract_data",
-          ],
+            "general___url",
+            "access_constraints___access_cost",
+          ]              
         },        
       ],
       baseMetadataForRendering: [],
@@ -191,21 +196,22 @@ export default {
             "general___publisher",
             "general___resource_modification_date",
             "general___usage_info",
+            "access_constraints___access_cost",              
           ],
         },
         {
           "group": "authors",
           "groupTitle": "Authors",
           "fields": [
-            "authors___authors__familyName",        
             "authors___authors__givenName",        
+            "authors___authors__familyName",        
             "authors___authors__name_identifier",        
             "authors___authors__name_identifier_type",                
           ],
         },
         {
           "group": "author_org",
-          "groupTitle": "Authoring Organizations",
+          "groupTitle": "Authoring Organization",
           "fields": [
             "authors___author_org__name",        
             "authors___author_org__name_identifier",        
@@ -245,7 +251,7 @@ export default {
           "fields": [
             "educational_information___ed_frameworks__name",        
             "educational_information___ed_frameworks__nodes__name", 
-            "educational_information___ed_frameworks__nodes__description",
+            //"educational_information___ed_frameworks__nodes__description", - deleted because it is not currently used
           ],
         },
         {
@@ -261,8 +267,7 @@ export default {
           "group": "access_conditions",
           "groupTitle": "Access Conditions",
           "fields": [
-            "access_conditions___license",        
-            "access_constraints___access_cost",              
+            "access_conditions___license",              
           ],
         },
         {
@@ -275,7 +280,7 @@ export default {
         },
         {
           "group": "resource_location",
-          "groupTitle": "Resource Location",
+          "groupTitle": "Resource Location Identifier",
           "fields": [
             "resource_location___locator_data",        
             "resource_location___locator_type",              
@@ -302,9 +307,308 @@ export default {
   },
 
   methods: {
+    genUUID() {return self.crypto.randomUUID()},
     handleSubmission() {
-      console.log("entering handle submission");
+      console.log("entering handleSubmission");
+      var elements = document.getElementById('metadataForm').elements
+      var fieldValues = {}
+      var returnObject = {}
+      //console.log(elements)
+      for (let element in elements) {
+        fieldValues[elements[element].id] = elements[element].value
+        //console.log(fieldValues[elements[element].name])
+      }
+      console.log(fieldValues)
+      
+      // populate the return object with values for submission
+      returnObject['title'] = fieldValues['general___title']
+      returnObject['url'] = fieldValues['general___url']
+      returnObject['access_cost'] = fieldValues['access_constraints___access_cost']
+      returnObject['submitter_name'] = fieldValues['general___submitter_name']
+      returnObject['submitter_email'] = fieldValues['general___submitter_email']
+      //authors
+      var authorElements = document.getElementById("metadataForm").elements
+      var authorsSet = new Set() // need to first create a set to eliminate duplicates
+      for (let element in authorElements) {
+        if (typeof(authorElements[element].id) !== 'undefined' && authorElements[element].id.startsWith('authors-list-')) {
+          authorsSet.add(authorElements[element].value)
+        }
+      }
+      var authorsArr = Array.from(authorsSet)
+      var authorsList = []
+      for (let element in authorsArr) {
+        authorsList.push(JSON.parse(authorsArr[element]))
+      }
+      returnObject['authors'] = authorsList
+      
+      
+            
+      console.log(returnObject)
     },
+    flexTableAdd(tableID, groupPrefix, values) {
+      let workingTable = document.getElementById(tableID)
+      // clear out all but the header row
+      let rowCount = workingTable.rows.length;
+      for (let i = rowCount - 1; i > 0; i--) {
+          workingTable.deleteRow(i);
+      }
+      // loop through the objects and process each one into a table row
+      for (let index in values) {
+        const checkboxID = groupPrefix + "-" + self.crypto.randomUUID()
+        if (values !== "n/a") {
+          let newRow = workingTable.insertRow()
+          let newCell = newRow.insertCell();
+          let newInput = document.createElement('input')
+          let newLabel = document.createElement('label')
+          newInput.setAttribute('type', 'checkbox')
+          newInput.setAttribute('id', checkboxID)
+          newInput.setAttribute('value', JSON.stringify(values[index]))
+          newInput.setAttribute('checked', "")
+          newCell.appendChild(newInput)
+          
+          let insertValue = ""
+          //console.log(values[index])
+          for (let value in values[index]) {
+            //console.log(values[index][value])
+            let newCell = newRow.insertCell();
+            let newText = document.createTextNode(values[index][value])
+            if (tableID == "frameworks_table" && value == "nodes") {
+              //console.log(value, ": frameworks_table name: ", values[index][value])
+              let nodes = []
+              for (let nodeIndex in values[index][value]) {
+                //console.log("node: ", values[index][value][nodeIndex]['name'])
+                nodes.push(values[index][value][nodeIndex]['name'])
+              }
+              newText = document.createTextNode(nodes.join().replace(",", ", "))
+              //newText = document.createTextNode(JSON.stringify(values[index][value]))
+            }
+            newCell.appendChild(newText)
+          }
+        }
+      }
+    },
+    flexDataListAdd(elementKey, checkboxValue) {
+      const dlID = elementKey + "-datalist";
+      const dlID_selector = "#" + dlID;
+      const listID = elementKey + "-list"
+      const checkboxName = dlID + "-values"
+      const Value = JSON.stringify(checkboxValue);
+      const checkboxID = dlID + "-" + self.crypto.randomUUID()
+      //console.log(dlID)
+      //console.log(Value)
+      if (Value !== "") {
+        if (document.getElementById(listID).innerHTML == "This is where the selected items will be displayed") {
+          document.getElementById(listID).innerHTML = "<input type=checkbox name=" + checkboxName + 
+          " id=" + checkboxID +
+          " value=" + Value +
+          " checked class='flexdatalist_checkbox'/>" + 
+          " <label for=" + checkboxID + ">" + Value + "</label>"
+        } else {
+          document.getElementById(listID).innerHTML += "<br/><input type=checkbox name=" + checkboxName + 
+            " id=" + checkboxID +
+            " value=" + Value +
+            " checked class='flexdatalist_checkbox'/>" + 
+            " <label for=" + checkboxID + ">" + Value + "</label>"
+        }
+      } else {
+        alert("You must select or enter a value before adding it to the list.")
+      }
+    },
+    loadDemoResource() {
+      //console.log("Entering loadDemoResource")
+      //console.log(this.demoResource);
+      let resource = this.demoResource['results'][0];
+      //console.log(resource)
+      let elements = document.getElementById('metadataForm').elements
+      //console.log("elements: ", elements)
+      //elements = Array.from([...new Set(elements)])// retain only the unique elements to remove any duplicates
+      //console.log(elements)
+      let elementSubs = []
+      let elementSub = ""
+      for (let element in elements) {
+        let elementID = elements[element].id
+        
+        // process each element to generate the name/key for processing against demo metadata
+        if (typeof elementID !== 'undefined' && !(elementID.includes('button')) && elements[element].type !== 'button') {
+          if (elements[element].id.split('___').length == 2) {elementSub = elements[element].id.split('___')[1]}
+          else {elementSub = elements[element].id}
+          elementSubs.push([elementSub, elements[element].name, elements[element].type, elements[element].value])
+        
+          // process different fields based on their element name/key
+          if (elementSub == 'submitter_name') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub])
+            elements[elementID].value = resource[elementSub]
+          
+          } else if (elementSub == 'submitter_email') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub])
+            elements[elementID].value = resource[elementSub]
+          
+          } else if (elementSub == 'title') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub])
+            elements[elementID].value = resource[elementSub]
+          
+          } else if (elementSub == 'abstract_data') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub])
+            elements[elementID].value = resource[elementSub]
+          
+          } else if (elementSub == 'keywords-datalist') {
+            //console.log("keywords-datalist: ", elements[element].id)
+            let elementKey = elements[elementID].id
+            elementKey = elementKey.replace('-datalist', '')
+            document.getElementById(elementKey + '-list').innerHTML = "This is where the selected items will be displayed"
+            for (let index in resource['keywords']) {
+              this.flexDataListAdd(elementKey, resource['keywords'][index]) 
+            }
+          
+          } else if (elementSub == 'url') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub])
+            elements[elementID].value = resource[elementSub]
+          
+          } else if (elementSub == 'language_primary-datalist') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub.replace('-datalist', '')])
+            elements[elementID].value = resource[elementSub.replace('-datalist', '')]
+          
+          } else if (elementSub == 'languages_secondary') {
+            //console.log("languages_secondary: ", elements[element].id)
+            let values = resource[elementSub];
+            let options = Array.from(document.querySelectorAll('#general___languages_secondary option'));
+            //console.log(options)
+            values.forEach(function(v) {
+              //console.log(v)
+              options.find(c => c.value == v).selected = true;
+            });
+            options.find(c => c.value == "n/a").selected = false;
+          
+          } else if (elementSub == 'media_type-datalist') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub.replace('-datalist', '')])
+            elements[elementID].value = resource[elementSub.replace('-datalist', '')]
+          
+          } else if (elementSub == 'publisher-datalist') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub.replace('-datalist', '')])
+            elements[elementID].value = resource[elementSub.replace('-datalist', '')]
+          
+          } else if (elementSub == 'resource_modification_date') {
+            let date = resource[elementSub].substring(0, 10)
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub])
+            elements[elementID].value = date
+          
+          } else if (elementSub == 'usage_info-datalist') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub.replace('-datalist', '')])
+            elements[elementID].value = resource[elementSub.replace('-datalist', '')]
+          
+          } else if (elementSub == 'access_cost') {
+            
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", (resource[elementSub] == 1))
+            elements[elementID].value = (resource[elementSub] == 1)
+          
+          } else if (elementSub == 'author_org__name-datalist') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource['author_org']['name'])
+            elements[elementID].value = resource['author_org']['name']
+          
+          } else if (elementSub == 'author_org__name_identifier') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource['author_org']['name_identifier'])
+            elements[elementID].value = resource['author_org']['name_identifier']
+          
+          } else if (elementSub == 'author_org__name_identifier_type') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource['author_org']['name_identifier_type'])
+            elements[elementID].value = resource['author_org']['name_identifier_type']
+            
+          } else if (elementSub == 'lr_type-datalist') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub.replace('-datalist', '')])
+            elements[elementID].value = resource[elementSub.replace('-datalist', '')]
+          
+          } else if (elementSub == 'purpose-datalist') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub.replace('-datalist', '')])
+            elements[elementID].value = resource[elementSub.replace('-datalist', '')]
+          
+          } else if (elementSub == 'subject-datalist') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub.replace('-datalist', '')])
+            elements[elementID].value = resource[elementSub.replace('-datalist', '')]
+          
+          } else if (elementSub == 'target_audience-datalist') {
+            //console.log("target_audience-datalist: ", elements[element].id)
+            let elementKey = elements[elementID].id
+            elementKey = elementKey.replace('-datalist', '')
+            document.getElementById(elementKey + '-list').innerHTML = "This is where the selected items will be displayed"
+            for (let index in resource['target_audience']) {
+              this.flexDataListAdd(elementKey, resource['target_audience'][index]) 
+            }
+          
+          } else if (elementSub == 'contact__name') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub])
+            elements[elementID].value = resource['contact']['name']
+          
+          } else if (elementSub == 'contact__org') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub])
+            elements[elementID].value = resource['contact']['org']
+          
+          } else if (elementSub == 'contact__email') {
+          //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub])
+          elements[elementID].value = resource['contact']['email']
+          
+          } else if (elementSub == 'license-datalist') {
+          //console.log("license-datalist: ", elements[element].id)
+          elements[elementID].value = resource[elementSub.replace('-datalist', '')]
+          
+          } else if (elementSub == 'license-datalist') {
+            //console.log("license-datalist: ", elements[element].id)
+            elements[elementID].value = resource[elementSub.replace('-datalist', '')]
+
+          } else if (elementSub == 'accessibility_features__name') {
+            //console.log("accessibility features name: ", elements[element].id)
+            let values = resource['accessibility_features'];
+            let options = Array.from(document.querySelectorAll('#accessibility___accessibility_features__name option'));
+            //console.log(options)
+            values.forEach(function(v) {
+              //console.log(v)
+              options.find(c => c.value == v).selected = true;
+            });
+            options.find(c => c.value == "n/a").selected = false;
+
+          } else if (elementSub == 'accessibility_summary') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub])
+            elements[elementID].value = resource[elementSub]
+          
+          } else if (elementSub == 'locator_data') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub])
+            elements[elementID].value = resource[elementSub]
+          
+          } else if (elementSub == 'locator_type') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub])
+            elements[elementID].value = resource[elementSub]
+          
+          } else {
+            console.log(element, ":  was skipped")
+          }
+        
+        
+        } else {
+          console.log(elementID, " : was ignored")
+        }
+        
+        // Process our special field collections
+        // Authors
+        if (resource["authors"].length > 0) {
+          this.flexTableAdd("author_table", "authors-list", resource["authors"])
+        }
+
+        // Contributors
+        if (resource["contributors"].length > 0) {
+          this.flexTableAdd("contributors_table", "contributors-list", resource["contributors"])
+        }
+        
+        // Contributor orgs
+        if (resource["contributor_orgs"].length > 0) {
+          this.flexTableAdd("contributorOrgs_table", "contributorOrgs-list", resource["contributor_orgs"])
+        }
+        // Educational frameworks
+        if (resource["ed_frameworks"].length > 0) {
+          //console.log()
+          this.flexTableAdd("frameworks_table", "frameworks-list", resource["ed_frameworks"])
+        }
+      }
+      console.log(elementSubs)
+    }
   },
 };
 </script>

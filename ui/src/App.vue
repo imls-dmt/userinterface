@@ -70,9 +70,13 @@ export default {
 }
 
 .form-section-head {
-  padding-top: 36px;
+  margin-top: 36px;
+  padding: 4px;
+  padding-left: 12px;
   font-size: xx-large;
   border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  background-color:#ECECEC;
 }
 
 .checkbox-box {
@@ -109,11 +113,27 @@ input[type=checkbox] {
 
 .flexiList {
   border: 1px solid black;
+  padding: 1em;
 }
+
+.flexiList td {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.flexiList th {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 
 .flexiButton {
   margin-top: 6px;
   margin-bottom: 6px;
+}
+
+.flexdatalist_checkbox {
+  margin-left: 1em;
 }
 
 </style>

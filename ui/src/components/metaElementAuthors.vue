@@ -1,14 +1,14 @@
 <template>
   <div>
-    <button type="button" class="flexiButton" @click="authorAdd">Combine entries and add them to the authors list</button>
     <div v-for="field in authorFields" :key="field">
       <MetaElement 
         :element='template[field]'
         :fieldName='field' />
     </div>
+    <button type="button" class="flexiButton" @click="authorAdd">Combine entries and add them to the authors list</button>
     <div id="authors-list" class="flexiList">
       <h3>Authors list</h3>
-      <p>Uncheck an item in the list to prevent its inclusion in the submission.</p>
+      <p>Uncheck a row in the list to prevent its inclusion in the submission.</p>
       <table id="author_table">
         <tr>
           <th>&nbsp;</th>
@@ -42,12 +42,13 @@ export default {
     authorAdd(event) {
       const listID = "authors-list"
       const checkboxName = "authors-values"
-      let values = "" // the delimited string of individual values
+      let values = {} // the delimited string of individual values
       let valuesList = [] // the array of individual values
       let field_selector = ""
       for (let fieldIndex in this.authorFields) {
         let value = "" // the individual values associated with each field
         let field = this.authorFields[fieldIndex]
+        let submissionField = field.replace('authors___authors__', '')
         //console.log(field)
         field_selector = "#" + field
         //console.log(this.authorFields[fieldIndex])
@@ -78,14 +79,10 @@ export default {
         
         console.log(value)
         valuesList.push(value)
-        if (values == "") {
-          values = value
-        } else {
-          values = values + "|" + value
-        }
+        values[submissionField] = value
       }
       console.log(values)
-      const checkboxID = listID + "-" + values
+      const checkboxID = listID + "-" + self.crypto.randomUUID()
       if (values !== "n/a") {
         let myTable = document.getElementById('author_table')
         let newRow = myTable.insertRow()
@@ -94,7 +91,7 @@ export default {
         let newLabel = document.createElement('label')
         newInput.setAttribute('type', 'checkbox')
         newInput.setAttribute('id', checkboxID)
-        newInput.setAttribute('value', values)
+        newInput.setAttribute('value', JSON.stringify(values))
         newInput.setAttribute('checked', "")
         newCell.appendChild(newInput)
           

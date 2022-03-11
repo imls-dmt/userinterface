@@ -68,7 +68,7 @@ export default {
             console.log("entering fetchSurvey");
             this.surveyLoaded = false;
             console.log("Trying to retrieve survey structure for this survey: ", id);
-            this.fetchURL = this.surveyBase.concat(id);
+            this.fetchURL = this.$apiBase.concat(this.surveyBase, id);
             console.log("Request URL: ", this.fetchURL);
             fetch(this.fetchURL, {
                 method: "GET",
@@ -97,7 +97,7 @@ export default {
             console.log(JSON.stringify(this.submission));
             this.formSubmitted = false;
             console.log("Trying to submit the survey input to the server for survey: ", this.id)
-            this.fetchURL = this.postBase.concat(this.id);
+            this.fetchURL = this.$apiBase.concat(this.postBase, this.id);
             console.log("Post URL: ", this.fetchURL);         
             fetch(this.fetchURL, {
                 method: "POST",
@@ -127,7 +127,7 @@ export default {
             console.log("entering fetchResources");
             this.resourceLoaded = false;
             console.log("Trying to retrieve information for LR: ", id);
-            this.fetchURL = this.resourceBase.concat(id);
+            this.fetchURL = this.$apiBase.concat(this.resourceBase, id);
             console.log("Request URL: ", this.fetchURL);
             fetch(this.fetchURL, {
                 method: "GET",
