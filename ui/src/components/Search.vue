@@ -156,7 +156,7 @@ export default {
       let body = this.setupPostContent();
       this.$currentSearch = body;
       this.$searchHistory.unshift(body);
-      //console.log("body: ", body);
+      console.log("body: ", body);
       //console.log("currentSearch: ", this.$currentSearch);
       //console.log("searchHistory: ", this.$searchHistory);
 
@@ -180,6 +180,7 @@ export default {
           this.isLoading = false;
           // console.log("result :", result);
           this.search_result = result;
+          console.log(result.facets);
           this.filters = this.setupFilters(result.facets);
           // console.log("search_result :", this.search_result);
         })
@@ -328,8 +329,9 @@ export default {
         ],
       });
 
+      console.log(this.filters_selected)
       let keys = Object.keys(this.filters_selected);
-      // console.log("keys : ", keys);
+      console.log("keys : ", keys);
       // console.log("filters_selected: ", this.filters_selected);
       // console.log("length = ", this.filters_selected.length);
       // console.log("yfilters_selected: ", this.filters_selected);
@@ -351,15 +353,17 @@ export default {
         let values = [];
 
         keys.forEach((key) => {
-          // console.log("key = ", key);
-          values = this.filters_selected[key];
-          // console.log("values : ", values);
-          for (let i = 0; i < values.length; i++) {
-            filters.push({
-              field: key,
-              string: values[i],
-              type: "match",
-            });
+          if (this.filters_selected[key].length > 0) {
+            // console.log("key = ", key);
+            values = this.filters_selected[key];
+            // console.log("values : ", values);
+            for (let i = 0; i < values.length; i++) {
+              filters.push({
+                field: key,
+                string: values[i],
+                type: "match",
+              });
+            }
           }
         });
 
@@ -376,10 +380,12 @@ export default {
         //     ],
         // });
 
-        post_content.search.push({
-          group: "and",
-          and: filters,
-        });
+        if (filters.length > 0) {
+          post_content.search.push({
+            group: "and",
+            and: filters,
+          });
+        }
       }
 
       // console.log("post_content = ", post_content);
