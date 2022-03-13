@@ -251,8 +251,8 @@ export default {
           "group": "general",
           "groupTitle": "Core Information",
           "fields": [
-            "general___submitter_name",
-            "general___submitter_email",
+            //"general___submitter_name",
+            //"general___submitter_email",
             "general___title",
             "general___url",
             "access_constraints___access_cost",
@@ -265,8 +265,8 @@ export default {
           "group": "general",
           "groupTitle": "Core Information",
           "fields": [
-            "general___submitter_name",
-            "general___submitter_email",
+            //"general___submitter_name",
+            //"general___submitter_email",
             "general___title",
             "general___abstract_data",
             "general___keywords",
@@ -454,17 +454,31 @@ export default {
       returnObject['accesibility_features'] = fieldValues['accessibility___accessibility_features__name']
       // accessibility features =================
       var accessibilityElement = document.getElementById('accessibility___accessibility_features__name');
-      var selectedAccessibilityOptions = [...accessibilityElement.selectedOptions]
-                      .map(option => option.value);
-      returnObject['accesibility_features'] = selectedAccessibilityOptions
+      //console.log(typeof(accessibilityElement), " ", accessibilityElement, " text: " , accessibilityElement === null)
+      if (accessibilityElement === null) {
+        //console.log("entering default accessibility value")
+        returnObject['accesibility_features'] = []
+      } else {
+        //console.log("entereing provided accessibility value")
+        var selectedAccessibilityOptions = [...accessibilityElement.selectedOptions]
+                        .map(option => option.value);
+        returnObject['accesibility_features'] = selectedAccessibilityOptions
+      }
       //=========================================
       returnObject['accesibility_summary'] = fieldValues['accessibility___accessibility_summary']
       returnObject['language_primary'] = fieldValues['general___language_primary-datalist']
       // languages secondary ====================
       var languagesSecondaryElement = document.getElementById('general___languages_secondary');
-      var languagesSecondaryOptions = [...languagesSecondaryElement.selectedOptions]
-                      .map(option => option.value);
-      returnObject['languages_secondary'] = languagesSecondaryOptions
+       if (languagesSecondaryElement === null) {
+        //console.log("entering default accessibility value")
+        returnObject['languages_secondary'] = []
+      } else {
+        //console.log("entereing provided accessibility value")
+        var languagesSecondaryOptions = [...languagesSecondaryElement.selectedOptions]
+                        .map(option => option.value);
+        returnObject['languages_secondary'] = languagesSecondaryOptions
+      }
+      
       //=========================================
       //educational frameworks ==================
       var frameworkElements = document.getElementById("metadataForm").elements
