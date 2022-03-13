@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :key="componentKey"> <!-- this will allow me to trigger a reload of the whole component by changing the componentKey value -->
     <div
       v-if="
         groups.includes('admin') ||
@@ -97,9 +97,11 @@ import MetaElementContributorOrgs from "./metaElementContributorOrgs.vue";
 import MetaElementFrameworks from "./metaElementFrameworks.vue";
 import DemoResource from "../json/demoResource.json";
 import { inject } from 'vue';
+import axios from 'axios';
 
 export default {
   name: "ResourceCreate",
+  props: {resourceID:{default: ""}},
   components: {
     MetaElement,
     MetaElementAuthors,
@@ -157,7 +159,10 @@ export default {
     //  url: yup.string().required("Resource URL is required!"),
     //});
     return {
+      componentKey: 0,
       isLoaded: false,
+      apiBase: inject('$appApiBase'),
+      localResourceID: this.resourceID,
       //fetchBase: "/api/resource/?metadata=true",
       //fetchURL: "",
       //metadata: {},
@@ -190,9 +195,11 @@ export default {
             "general___abstract_data",
             "general___keywords",
             "general___url",
+            "general___citation",
             "general___language_primary",
             "general___languages_secondary",
             "general___media_type",
+            "general___completion_time",
             "general___publisher",
             "general___resource_modification_date",
             "general___usage_info",
@@ -326,7 +333,7 @@ export default {
       returnObject['access_cost'] = fieldValues['access_constraints___access_cost']
       returnObject['submitter_name'] = fieldValues['general___submitter_name']
       returnObject['submitter_email'] = fieldValues['general___submitter_email']
-      //authors
+      //authors =================================
       var authorElements = document.getElementById("metadataForm").elements
       var authorsSet = new Set() // need to first create a set to eliminate duplicates
       for (let element in authorElements) {
@@ -340,10 +347,146 @@ export default {
         authorsList.push(JSON.parse(authorsArr[element]))
       }
       returnObject['authors'] = authorsList
+      //=========================================
+      returnObject['author_org'] = {}
+      returnObject['author_org']['name'] = fieldValues['authors___author_org__name-datalist']
+      returnObject['author_org']['name_identifier'] = fieldValues['authors___author_org__name_identifier']
+      returnObject['author_org']['name_identifier_type'] = fieldValues['authors___author_org__name_identifier_type']
+      returnObject['contact'] = {}
+      returnObject['contact']['name'] = fieldValues['resource_contact___contact__name']
+      returnObject['contact']['org'] = fieldValues['resource_contact___contact__org']
+      returnObject['contact']['email'] = fieldValues['resource_contact___contact__email']
+      returnObject['abstract_data'] = fieldValues['general___abstract_data']
+      returnObject['subject'] = fieldValues['educational_information___subject-datalist']
+      //keywords ================================
+      var keywordsElements = document.getElementById("metadataForm").elements
+      var keywordsSet = new Set() // need to first create a set to eliminate duplicates
+      for (let element in keywordsElements) {
+        if (typeof(keywordsElements[element].id) !== 'undefined' && keywordsElements[element].id.startsWith('general___keywords-datalist-')) {
+          keywordsSet.add(keywordsElements[element].value)
+        }
+      }
+      var keywordsList = Array.from(keywordsSet)
+      returnObject['keywords'] = keywordsList
+      //=========================================
+      returnObject['license'] = fieldValues['access_conditions___license-datalist']
+      returnObject['usage_info'] = fieldValues['general___usage_info-datalist']
+      returnObject['citation'] = fieldValues['general___citation']
+      returnObject['locator_data'] = fieldValues['resource_location___locator_data']
+      returnObject['locatortype'] = fieldValues['resource_location___locator_type']
+      returnObject['publisher'] = fieldValues['general___publisher-datalist']
+      returnObject['accesibility_features'] = fieldValues['accessibility___accessibility_features__name']
+      // accessibility features =================
+      var accessibilityElement = document.getElementById('accessibility___accessibility_features__name');
+      var selectedAccessibilityOptions = [...accessibilityElement.selectedOptions]
+                      .map(option => option.value);
+      returnObject['accesibility_features'] = selectedAccessibilityOptions
+      //=========================================
+      returnObject['accesibility_summary'] = fieldValues['accessibility___accessibility_summary']
+      returnObject['language_primary'] = fieldValues['general___language_primary-datalist']
+      // languages secondary ====================
+      var languagesSecondaryElement = document.getElementById('general___languages_secondary');
+      var languagesSecondaryOptions = [...languagesSecondaryElement.selectedOptions]
+                      .map(option => option.value);
+      returnObject['languages_secondary'] = languagesSecondaryOptions
+      //=========================================
+      //educational frameworks ==================
+      var frameworkElements = document.getElementById("metadataForm").elements
+      var frameworkSet = new Set() // need to first create a set to eliminate duplicates
+      for (let element in frameworkElements) {
+        if (typeof(frameworkElements[element].id) !== 'undefined' && frameworkElements[element].id.startsWith('frameworks-list-')) {
+          frameworkSet.add(frameworkElements[element].value)
+        }
+      }
+      var frameworkArr = Array.from(frameworkSet)
+      var frameworkList = []
+      for (let element in frameworkArr) {
+        frameworkList.push(JSON.parse(frameworkArr[element]))
+      }
+      returnObject['ed_frameworks'] = frameworkList
+      //=========================================
+      // target audience ========================
+      var targetAudienceElements = document.getElementById("metadataForm").elements
+      var targetAudienceSet = new Set() // need to first create a set to eliminate duplicates
+      for (let element in targetAudienceElements) {
+        if (typeof(targetAudienceElements[element].id) !== 'undefined' && targetAudienceElements[element].id.startsWith('educational_information___target_audience-datalist-')) {
+          targetAudienceSet.add(targetAudienceElements[element].value)
+        }
+      }
+      var targetAudienceList = Array.from(targetAudienceSet)
+      returnObject['target_audience'] = targetAudienceList
+      //=========================================
+      returnObject['purpose'] = fieldValues['educational_information___purpose-datalist']
+      returnObject['completion_time'] = fieldValues['general___completion_time']
+      returnObject['media_type'] = fieldValues['general___media_type-datalist']
+      returnObject['lr_type'] = fieldValues['educational_information___lr_type-datalist']
+      //contributors ============================
+      var contributorElements = document.getElementById("metadataForm").elements
+      var contributorSet = new Set() // need to first create a set to eliminate duplicates
+      for (let element in contributorElements) {
+        if (typeof(contributorElements[element].id) !== 'undefined' && contributorElements[element].id.startsWith('contributors-list-')) {
+          contributorSet.add(contributorElements[element].value)
+        }
+      }
+      var contributorArr = Array.from(contributorSet)
+      var contributorList = []
+      for (let element in contributorArr) {
+        contributorList.push(JSON.parse(contributorArr[element]))
+      }
+      returnObject['contributors'] = contributorList
+      //=========================================
+      //contributor orgs ========================
+      var contributorOrgElements = document.getElementById("metadataForm").elements
+      var contributorOrgSet = new Set() // need to first create a set to eliminate duplicates
+      for (let element in contributorOrgElements) {
+        if (typeof(contributorOrgElements[element].id) !== 'undefined' && contributorOrgElements[element].id.startsWith('contributorOrgs-list-')) {
+          contributorOrgSet.add(contributorOrgElements[element].value)
+        }
+      }
+      var contributorOrgArr = Array.from(contributorOrgSet)
+      var contributorOrgList = []
+      for (let element in contributorOrgArr) {
+        contributorOrgList.push(JSON.parse(contributorOrgArr[element]))
+      }
+      returnObject['contributor_orgs'] = contributorOrgList
+      //=========================================
       
-      
-            
+      // the resource ID will be added to the metadata if an existing record is being edited instead
+      // of a new resource being created. 
+      // DISABLED until PUT update method is confirmed and tested
+      returnObject['id'] = ""
+      let submitMethod = "POST"
+      //if (this.localResourceID !== "") {
+      //  returnObject['id'] = this.localResourceID
+      //  submitMethod = "PUT"
+      //}
+                  
       console.log(returnObject)
+      
+      // submit the generated metadata to create/update resource
+      let apibase = this.apiBase;
+      let url = apibase.concat('/api/resource/');
+      console.log(url);
+      axios({
+        url: url,
+        method: submitMethod,
+        data: returnObject, 
+        withCredentials: true
+      }).then(response => {
+          if (response.data) {
+            console.log(response.data)
+          }
+          console.log(response.data);
+          if (response.data['status'] == "success") {
+            this.localResourceID = response.data['doc']['id'];
+            console.log(this.localResourceID);
+            alert("Success, your submission was added to the processing queue with resource ID: " + this.localResourceID + ".\n\nYou may now submit a new learning resource.");
+            this.componentKey += 1;
+          } else {
+            console.log(response.data)
+            alert("Your submission failed with an error of: ", response.data['message'])
+          }
+        });
     },
     flexTableAdd(tableID, groupPrefix, values) {
       let workingTable = document.getElementById(tableID)
@@ -464,6 +607,10 @@ export default {
             //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub])
             elements[elementID].value = resource[elementSub]
           
+          } else if (elementSub == 'citation') {
+            //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub])
+            elements[elementID].value = resource[elementSub]
+          
           } else if (elementSub == 'language_primary-datalist') {
             //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub.replace('-datalist', '')])
             elements[elementID].value = resource[elementSub.replace('-datalist', '')]
@@ -482,6 +629,10 @@ export default {
           } else if (elementSub == 'media_type-datalist') {
             //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub.replace('-datalist', '')])
             elements[elementID].value = resource[elementSub.replace('-datalist', '')]
+          
+          } else if (elementSub == 'completion_time') {
+          //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub.replace('-datalist', '')])
+          elements[elementID].value = resource[elementSub]
           
           } else if (elementSub == 'publisher-datalist') {
             //console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub.replace('-datalist', '')])
