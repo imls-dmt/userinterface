@@ -1,5 +1,5 @@
 <template>
-  <div style="display:inline">
+  <div style="display:inline" class="login_block">
   <router-link :to="{ name: 'Login' }">
     <span v-if="working">
       <span class="spinner-border spinner-border-sm"></span>
@@ -38,8 +38,10 @@ img {
   width: 30px;
 }
 
-a {
+.login_block a {
   font-size: small;
+  color: black;
+  text-decoration: none;
 }
 
 </style>

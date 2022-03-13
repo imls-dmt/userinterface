@@ -6,6 +6,7 @@
 		<ul>
 			<li v-for="(group,index) in groups" :key="index">{{ group }} </li>
 		</ul>
+		<p>To request that you be added to additional DMTC groups please <a href="mailto:clearinghouseEd@esipfed.org?subject=Request for DMTC group change">email us</a>.</p>
 		<Form @submit="handleLogout">
 			<div class="form-group">
 				<button class="btn btn-primary btn-block">
@@ -85,7 +86,7 @@
 		methods: {
 			handleLogin(user) {
 				this.loading = true;
-				console.log("username: " + user.username)
+				//console.log("username: " + user.username)
 				//console.log(user);
 				this.$store.dispatch("login", user).then(
 					() => {
