@@ -16,6 +16,11 @@ class AuthService {
 		}).then(response => {
 				if (response.data) {
 					console.log(response.data)
+					if (response.data.status == "success") {
+						console.log("login did not throw an error, login was succssful")
+					} else if (response.data.status == "error") {
+						alert("Your login failed. Please try again. Error message: " + response.data.message)
+					}	
 					//localStorage.setItem('loginResult', JSON.stringify(response.data));
 				}
 				//console.log(response.data.accessToken);

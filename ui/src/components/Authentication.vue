@@ -1,15 +1,15 @@
 <template>
+  <div style="display:inline">
   <router-link :to="{ name: 'Login' }">
     <span v-if="working">
       <span class="spinner-border spinner-border-sm"></span>
     </span>
     <span v-else>
-      <span v-if="loggedin">{{username}}</span>
-      <img alt="Login/logout" src="@/assets/person.png" class="login" />
-      <span v-if="loggedin">Logout</span>
-      <span v-else>Login</span>
+      <span v-if="loggedin">Logout <img alt="Login/logout" src="@/assets/person-green.png" class="login" /></span>
+      <span v-else>Login <img alt="Login/logout" src="@/assets/person.png" class="login" /></span>
     </span>
   </router-link>
+  </div>
 </template>
 
 <script>
@@ -36,10 +36,10 @@ export default {
 <style scoped>
 img {
   width: 30px;
-  vertical-align: middle;
 }
 
 a {
   font-size: small;
 }
+
 </style>

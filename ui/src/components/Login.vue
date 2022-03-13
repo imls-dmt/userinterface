@@ -89,7 +89,7 @@
 				//console.log(user);
 				this.$store.dispatch("login", user).then(
 					() => {
-						console.log("login did not throw an error")
+						//console.log(response)
 						this.loading = false;
 						//this.$router.push("/profile");
 					},
