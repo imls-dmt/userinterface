@@ -1,21 +1,27 @@
 <template>
   <div :key="componentKey"> <!-- this will allow me to trigger a reload of the whole component by changing the componentKey value -->
-    <div
-      v-if="
+    <div v-if="
+      this.mode == 'advanced' &
+      (
         groups.includes('admin') ||
         groups.includes('editor') ||
         groups.includes('reviewer') ||
         groups.includes('submitter')
+      )
       ">
       <h2>Advanced submission form for registering a new learning resource</h2>
       <div>
         <Form id="metadataForm">
-          <button type="button" class="flexiButton" @click="handleSubmission">Submit new learning resource information</button>
+          <button type="button" class="flexiButton" @click="handleSubmission">Submit new learning resource information</button>&nbsp;
+          
+          <button type="button" class="flexiButton" @click="this.mode = 'basic'">Switch to basic entry form (<b>this will clear any entered information</b>)</button>&nbsp;
+          
           <button type="button" class="flexiButton" @click="loadDemoResource">Load demo resource values</button>
           <div
             v-for="(group, index) in this.advancedMetadataFields"
             :key="index"
           >
+          
             <div class="form-section-head">{{ group['groupTitle'] }}</div>
             
             <!-- Handle specialized field groups -->
@@ -59,7 +65,76 @@
       </div>
     </div>
 
-    <div v-else-if="groups.includes('lauth')">Basic submission form</div>
+    <div v-else-if="
+      this.mode == 'basic' &
+      (
+        groups.includes('lauth') ||
+        groups.includes('admin') ||
+        groups.includes('editor') ||
+        groups.includes('reviewer') ||
+        groups.includes('submitter')
+      )
+      ">
+      <h2>Basic submission form for registering a new learning resource</h2>
+      <div>
+        <Form id="metadataForm">
+          <button type="button" class="flexiButton" @click="handleSubmission">Submit new learning resource information</button>&nbsp;
+          
+          <button v-if="
+              groups.includes('admin') ||
+              groups.includes('editor') ||
+              groups.includes('reviewer') ||
+              groups.includes('submitter')
+            " type="button" class="flexiButton" 
+            @click="this.mode = 'advanced'">Switch to advanced entry form (<b>this will clear any entered information</b>)</button>
+          
+          <div
+            v-for="(group, index) in this.basicMetadataFields"
+            :key="index"
+          >
+            <div class="form-section-head">{{ group['groupTitle'] }}</div>
+            
+            <!-- Handle specialized field groups -->
+            <div v-if="group['group'] == 'authors'">
+              <MetaElementAuthors
+                :template="flatMetadata"
+                :authorFields="group['fields']" />
+            </div>
+            
+            <div v-else-if="group['group'] == 'contributors'">
+              <MetaElementContributors
+                :template="flatMetadata"
+                :contributorFields="group['fields']" />
+            </div>
+            
+            <div v-else-if="group['group'] == 'contributor_orgs'">
+              <MetaElementContributorOrgs
+                :template="flatMetadata"
+                :contributorOrgFields="group['fields']" />
+            </div>
+      
+            <div v-else-if="group['group'] == 'ed_frameworks'">
+              <MetaElementFrameworks
+                :template="flatMetadata"
+                :frameworkFields="group['fields']" />
+            </div>
+            
+            
+            <!-- Handle the rest of the field groups using default processing -->
+            <div v-else>
+              <div v-for="field in group['fields']" :key="field">
+                <MetaElement 
+                  :element='flatMetadata[field]'
+                  :fieldName='field' />
+                <p class="diagnostic"> {{ flatMetadata[field] }} </p>
+              </div>
+            </div>
+            
+          </div>
+        </Form>
+      </div>
+      
+    </div>
 
     <div v-else>
       Your assigned group is not authorized to submit new learning resources.
@@ -163,6 +238,7 @@ export default {
       isLoaded: false,
       apiBase: inject('$appApiBase'),
       localResourceID: this.resourceID,
+      mode: "basic",
       //fetchBase: "/api/resource/?metadata=true",
       //fetchURL: "",
       //metadata: {},
