@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div v-for="(item, index) in this.resources" :key="item">
+    <div v-for="(item, index) in resources" :key="item">
+      {{ item[index ]}}
       <ResultItem
         :index="index"
         :item="item"
@@ -8,11 +9,11 @@
         :initialFull="initialFull"
       />
     </div>
-
+       
     <div class="container">
       <p>Resource Feedback:</p>
-      <ul v-if="this.surveys.length > 0">
-        <li v-for="(survey, index) in this.surveys" :key="index">
+      <ul v-if="surveys.length > 0">
+        <li v-for="(survey, index) in surveys" :key="index">
           {{ survey.label }} survey<br />
           <router-link :to="`/survey-result/${survey.id}`"
             ><img src="@/assets/Graph.png" style="width: 36px"
@@ -28,14 +29,14 @@
         No surveys are currently available for this learning resource
       </p>
     </div>
-
+    
     <span v-if="!loggedin"
       ><p>
         <router-link :to="{ name: 'Login' }">Login</router-link> to access
         assessment and workflow capabilities for this resource.
       </p></span
     >
-
+    
     <p>You are a member of the following DMTC groups:</p>
     <ul>
       <li v-for="(group, index) in groups" :key="index">{{ group }}</li>
@@ -46,33 +47,136 @@
 <script>
 import ResultItem from "./ResultItem.vue";
 import { mapGetters } from "vuex";
+import { inject } from 'vue';
+import { ref } from 'vue';
 
 export default {
   name: "Resource",
   components: { ResultItem },
 
   props: ["id"],
+  
+  async setup (props) {
+    console.log("Setup - starting for resource ID: ", props.id)
+    let apiBase = inject('$appApiBase');
+    let fetchBase = "/api/resources/?id="
+    let surveyBase = "/api/surveys/?resourceid="
+    let isLoaded = false
+    let resources = {}
+    let surveys = {}
+    async function fetchItem(id) {
+      console.log("entering fetchItem");
+      console.log("Trying to retrieve record ID: ", id);
+      let fetchURL = apiBase.concat(fetchBase, id);
+      console.log("Request URL: ", fetchURL);
+      await fetch(fetchURL, {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json'
+        }})
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Network response was not OK")
+          }
+          return response.json();
+        })
+        .then((result) => {
+          console.log("result in fetch: ", result)
+          resources = result['results']
+        });
+      //await fetch(fetchURL, {
+      //  method: "GET",
+      //})
+      //  .then((response) => {
+      //    if (response.ok) {
+      //      return response.json();
+      //    } else {
+      //      throw new Error();
+      //    }
+      //  })
+      //  .then((result) => {
+      //    isLoaded = true
+      //    //console.log(result["results"]);
+      //    //console.log(result["results"].length);
+      //    return(result["results"]);
+      //  })
+      //  .catch(() => {});
+    }
+    async function fetchSurveys(id) {
+      console.log("entering fetchSurveys");
+      isLoaded = false;
+      console.log("Trying to retrieve surveys for record ID: ", id);
+      let fetchURL = apiBase.concat(surveyBase, id);
+      console.log("Request URL: ", fetchURL);
+     await fetch(fetchURL, {
+       method: "GET",
+       headers: {
+         'Content-Type': 'application/json'
+       }})
+       .then(response => {
+         if (!response.ok) {
+           throw new Error("Network response was not OK")
+         }
+         return response.json();
+       })
+       .then((result) => {
+         console.log("result in fetch: ", result)
+         surveys = result['surveys']
+     });
+     
+      //await fetch(fetchURL, {
+      //  method: "GET",
+      //})
+      //  .then((response) => {
+      //    if (response.ok) {
+      //      return response.json();
+      //    } else {
+      //      throw new Error();
+      //    }
+      //  })
+      //  .then((result) => {
+      //    isLoaded = true
+      //    //console.log(result["surveys"]);
+      //    //console.log(result["surveys"].length);
+      //    return(result["surveys"]);
+      //  })
+      //  .catch(() => {});
+//
+    }
+    const resourcesOutcome = await fetchItem(props.id)
+    const surveysOutcome = await fetchSurveys(props.id)
+    console.log("resources: ", resources)
+    console.log("surveys: ", surveys)
+    return {
+      resources,
+      surveys
+    }
+  },
 
   data() {
     return {
       //resourceID: "32335b19-8e6f-3772-aacc-1379d70330bb",
       isLoaded: false,
-      fetchBase: "/api/resources/?id=",
-      surveyBase: "/api/surveys/?resourceid=",
+      //fetchBase: "/api/resources/?id=",
+      //surveyBase: "/api/surveys/?resourceid=",
       fetchURL: "",
-      resources: [],
-      surveys: [],
+      //resources: [],
+      //surveys: [],
       nResources: 0,
       initialFull: true,
     };
+  },
+
+  beforeCreate() {
+    console.log("resources: ", this.resources)
+    console.log("surveys: ", this.surveys)
   },
 
   created() {
     this.$store.dispatch("getGroups").then(() => {
       console.log("getting the user's groups");
     });
-    this.fetchItem(this.id);
-    this.fetchSurveys(this.id);
+    //this.fetchSurveys(this.id);
   },
 
   watch: {

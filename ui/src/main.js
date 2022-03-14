@@ -14,6 +14,7 @@ import Home from "./components/Home.vue";
 import Search from "./components/Search.vue";
 import Support from "./components/Support.vue";
 import Resource from "./components/Resource.vue";
+import ResourceWrap from "./components/ResourceWrap.vue";
 import ResourceEdit from "./components/ResourceEdit.vue";
 import ResourceCreate from "./components/ResourceCreate.vue";
 
@@ -36,7 +37,7 @@ const router = createRouter({
     {
       path: "/resource/:id",
       name: "Resource",
-      component: Resource,
+      component: ResourceWrap,
       props: true,
     },
     {
