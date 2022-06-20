@@ -18,8 +18,8 @@ export default {
     Footer,
   },
   provide: {
-    $appApiBase: "https://www.dmtc-devel.org"
-  }
+    $appApiBase: "https://www.dmtc-devel.org",
+  },
 };
 </script>
 
@@ -69,6 +69,12 @@ export default {
   color: red;
 }
 
+.icon {
+  height: 30px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
 .form-section-head {
   margin-top: 36px;
   padding: 4px;
@@ -76,7 +82,7 @@ export default {
   font-size: xx-large;
   border-bottom: 1px solid black;
   border-top: 1px solid black;
-  background-color:#ECECEC;
+  background-color: #ececec;
 }
 
 .checkbox-box {
@@ -89,26 +95,26 @@ export default {
 }
 
 form {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .form-control-label {
-    padding-top: 12px;
+  padding-top: 12px;
 }
- 
+
 .form-control {
   width: 95%;
 }
 
-input[type=checkbox] {
-    vertical-align: middle;
-    position: relative;
-    bottom: 1px;
+input[type="checkbox"] {
+  vertical-align: middle;
+  position: relative;
+  bottom: 1px;
 }
 
 .checkbox-option {
-  padding-left: 18px ;
-  text-indent: -18px ;
+  padding-left: 18px;
+  text-indent: -18px;
 }
 
 .flexiList {
@@ -126,7 +132,6 @@ input[type=checkbox] {
   padding-right: 1em;
 }
 
-
 .flexiButton {
   margin-top: 6px;
   margin-bottom: 6px;
@@ -135,5 +140,4 @@ input[type=checkbox] {
 .flexdatalist_checkbox {
   margin-left: 1em;
 }
-
 </style>

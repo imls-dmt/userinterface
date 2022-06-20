@@ -4,8 +4,45 @@
       <p>You are logged in as: {{ username }}</p>
       <p>You are a member of the following DMTC groups:</p>
       <ul>
-        <li v-for="(group, index) in groups" :key="index">{{ group }}</li>
+        <span v-for="(group, index) in groups" :key="index">
+          <li v-if="group == 'admin'">Administrator</li>
+          <li v-if="group == 'editor'">Editor</li>
+          <li v-if="group == 'reviewer'">Reviewer</li>
+          <li v-if="group == 'submitter'">Submitter</li>
+        </span>
       </ul>
+      <p>
+        Your groups authorize you to perform the following actions in the
+        Clearinghouse:<br />
+        <img
+          v-if="auth.create"
+          src="@/assets/noun-create-document-1868022.png"
+          alt="Create new resource"
+          title="Create new resource"
+          class="icon"
+        />
+        <img
+          v-if="auth.update"
+          src="@/assets/noun-check-mark-1867972.png"
+          alt="Review/update resource"
+          title="Review/update resource"
+          class="icon"
+        />
+        <img
+          v-if="auth.publish"
+          src="@/assets/noun-share-symbol-1868078.png"
+          alt="Publish/unpublish a resource"
+          title="Publish/unpublish a resource"
+          class="icon"
+        />
+        <img
+          v-if="auth.del"
+          src="@/assets/noun-dustbin-1868018.png"
+          alt="Delete a resource"
+          title="Delete a resource"
+          class="icon"
+        />
+      </p>
       <p>
         To request that you be added to additional DMTC groups please
         <a
@@ -82,7 +119,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["loggedin", "username", "groups"]),
+    ...mapGetters(["loggedin", "username", "groups", "auth"]),
   },
 
   methods: {
@@ -97,6 +134,7 @@ export default {
           //this.$router.push("/profile");
           this.$store.dispatch("getGroups").then(() => {
             console.log("getting the user's groups");
+            console.log(this.$store.state.groups);
           });
         },
         (error) => {

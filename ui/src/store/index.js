@@ -20,6 +20,12 @@ const initialState = {
     username: "",
   },
   groups: [],
+  auth: {
+    create: false,
+    update: false,
+    del: false,
+    publish: false,
+  },
 };
 
 export default new Vuex.Store({
@@ -32,6 +38,11 @@ export default new Vuex.Store({
     username: (state) => state.user.username,
     groups: (state) => state.groups,
     working: (state) => state.working,
+    auth: (state) => state.auth,
+    authCreate: (state) => state.auth.create,
+    authUpdate: (state) => state.auth.update,
+    authDelete: (state) => state.auth.del,
+    authPublish: (state) => state.auth.publish,
   },
   actions: {
     login({ commit }, user) {
@@ -93,6 +104,32 @@ export default new Vuex.Store({
     },
     setGroups(state, groups) {
       state.groups = groups.data.groups;
+      if (state.groups.includes("admin")) {
+        state.auth.create = true;
+        state.auth.update = true;
+        state.auth.del = true;
+        state.auth.publish = true;
+      } else if (state.groups.includes("editor")) {
+        state.auth.create = true;
+        state.auth.update = true;
+        state.auth.del = false;
+        state.auth.publish = true;
+      } else if (state.groups.includes("reviewer")) {
+        state.auth.create = true;
+        state.auth.update = true;
+        state.auth.del = false;
+        state.auth.publish = false;
+      } else if (state.groups.includes("submitter")) {
+        state.auth.create = true;
+        state.auth.update = false;
+        state.auth.del = false;
+        state.auth.publish = false;
+      } else {
+        state.auth.create = false;
+        state.auth.update = false;
+        state.auth.del = false;
+        state.auth.publish = false;
+      }
       console.log(state);
     },
     setWorking(state, workingState) {
