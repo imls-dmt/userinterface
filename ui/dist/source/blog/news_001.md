@@ -1,8 +1,6 @@
-
+# RDA ETHRD IG releasing a draft minimal metadata set for learning resources
 The Research Data Alliance's Educational and Training on the Handling of Research Data Interest Group has released version 1 of their recommendations for minimal metadata for learning resources.  The minimal set was developed by an ETHRD IG focus group -- a broad coalition of research data instructors and learners, service providers, developers, and funders from all over the world over 18 months.  The minimal set is focused upon better *discovery* of educational resources by learners who could either be instructors themselves or prospective students. The participants in the effort are hopeful that the adoption of the minimal set will: 
-
 - Persuade educational resource content creators to more fully describe the content they create   
-
 - Enable searchers to find more consistency in searching across the many service providers who are or will be producing and registering educational resources such as the DMTC and other learning catalogs/registries/learning portals.
 
 Many service providers are planning to adopt the minimal set including the DMTC!  We will be sharing more specific information and instructions on how to use in the near future.  In the meantime, watch for the report that will soon be out on the focus group's work and recommendations.   

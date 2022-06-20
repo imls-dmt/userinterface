@@ -1,32 +1,48 @@
 {
   "news": [
     {
-      "author": "Nancy Hoebelheinrich",
-      "date": "2022-03-14T14:00:00Z",
+      "author": "Nancy Hoebeoheinrich",
+      "date": "2022-03-14T12:00:00Z",
       "title": "RDA ETHRD IG releasing a draft minimal metadata set for learning resources",
-      "thumbnail": "/images/frameworks/cdi-ssf-components.jpg",
+      "thumbnail": "",
       "associated-resources": [],
-      "content": "/source/blog/news_001.md"
+      "content": "source/blog/news_001.md"
     }
   ],
   "features": [
     {
-      "author": "Karl Benedict",
+      "author": "Me, myself, and I",
       "date": "2021-05-13T14:52:16Z",
-      "title": "Features coming soon...",
-      "thumbnail": "",
+      "title": "A great resource",
+      "thumbnail": "/images/frameworks/cdi-ssf-components.jpg",
       "associated-resources": [],
       "content": "/source/blog/feature_001.md"
+    },
+    {
+      "author": "Me, myself, and I",
+      "date": "2021-05-17T12:00:00Z",
+      "title": "another great resource",
+      "thumbnail": "/images/frameworks/dataone-mini.png",
+      "associated-resources": [],
+      "content": "/source/blog/feature_002.md"
     }
   ],
   "announcements": [
     {
-      "author": "Nancy Hoebeoheinrich",
-      "date": "2022-03-14T14:52:16Z",
-      "title": "DMTC Soft Launch Coming Soon",
-      "thumbnail": "",
+      "author": "Me, myself, and I",
+      "date": "2021-05-13T14:52:16Z",
+      "title": "Announcement A",
+      "thumbnail": "/images/frameworks/cdi-ssf-components.jpg",
       "associated-resources": [],
       "content": "/source/blog/announce_001.md"
+    },
+    {
+      "author": "Me, myself, and I",
+      "date": "2021-05-17T12:00:00Z",
+      "title": "Announcement B",
+      "thumbnail": "/images/frameworks/dataone-mini.png",
+      "associated-resources": [],
+      "content": "/source/blog/announce_002.md"
     }
   ]
 }

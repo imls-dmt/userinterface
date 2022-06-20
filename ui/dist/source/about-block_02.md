@@ -9,21 +9,21 @@ While the DMTC started with a focus upon geoscience researchers, data specialist
 ### Learners
 ![water_surface-4373559_640](https://user-images.githubusercontent.com/5191071/125327683-38f0bd00-e2f8-11eb-8058-1e1164236049.jpg)
 
-Image by <a href="https://pixabay.com/users/sztrapacska74-8968314/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4373559">Erika Varga</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4373559">Pixabay</a>
+Image by [Erika Varga](https://pixabay.com/users/sztrapacska74-8968314/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4373559) from [Pixabay](https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4373559).
 
 Learners come from different perspectives as they approach research data skillbuilding.  Some may come from a "formal" education environment that usually returns credits and degrees for the effort applied to learning data skills.  Others may come from an "informal" education framework that may supplement formal education and training or be applied to "professional development" needs desired for job-related skillbuilding and which may return a "badge" or "certification" for learners' efforts.  In either case, the intention of DMTC curators is to provide descriptive information about the resources in the DMTC that will help learners *discover* resources which may work for their needs, but also more easily and effectively *choose* which resources are fit for their purpose in learning.  Learn more about the metadata terms used to describe DMTC resources on the Support pages.   
 
 ### Educators & Trainers 
 ![drop-of-water-578897_640](https://user-images.githubusercontent.com/5191071/125328341-10b58e00-e2f9-11eb-852d-dc7fbf2fa495.jpg)
 
-Image by <a href="https://pixabay.com/users/ronymichaud-647623/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=578897">rony michaud</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=578897">Pixabay</a>
+Image by [rony michaud](https://pixabay.com/users/ronymichaud-647623/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=578897) from [Pixabay](https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=578897).
 
 Educators and trainers of research data skills in both formal settings such as universities and data centers and in more informal venues can be learners, but their needs as seekers of learning resources to use or adapt for teaching provide the motivation for the additional DMTC focus upon including the descriptive and assessment information about learning resources that will be most helpful to those who teach.  This focus is represented by the expanded metadata terms used to describe resources such as the *audience* to which a resource is targeted upon creation, and the *license* under which the resource can be reused.  In addition, assessment annotations made by users of the resources that have been submitted are visible as part of the descriptive information for each resource. Learn more about the metadata terms and assessment information used to describe DMTC resources on the Support pages.
 
 ## Code of Participation
 The learning resources registered in the DMTC come from a number of different training and education communities.  We welcome contributions from academia, non-profits, government agencies, for profit, and independent scholar educators whose focus is upon teaching data and data management skills important for conducting productive and responsible research, and creating useful, trustworthy scholarly research data.  Contributions to the DMTC may take the form of:
 
-* submitting learning resources to be considered for inclusion in the registry per the [Selection Guidelines](https://github.com/imls-dmt/resources-workflow/blob/master/Nov17_2018_SelectionCriteria.pdf)
+* submitting learning resources to be considered for inclusion in the registry per the [Selection Guidelines](https://github.com/imls-dmt/resources-workflow/blob/master/Selection%20Criteria.md).
 * augmenting metadata descriptions of learning resources submitted to the DMTC per the LRMI-adapted DMTC metadata schema used
 * performing quality assurance review and augmentation of learning resources descriptions per the LRMI-adapted DMTC metadata schema 
 * providing editorial review and final registration of the learning resources submitted to the DMTC
@@ -31,7 +31,7 @@ The learning resources registered in the DMTC come from a number of different tr
 
 As an affiliate of ESIP (Earth Science Information Partners), we ask our contributors to adhere to the ESIP Community Participation Guidelines found at:  https://www.esipfed.org/about/community-guidelines.
 
-## Contact us
+## Contact us at [clearinghouseEd@esipfed.org](mailto:clearinghouseEd@esipfed.org)
 
 
 
