@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-const API_URL = 'https://www.dmtc-devel.org';
+const API_URL = '';
 
 class AuthService {
 	login(user) {
+		console.log("entering AuthService.login(user)")
 		let url = API_URL.concat('/api/login_json');
 		return axios({
 			url: url,
@@ -27,6 +28,13 @@ class AuthService {
 				return response.data;
 			});
 	}
+	
+	logout() {
+		console.log("entering AuthService.logout()")
+		let url = API_URL.concat('/api/logout');
+		axios.get(url)
+	}
+	
 }
 
 export default new AuthService();

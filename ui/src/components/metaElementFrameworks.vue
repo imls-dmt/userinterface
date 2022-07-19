@@ -1,10 +1,45 @@
 <template>
   <div>
-    <div v-for="field in frameworkFields" :key="field">
-      <MetaElement 
-        :element='template[field]'
-        :fieldName='field' />
-    </div>
+      <div>
+        <label :for="ed_framework" class="form-control-label"><b>Learning Framework</b> (select one option from the pop-up list below)</label>
+        <select 
+          name="ed_frameworks"
+          id="ed_frameworks"  
+          class="form-control"
+          @change="onFrameworkChange($event)"
+          v-model="frameworkName">
+          <option value="n/a" selected>n/a</option>
+          <option
+            v-for="(value, key) in element"
+            :key="key"
+            :value="key"
+          >
+          {{ key }}
+          </option>
+        </select>
+      </div>
+      
+      <div v-if="frameworkName != 'n/a' && nodeNames.length > 0">
+        <!-- There are node names: {{ nodeNames }} -->
+        <label :for="nodes" class="form-control-label"><b>Learning Framework Nodes</b> (select one or more options from the pop-up list below)</label>
+        <select 
+          name="nodes"
+          id="nodes"
+          :key="nodeNames" 
+          class="form-control" 
+          multiple>
+          <option
+            v-for="(value, index) in nodeNames"
+            :key="index"
+            :value="value"
+          >
+          {{ value }}
+          </option>
+        </select>
+      </div>
+      
+      <div v-else>You must first choose a framework before you can select one or more nodes from that framework</div>
+
     <button type="button" class="flexiButton" @click="frameworkAdd">Combine entries and add them to the educational framework list</button>
     <div id="frameworks-list" class="flexiList">
       <h3>Frameworks list</h3>
@@ -12,7 +47,8 @@
       <table id="frameworks_table">
         <tr>
           <th>&nbsp;</th>
-          <th v-for="field in frameworkFields" :key="field">{{ template[field]['label'] }}</th>
+          <th>Framework Name</th>
+          <th>Nodes</th>
         </tr>
       </table>
       
@@ -23,55 +59,94 @@
 
 <script>
 //import { Field, ErrorMessage } from "vee-validate";
-import MetaElement from "./metaElement.vue";
 export default {
-  props: ["template", "frameworkFields"],
+  props: ["template"],
   
   name: "MetaElementFrameworks",
+  
   components: {
-    MetaElement
+  //  MetaElement
   //		Field,
   //		ErrorMessage,
   },
+  
   data() {
     return {
       values: [],
+      nodeNames: [],
+      frameworkName: "n/a"
     };
   },
+  
+  computed: {
+    element() {
+      console.log(this.template)
+      return this.template['educational_information___framework_nodes']
+    }
+  },
+  
   methods: {
+    onFrameworkChange(event) {
+      this.frameworkName = event.target.value
+      console.log(this.frameworkName)
+      //console.log(this.element['options'][this.frameworkName])
+      if (this.frameworkName == "n/a") {
+        this.nodeNames = []
+      } else {
+        this.nodeNames = this.element[this.frameworkName]
+      }
+      console.log(this.nodeNames)
+    },
     frameworkAdd(event) {
+      console.log("entering frameworkAdd")
       const listID = "frameworks-list"
       const checkboxName = "frameworks-values"
       let values = {} // the delimited string of individual values
       let valuesList = [] // the array of individual values
       let field_selector = ""
-      for (let fieldIndex in this.frameworkFields) {
-        let value = "" // the individual values associated with each field
-        let field = this.frameworkFields[fieldIndex]
-        let submissionField = field.replace('educational_information___ed_frameworks__', '')
-        //console.log(field)
-        field_selector = "#" + field
-        //console.log(this.authorFields[fieldIndex])
-        //console.log(this.template[field]['element'])
-        //console.log("Select element")
-        let sel = document.getElementById(field)
-        value = [...sel.options]
-         .filter(x => x.selected)
-         .map(x => x.value);
-        //value = sel.options[sel.selectedIndex].text
-        
-        console.log(value)
-        valuesList.push(value)
-        values[submissionField] = value
-      }
+      
+      // process selected framework
+      let framework_sel = document.getElementById("ed_frameworks")
+      let framework_value = [...framework_sel.options]
+       .filter(x => x.selected)
+       .map(x => x.value);
+      
+      valuesList.push(framework_value)
+      values["name"] = framework_value
+      
+      
+      // process selected nodes for the selected framework
+      let nodes_sel = document.getElementById("nodes")
+      let nodes_value = [...nodes_sel.options]
+       .filter(x => x.selected)
+       .map(x => x.value);
+      
+      valuesList.push(nodes_value)
+      values["nodes"] = nodes_value
+      
+      
+//      for (let fieldIndex in this.frameworkFields) {
+//        let value = "" // the individual values associated with each field
+//        let field = this.frameworkFields[fieldIndex]
+//        let submissionField = field.replace('educational_information___ed_frameworks__', '')
+//        //console.log(field)
+//        field_selector = "#" + field
+//        let sel = document.getElementById(field)
+//        value = [...sel.options]
+//         .filter(x => x.selected)
+//         .map(x => x.value);
+//        //value = sel.options[sel.selectedIndex].text
+//        
+//        console.log(value)
+//        valuesList.push(value)
+//        values[submissionField] = value
+//      }
+      console.log("values for the newly processed framwork/nodes entry")
       console.log(values)
       var submitValue = {};
-      submitValue['name'] = values['name'][0];
-      submitValue['nodes'] = [];
-      for (let nodeIndex in values['nodes__name']) {
-        console.log(nodeIndex, ": ", submitValue['name'], ": ", values['nodes__name'][nodeIndex])
-        submitValue['nodes'].push({"description":"", "name":values['nodes__name'][nodeIndex]})
-      }
+      submitValue['name'] = values['name'];
+      submitValue['nodes'] = values['nodes'];
+      console.log("submit value for the new framework/nodes entry")
       console.log(submitValue);
       const checkboxID = listID + "-" + self.crypto.randomUUID();
       if (values !== "n/a") {
@@ -98,7 +173,7 @@ export default {
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>

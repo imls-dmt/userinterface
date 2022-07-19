@@ -1,7 +1,7 @@
 {
   "news": [
     {
-      "author": "Nancy Hoebeoheinrich",
+      "author": "Nancy Hoebelheinrich",
       "date": "2022-03-14T12:00:00Z",
       "title": "RDA ETHRD IG releasing a draft minimal metadata set for learning resources",
       "thumbnail": "",
@@ -37,9 +37,9 @@
       "content": "/source/blog/announce_001.md"
     },
     {
-      "author": "Me, myself, and I",
-      "date": "2021-05-17T12:00:00Z",
-      "title": "Announcement B",
+      "author": "Nancy Hoebelheinrich",
+      "date": "2022-07-16T12:00:00Z",
+      "title": "Test Drive the new DMTC Resource Submission Form!",
       "thumbnail": "/images/frameworks/dataone-mini.png",
       "associated-resources": [],
       "content": "/source/blog/announce_002.md"

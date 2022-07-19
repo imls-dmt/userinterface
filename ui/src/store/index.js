@@ -21,11 +21,15 @@ const initialState = {
   },
   groups: [],
   auth: {
+    create_short: false,
     create: false,
     update: false,
-    del: false,
+    submit_publish: false,
     publish: false,
+    submit_delete: false, 
+    del: false,
   },
+  results: [],
 };
 
 export default new Vuex.Store({
@@ -43,6 +47,7 @@ export default new Vuex.Store({
     authUpdate: (state) => state.auth.update,
     authDelete: (state) => state.auth.del,
     authPublish: (state) => state.auth.publish,
+    results: (state) => state.results,
   },
   actions: {
     login({ commit }, user) {
@@ -96,6 +101,13 @@ export default new Vuex.Store({
       state.user.loggedIn = false;
       state.user.username = null;
       state.groups = [];
+      state.auth.create_short = false;
+      state.auth.create = false;
+      state.auth.update = false;
+      state.auth.submit_publish = false;
+      state.auth.publish = false;
+      state.auth.submit_delete = false;
+      state.auth.del = false;
       console.log(state);
     },
     setUsername(state, username) {
@@ -105,30 +117,51 @@ export default new Vuex.Store({
     setGroups(state, groups) {
       state.groups = groups.data.groups;
       if (state.groups.includes("admin")) {
+        state.auth.create_short = true;
         state.auth.create = true;
         state.auth.update = true;
+        state.auth.submit_publish = true;
+        state.auth.publish = true;
+        state.auth.submit_delete = true;
         state.auth.del = true;
-        state.auth.publish = true;
       } else if (state.groups.includes("editor")) {
+        state.auth.create_short = true;
         state.auth.create = true;
         state.auth.update = true;
-        state.auth.del = false;
+        state.auth.submit_publish = true;
         state.auth.publish = true;
+        state.auth.submit_delete = true;
+        state.auth.del = true;
       } else if (state.groups.includes("reviewer")) {
+        state.auth.create_short = true;
         state.auth.create = true;
         state.auth.update = true;
-        state.auth.del = false;
+        state.auth.submit_publish = true;
         state.auth.publish = false;
+        state.auth.submit_delete = true;
+        state.auth.del = false;
       } else if (state.groups.includes("submitter")) {
+        state.auth.create_short = true;
         state.auth.create = true;
         state.auth.update = false;
         state.auth.del = false;
         state.auth.publish = false;
-      } else {
+      } else if ( state.groups.includes("lauth") || state.groups.includes("oauth")) {
+        state.auth.create_short = true;
         state.auth.create = false;
         state.auth.update = false;
-        state.auth.del = false;
+        state.auth.submit_publish = false;
         state.auth.publish = false;
+        state.auth.submit_delete = false;
+        state.auth.del = false;
+      } else {
+        state.auth.create_short = false;
+        state.auth.create = false;
+        state.auth.update = false;
+        state.auth.submit_publish = false;
+        state.auth.publish = false;
+        state.auth.submit_delete = false;
+        state.auth.del = false;
       }
       console.log(state);
     },
@@ -136,5 +169,10 @@ export default new Vuex.Store({
       state.working = workingState;
       console.log(state);
     },
+    setResults(state, results) {
+      state.results = results;
+      console.log(state);
+    },
+
   },
 });

@@ -62,7 +62,10 @@
           <div class="sortby"><b>Sort By:</b> Latest First</div>
           <hr />
           <div v-for="(item, index) in search_result.results" :key="item">
-            <ResultItem :index="start_index + index" :item="item" />
+            <ResultItem 
+              :index="start_index + index" 
+              :item="item"
+              :id="item.id" />
           </div>
         </div>
       </div>
@@ -99,7 +102,9 @@ export default {
         media_type: ["Media Type", "show"],
         lr_type: ["Learning Resource Type", "show"],
         purpose: ["Educational Purpose", "show"],
-        "ed_frameworks.name": ["Educational Frameworks", "show"], // uncomment this line when ed_frameworks key issue is resolved in API
+        "ed_frameworks.name": ["Educational Frameworks", "show"], // uncomment this line when ed_frameworks key issue is resolved in API,
+        status: ["Publication Status Code", "show"],
+        pub_status: ["Publication Status", "show"]
       },
       filters: [],
       filters_selected: {},
@@ -113,6 +118,8 @@ export default {
       sort_str: "score desc",
       start_index: 1,
       is_full: false,
+      facet_limit: -1,
+      facet_sort: "count"
     };
   },
 
@@ -220,15 +227,15 @@ export default {
       // console.log("keywords : ", result_filters["keywords"]);
       //console.log("1 facet_names", this.facet_names);
       const keys = Object.keys(this.facet_names);
-      // console.log("keys = ", keys);
+      console.log("keys = ", keys);
       let filters = [];
       // console.log("filters 1", this.filters);
       keys.forEach((key) => {
-        // console.log("key = ", key);
+        //console.log("key = ", key);
         let value = this.facet_names[key];
-        // console.log("value : ", value);
+        //console.log("value : ", value);
         if (value[1] === "show") {
-          // console.log("show ", key);
+          //console.log("show ", key);
           if (result_filters[key]) {
             filters.push({
               key: key,
@@ -238,7 +245,7 @@ export default {
           }
         }
       });
-      // console.log("Search filters : ", filters);
+      console.log("Search filters : ", filters);
       return filters;
     },
 
@@ -248,6 +255,8 @@ export default {
       post_content.limit = this.items_per_page;
       post_content.offset = this.offset;
       post_content.sort_str = this.sort_str;
+      post_content.facet_limit = this.facet_limit;
+      post_content.facet_sort = this.facet_sort;
       //console.log("xquick_search_string = ", this.quick_search_string);
 
       if (this.quick_search_string.length > 0) {
@@ -318,16 +327,16 @@ export default {
       }
 
       // Karl's original status section
-      post_content.search.push({
-        group: "and",
-        and: [
-          {
-            field: "status",
-            string: "true",
-            type: "simple",
-          },
-        ],
-      });
+      //post_content.search.push({
+      //  group: "and",
+      //  and: [
+      //    {
+      //      field: "status",
+      //      string: "true",
+      //      type: "simple",
+      //    },
+      //  ],
+      //});
 
       console.log(this.filters_selected)
       let keys = Object.keys(this.filters_selected);

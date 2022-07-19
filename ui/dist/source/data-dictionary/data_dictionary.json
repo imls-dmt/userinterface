@@ -1,227 +1,68 @@
-
-	  "description": "Learning Resources Schema", 
-	  "fields": [
-		{
-		  "@context": "",
-		  "@type": "CreativeWork",
-		  "name": "abstract",
-		  "mapsToSchemaOrg": {
-			"property":"abstract",
-			"@type": "Thing/CreativeWork/LearningResource",
-			"@context": "https://schema.org/",
-			"relationship": "same-as"
-		      },
-		  "name": "abstract_data", 
-		  "type": "General Text", 
-		  "multivalue": false, 
-		  "required": true,
-		  "title": "Description",
-		  "definition": "A brief synopsis or abstract about the learning resource",
-		  "scopeNotes":"Description can include the relationship of this resource to others, if applicable, e.g., a part within a series or collection, and the existence of translations of the resource into other languages.",
-		  "controlledVocabulary": {
-			"source":"",
-			"terms":[
-				{
-					"term":"",
-					"mapsTo": {
-						"term": "",
-						"source": "",
-						"relationship": ""
-					}
-				}
-				
-			]  
-		  }
-		},
-{
-		  "@context": "https://schema.org/",
-		  "@type": "CreativeWork",
-		  "name": "access-cost",
-		  "mapsToSchemaOrg": {
-			"property":"isAccessibleForFree",
-			"@type": "Thing/CreativeWork/LearningResource",
-			"@context": "https://schema.org/",
-			"relationship": "same-as"
-		      },
-			  "name": "Access Cost",
-			  "type": "Boolean",
-			  "multivalue": "false",
-			  "required": "true",
-			  "title": "Access Cost",
-			  "definition": "Yes or No choice stating whether othere is a fee for access to or use of the resource.",
-			  "scopeNotes": "If no explicit information is available related to cost, use the default of No."
-			  "controlledVocabulary:" {
-				"source":"",
-				"terms":[
-				{
-					"term": ["Yes", "No"],
-					"mapsTo": {
-						"term": "",
-						"source": "",
-						"relationship": ""
-					}
-				}
-				
-			]  
-		  },
-		  "@context": "https://schema.org/",
-		  "@type": "CreativeWork",
-		  "name": "accessibility_features.name",
-		  "mapsToSchemaOrg": {
-			"property":"accessibilityFeature",
-			"@type": "Thing/CreativeWork/",
-			"@context": "https://schema.org/",
-			"relationship": "same-as"
-		      },
-			  "name": "Accessibility Features",
-			  "type": "Boolean",
-			  "multivalue": "false",
-			  "required": "false",
-			  "title": "Accessibilty Features",
-			  "definition": "Content features of the resource, such as accessible media, alternatives and supported enhancements for accessibility.",
-			  "scopeNotes": "W3c's WebSchemas wiki lists possible values. See:   https://www.w3.org/wiki/WebSchemas/Accessibility.  The values used reflect the tools used to evaluate the resources."
-			  "controlledVocabulary:" {
-				"source":"https://www.w3.org/wiki/WebSchemas/Accessibility",
-				"terms":[
-				{
-					"term": ["alternative Text", "annotations", "audioDescription", "captions", "largePrint", "tableOfContents", "timingControl", "none"],
-					"mapsTo": {
-						"term": ["alternative Text", "annotations", "audioDescription", "captions", "largePrint", "tableOfContents", "timingControl", "none"],
-						"source": "https://www.w3.org/wiki/WebSchemas/Accessibility",
-						"relationship": "same-as"
-					}
-				}
-				
-			]  
-		  },
-		  "@context": "https://schema.org/",
-		  "@type": "CreativeWork",
-		  "name": "accessibility_summary",
-			  "name": "Accessibility Summary",
-			  "type": "General Text",
-			  "multivalue": "false",
-			  "required": "false",
-			  "title": "Accessibility Summary",
-			  "definition": "A human-readable summary of specific accessibility features or deficiencies, consistent with the other accessibility metadata but expressing subtleties such as 'short descriptions are present but long descriptions will be needed for non-visual users' or 'short descriptions are present and no long descriptions are needed.'",
-			  "scopeNotes": "Unless a tool is used to evaluate the resource, the description of accessibility features or deficiencies should be provided by the content creator.", 
-			 "controlledVocabulary": {
-				 			"source":"",
-			"terms":[
-				{
-					"term":"",
-					"mapsTo": {
-						"term": "",
-						"source": "",
-						"relationship": ""
-					}
-				}
-				
-			]  
-		  },
-		"@context": "https://schema.org/",
-		"@type": "CreativeWork",
-		"name": "author_org.name",
-		  "mapsToSchemaOrg": {
-			"property":"author",
-			"@type": "Thing/CreativeWork/organization",
-			"@context": "https://schema.org/",
-			"relationship": "same-as"
-		      },		
-		"name": "author_org.name",
+ {
+  "description": "Learning Resources Schema",
+  "fields": {
+    "abstract_data": {
+      "schemaOrg": {
+        "@context": "",
+        "@type": "CreativeWork",
+        "name": "abstract",
+        "mapsToSchemaOrg": {
+          "property": "abstract",
+          "@type": "Thing/CreativeWork/LearningResource",
+          "@context": "https://schema.org/",
+          "relationship": "same-as"
+        }
+      },
+      "documentation": {
+        "name": "abstract_data",
+        "type": "General Text",
+        "multivalue": false,
+        "required": true,
+        "title": "Description",
+        "definition": "A brief synopsis or abstract about the learning resource",
+        "scopeNotes": "Description can include the relationship of this resource to others, if applicable, e.g., a part within a series or collection, and the existence of translations of the resource into other languages.",
+        "controlledVocabulary": {
+          "source": "",
+          "terms": [
+            {
+              "term": "",
+              "mapsTo": {
+                "term": "",
+                "source": "",
+                "relationship": ""
+              }
+            }
+          ]
+        }
+      },
+      "rendering": {
+        "html": {
+          "type": "input",
+          "input_type": "textarea"
+        }
+      }
+    }
+  },
+"abstract_format": {
+"schema.org": {
+"@context": "",
+"@type": "",
+"name": "",
+"mapsToSchemaOrg": {
+	"property":"",
+	"@type": "",
+	"@context": "",
+	"relationship": ""
+		}
+	},
+		"documentation": {
+		"name": "abstract_format",
 		"type": "General Text",
 		"multivalue": "false",
 		"required": "false",
-		"title": "Authoring Organization Name",
-		"definition": "Name of organization authoring the resource.",
-		"scopeNotes": "Enter the name of the organization authoring the resource if no personal name(s) of an author are known.  This is not intended to be the organization to which a personal author is associated.",
-		"controlledVocabulary": {
-			"source": "",
-			"terms": [
-				{
-					"term": "",
-					"mapsTo": {
-						"term": "",
-					"source": "",
-					"relationship": ""
-				}
-				}
-			]
-		},
-		"@context": "https://schema.org/",
-		"@type": "Thing",
-		"name": "author_org.name_identifier",
-		  "mapsToSchemaOrg": {
-			"property":"value",
-			"@type": "Thing/Intangible/StructuredValue/PropertyValue",
-			"@context": "https://schema.org/",
-			"relationship": "same-as"
-		      },		
-		"name": "author_org.name_identifier",
-		"type": "Text",
-		"multivalue": "false",
-		"required": "false",
-		"title": "Authoring Organization Identifier",
-		"definition": "The unique identifier for the organization authoring the resource.",
-		"scopeNotes": "Enter the identifier for the organization authoring the resource as text. See https://schema.org/docs/datamodel.html#identifierBg for more information.",
-		"controlledVocabulary": {
-			"source": "",
-			"terms": [
-				{
-					"term": "",
-					"mapsTo": {
-						"term": "",
-					"source": "",
-					"relationship": ""
-				}
-				}
-			]
-		},
-		"@context": "https://schema.org/",
-		"@type": "Thing",
-		"name": "author_org.name_identifier_type",
-		  "mapsToSchemaOrg": {
-			"property":"valueReference",
-			"@type": "Thing/Intangible/StructuredValue/PropertyValue",
-			"@context": "https://schema.org/",
-			"relationship": "same-as"
-		      },		
-		"name": "author_org.name_identifier_type",
-		"type": "text",
-		"multivalue": "false",
-		"required": "false",
-		"title": "Authoring Organization Identifier Scheme",
-		"definition": "The identifier scheme associated with the unique identifier for the organization authoring the resource.",
-		"scopeNotes": "The value for this identifier should come from a controlled vocabulary set and entered as text.  See https://schema.org/docs/datamodel.html#identifierBg for more information.",
-		"controlledVocabulary": {
-			"source": "",
-			"terms": [
-				{
-					"term": "ROR", 
-					"mapsTo": {
-						"term": "",
-					"source": "",
-					"relationship": ""
-				}
-				}
-			]
-		},
-		
-		"@context": "https://schema.org/",
-		"@type": "Thing/Person",
-		"name": "authors.familyName",
-		  "mapsToSchemaOrg": {
-			"property":"familyName",
-			"@type": "Thing/Person",
-			"@context": "https://schema.org/",
-			"relationship": "same-as"
-		      },		
-		"name": "authors.familyName",
-		"type": "General text",
-		"multivalue": "false",
-		"required": "false",
-		"title": "Author Family/Last Name",
-		"definition": "Last or family name of person(s) authoring the resource.",
-		"scopeNotes": "If the family or last name of the author is more than one word, the names should be entered in reading order, e.g., El Saffar.",
+		"title": "Abstract Format",
+		"definition": "Declaration for how the abstract description will be represented.",
+		"scopeNotes": "This is a system-generated value that describes how the abstract description will be formated.  This is system field for declaring howthe abstract will be expressed.  The options available are for .plain text or formatted for a front end developer to use aas either filtered html (where MS tags are removed) or full html.",
 		"controlledVocabulary": {
 			"source": "",
 			"terms": [
@@ -232,25 +73,351 @@
 					"source": "",
 					"relationship": ""
 				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "output",
+			  "attribute": "",
+			  "input_type": ""
+		  }
+	  }, 
+"access_conditions": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Creative Work",
+	"name": "access_conditions",
+	"mapsToSchemaOrg": {
+		"property":"conditionsOfAccess",
+		"@type": "CreativeWork",
+		"@context": "https://schema.org",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "access_conditions",
+		"type": "General text",
+		"multivalue": "false",
+		"required": "false",
+		"title": "Access Conditions",
+		"definition": "Conditions upon which the resource can be accessed beyond cost, e.g., login required.",
+		"scopeNotes": "The descriptions for this field should not duplicate what is available from other fields including Access Cost or License. Ideally, any access conditions will be evident from the resource landing page, website or upon trying to access the resource itself.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
 				}
-			]
-		},
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "textarea"
+		  }
+	  },
+
+     "access_cost": {
+      "schemaOrg": {
+        "@context": "",
+        "@type": "CreativeWork",
+        "name": "access-cost",
+        "mapsToSchemaOrg": {
+          "property": "isAccessibleForFree",
+          "@type": "Thing/CreativeWork/LearningResource",
+          "@context": "https://schema.org/",
+          "relationship": "same-as"
+        }
+      },
+      "documentation": {
+        "name": "access_cost",
+        "type": "General Text",
+        "multivalue": false,
+        "required": true,
+        "title": "Access Cost",
+        "definition": "Yes or No choice stating whether othere is a fee for access to or use of the resource.",
+        "scopeNotes": "If no explicit information is available related to cost, use the default of No.",
+        "controlledVocabulary": {
+          "source": "",
+          "terms": [
+            {
+              "term": "",
+              "mapsTo": {
+                "term": "",
+                "source": "",
+                "relationship": ""
+              }
+            }
+          ]
+        },
+      "rendering": {
+        "html": {
+          "type": "select",
+          "input_type": ""
+        }
+      }
+    }
+},
+      "accessibililty_features_name": {
+      "schemaOrg": {
+        "@context": "",
+        "@type": "Thing/CreativeWork/",
+        "name": "accessibilityFeature",
+        "mapsToSchemaOrg": {
+          "property": "accessibilityFeature",
+          "@type": "text",
+          "@context": "https://schema.org/",
+          "relationship": "same-as"
+        }
+      },
+      "documentation": {
+        "name": "accessibility_features_name",
+        "type": "General Text",
+        "multivalue": true,
+        "required": false,
+        "title": "Accessibility Features",
+        "definition": "Content features of the resource, such as accessible media, alternatives and supported enhancements for accessibility.",
+        "scopeNotes": "CV values come from subset of W3C's accessibility features list, as needed at http://www.w3.org/wiki/WebSchemas/Accessibility for summary terms.  More terms can be added by consultation with the Editor.", 	
+        "controlledVocabulary": {
+          "source": "",
+          "terms": [
+            {
+              "term": "",
+              "mapsTo": {
+                "term": "",
+                "source": "",
+                "relationship": ""
+              }
+            }
+          ]
+        },
+      "rendering": {
+        "html": {
+          "form": "input",
+          "attribute":  "datalist",
+          "input_type": "Checkbox"
+        }
+      }
+     },
+      "accessibililty_summary": {
+      "schemaOrg": {
+        "@context": "",
+        "@type": "Thing/CreativeWork/",
+        "name": "accessibilitySummary",
+        "mapsToSchemaOrg": {
+          "property": "accessibilitySummary",
+          "@type": "text",
+          "@context": "https://schema.org/",
+          "relationship": "same-as"
+        }
+      },
+	      
+    "documentation": {
+      "name":  "accessibility_summary",
+      "type": "General Text",
+      "multivalue": false,
+      "required": false,
+      "title": "Accessibility Summary",
+      "definition": "A human-readable summary of specific accessibility features or deficiencies.",
+      "scopeNotes": "The summary should be consistent with the accessibility features chosen but can also include more complete descriptions.",
+      "controlledVocabulary": {
+        "source": "",
+        "terms": [
+          {
+            "term": "",
+            "mapsTo": {
+              "term": "",
+              "source": "",
+              "relationship": ""
+            }
+          }
+        ]
+      },
+      "rendering": {
+        "html": {
+          "form": "input",
+          "attribute":  "",
+          "input_type": "textarea"
+        }
+      },
+ 	"author_names": {
+      	"schemaOrg": {
+          "@context": "",
+          "@type": "Thing/CreativeWork/",
+          "name": "author",
+          "mapsToSchemaOrg": {
+            "property": "author",
+            "@type": "Person, Organization",
+            "@context": "https://schema.org/",
+            "relationship": "same-as"
+        }
+      },	    
+  "documentation": {
+     "name":  "author_names",
+      "type": "General Text",
+      "multivalue": true,
+      "required": true,
+      "title": "Author List",
+      "definition": "List of authors for a resource derived from the given/first and family/last names of the personal author fields by the system.",
+      "scopeNotes": "Can be list of either one or more individual, or one or more organizations. There is no limit on the number of entries.",
+      "controlledVocabulary": {
+        "source": "",
+        "terms": [
+          {
+            "term": "",
+            "mapsTo": {
+              "term": "",
+              "source": "",
+              "relationship": ""
+            }
+          }
+        ]
+      },
+      "rendering": {
+        "html": {
+          "form": "output",
+          "attribute":  "fieldset",
+          "input_type": "text"
+        }
+      }, 
+      "author_org.name": {
+      "schemaOrg": {
+        "@context": "",
+        "@type": "Thing/CreativeWork/",
+        "name": "author",
+        "mapsToSchemaOrg": {
+          "property": "author",
+          "@type": "Person, Organization",
+          "@context": "https://schema.org/",
+          "relationship": "same-as"
+        }
+      },
+     "documentation": {
+     "name":  "author_org.name",
+      "type": "General Text",
+      "multivalue": true,
+      "required": false,
+      "title": "Authoring Organization",
+      "definition": "Name of organization authoring the learning resource.",
+      "scopeNotes": "If organization is not clearly designated as the author, the Contributor property should be used. More than one authoring organization can be included.",
+      "controlledVocabulary": {
+        "source": "",
+        "terms": [
+          {
+            "term": "",
+            "mapsTo": {
+              "term": "",
+              "source": "",
+              "relationship": ""
+            }
+          }
+        ]
+      },
+      "rendering": {
+        "html": {
+          "form": "input",
+          "attribute":  "",
+          "input_type": "text"
+        }
+      }
+     },
+ "author_org.name_identifier": { 
+ "schema.Org": {
+ "@context": "https://schema.org/",
+	"@type": "Thing",
+	"name": "author_org.name_identifier",
+	"mapsToSchemaOrg": {
+		"property":"value",
+		"@type": "Thing/Intangible/StructuredValue/PropertyValue",
 		"@context": "https://schema.org/",
-		"@type": "Thing/Person",
-		"name": "authors.givenName",
-		  "mapsToSchemaOrg": {
+		"relationship": "same-as"
+		      },
+  "documentation":  {
+    "name": "author_org.name_identifier",
+	"type": "Text",
+	"multivalue": "false",
+	"required": "false",
+	"title": "Authoring Organization Identifier",
+	"definition": "The unique identifier for the organization authoring the resource.",
+	"scopeNotes": "Enter the identifier as text for the organization authoring the resource. The ID should be a persistent identifier of a type that is included in the list of identifier types found in the Authoring Organization Identifier Scheme field.",
+	"controlledVocabulary": {
+		"source": "",
+		"terms": [
+			{
+				"term": "",
+				"mapsTo": {
+					"term": "",
+				"source": "",
+				"relationship": ""
+			}
+			}
+		]
+	},
+	"rendering": {
+          "html": {
+            "form": "input",
+            "attribute":  "",
+            "input_type": "text"
+          }
+        }
+       },
+	"author_org.name_identifier_type": {
+	 "schema.org": {},
+	 "documentation": {
+	   "name": "author_org.name_identifier_type",
+	   "type": "text",
+	   "multivalue": "false",
+	   "required": "false",
+	   "title": "Authoring Organization Identifier Scheme",
+	   "definition": "The identifier scheme associated with the unique identifier for the organization authoring the resource.",
+	    "scopeNotes": "The value for this identifier should come from a controlled vocabulary set and entered as text.  See https://schema.org/docs/datamodel.html#identifierBg for more information.",
+	    "controlledVocabulary": {
+		"source": "",
+		"terms": [
+			{
+				"term": "", 
+				"mapsTo": {
+					"term": "",
+				"source": "",
+				"relationship": ""
+			}
+			}
+		]
+	},
+	  "rendering": {
+		  "html": {
+			  "form": "select",
+			  "attribute": "datalist",
+			  "input_type": "checkbox"
+		  }
+	  },
+	  "authors.givenName": { 
+	  "schema.Org": {
+	  "@context": "https://schema.org/",
+	  "@type": "Thing/Person",
+	  "name": "authors.givenName",
+	  "mapsToSchemaOrg": {
 			"property":"givenName",
 			"@type": "Thing/Person",
 			"@context": "https://schema.org/",
 			"relationship": "same-as"
-		      },		
+		      }
+	  },
+	   "documentation": {
 		"name": "authors.givenName",
 		"type": "General text",
 		"multivalue": "true",
 		"required": "false",
-		"title": "Author Given/First Name",
+		"title": "Authoring Person Given/First Name",
 		"definition": "Given or first name of person(s) authoring the resource.",
-		"scopeNotes": "If the family or last name of the author is more than one word, the names should be entered in reading order, e.g., Ruth S.",
+		"scopeNotes": "If the given or first name of the author is more than one word or contains an initial, the names should be entered in reading order, e.g., Ruth S.; with multiple authors, add the authors in the same order as a citation, i.e., with primary author first.",
 		"controlledVocabulary": {
 			"source": "",
 			"terms": [
@@ -261,25 +428,76 @@
 					"source": "",
 					"relationship": ""
 				}
+			}
+		]
+	},
+		   	  "rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "text"
+		  }
+	  },
+		"authors.familyName": {
+		  "schema.Org": {
+			"@context": "https://schema.org/",
+		  "@type": "Thing/Person",
+		  "name": "authors.familyName",
+		  "mapsToSchemaOrg": {
+			  "property":"familyName",
+			  "@type": "Thing/Person",
+			  "@context": "https://schema.org/",
+			  "relationship": "same-as"
+		  }
+		  },
+		  "documentation": {
+		     "name": "authors.familyName",
+		     "type": "General text",
+		     "multivalue": "true",
+		     "required": "false",
+		    "title": "Authoring Person Family/Last Name",
+		    "definition": "Last or family name of person(s) authoring the resource.",
+		"scopeNotes": "If the family or last name of the author is more than one word, the names should be entered in reading order, e.g., El Saffar. with multiple authors, add the authors in the same order as a citation, i.e., with primary author first.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+				"term": "", 
+				"mapsTo": {
+					"term": "",
+					"source": "",
+					"relationship": ""
+				}
 				}
 			]
 		},
-"@context": "https://schema.org/",
-		"@type": "Thing",
+	  "rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "text"
+		  }
+	  },
+	"authors.name_identifier": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Thing",
+	"name": "authors.name_identifier",
+	"mapsToSchemaOrg": {
+		"property":"value",
+		"@type": "Thing/Intangible/StructuredValue/PropertyValue",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},
+	"documentation": {
 		"name": "authors.name_identifier",
-		  "mapsToSchemaOrg": {
-			"property":"value",
-			"@type": "Thing/Intangible/StructuredValue/PropertyValue",
-			"@context": "https://schema.org/",
-			"relationship": "same-as"
-		      },		
-		"name": "authors.name_identifier",
-		"type": "Text",
+		"type": "General Text",
 		"multivalue": "false",
 		"required": "false",
-		"title": "Author Personal Identifier",
+		"title": "Authoring Person Identifier",
 		"definition": "The unique identifier for the person(s) authoring the resource.",
-		"scopeNotes": "Enter the identifier for the person(s) authoring the resource as text. See https://schema.org/docs/datamodel.html#identifierBg for more information.",
+		"scopeNotes": "Enter the identifier as text for the person(s) authoring the resource. The ID should be a persistent identifier of a type that is included in the list of identifier types found in the Authoring Person Identifier Scheme field.",
 		"controlledVocabulary": {
 			"source": "",
 			"terms": [
@@ -293,6 +511,15 @@
 				}
 			]
 		},
+	  "rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "text"
+		  }
+	  },
+		"authors.name_identifier_type": {
+		"schema.org": {
 		"@context": "https://schema.org/",
 		"@type": "Thing",
 		"name": "authors.name_identifier_type",
@@ -301,27 +528,38 @@
 			"@type": "Thing/Intangible/StructuredValue/PropertyValue",
 			"@context": "https://schema.org/",
 			"relationship": "same-as"
-		      },		
+		  }
+		},
+		"documentation": {
 		"name": "authors.name_identifier_type",
-		"type": "text",
+		"type": "General text",
 		"multivalue": "false",
 		"required": "false",
-		"title": "Author(s) Personal Identifier Scheme",
+		"title": "Authoring Person Identifier Scheme",
 		"definition": "The identifier scheme associated with the unique identifier for the person(s) authoring the resource, e.g., ORCID.",
 		"scopeNotes": "The value for this identifier should come from a controlled vocabulary set and entered as text.  See https://schema.org/docs/datamodel.html#identifierBg for more information.",
 		"controlledVocabulary": {
 			"source": "",
 			"terms": [
 				{
-					"term": "ORCID", 
+					"term": "", 
 					"mapsTo": {
 						"term": "",
 					"source": "",
 					"relationship": ""
 				}
-				}
-			]
-		},
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "select",
+			  "attribute": "datalist",
+			  "input_type": "checkbox"
+		  }
+	  },
+		"citation": {
+		"schema.org": {
 		"@context": "https://schema.org/",
 		"@type": "CreativeWork",
 		"name": "citation",
@@ -330,9 +568,11 @@
 			"@type": "CreativeWork",
 			"@context": "https://schema.org/",
 			"relationship": "same-as"
-		      },		
+		  }
+	  },	
+		"documentation": {
 		"name": "citation",
-		"type": "text",
+		"type": "General text",
 		"multivalue": "false",
 		"required": "false",
 		"title": "Citation",
@@ -351,6 +591,15 @@
 				}
 			]
 		},
+		"rendering": {
+		  "html": {
+		    "form": "input",
+		    "attribute": "",
+		    "input_type": "textarea"
+		  }
+	  },
+		"completion_time": {
+		"schema.Org": {
 		"@context": "https://schema.org/",
 		"@type": "CreativeWork",
 		"name": "completion_time",
@@ -359,19 +608,21 @@
 			"@type": "CreativeWork",
 			"@context": "https://schema.org/",
 			"relationship": "same-as"
-		      },		
+		  }
+	  },	
+		"documentation": {
 		"name": "completion_time",
-		"type": "text",
+		"type": "General text",
 		"multivalue": "false",
 		"required": "false",
 		"title": "Intended Time to Complete",
 		"definition": "Approximate or typical time it takes to work with or through the  resource for the typical, intended target audience.",
 		"scopeNotes": "If specific duration of resource is not available from the resource itself, e.g., the timing on a video, or from the resource landing page, an estimated time should be entered.",
 		"controlledVocabulary": {
-			"source": "DMTC-generated",
+			"source": "",
 			"terms": [
 				{
-					"term": ["Up to 1 hour", "More than 1 hour, but less than 1 day", "More than 1 day, but less than 1 week", "More than 1 week", "Unknown"],
+					"term": [],
 					"mapsTo": {
 						"term": "",
 					"source": "",
@@ -380,6 +631,15 @@
 				}
 			]
 		},
+	"rendering": {
+		"html": {
+		  "form": "select",
+		  "attribute": "",
+		  "input_type": "datalist"
+		  }
+	  },
+	"contact_email": {
+		"schema.Org": {
 		"@context": "http://www.w3.org/2006/vcard/ns#hasEmail",
 		"@type": "Class",
 		"name": "hasEmail",
@@ -388,14 +648,16 @@
 			"@type": "",
 			"@context": "",
 			"relationship": ""
-		      },		
+		  }
+	      },
+	"documentation": {
 		"name": "contact.email",
-		"type": "text",
+		"type": "General text",
 		"multivalue": "false",
 		"required": "false",
 		"title": "Contact Email Address",
 		"definition": "Email address of person or organization that has been asserted as the contact for the resource.",
-		"scopeNotes": "", 
+		"scopeNotes": "The email address should be valid to enable the use of a 'mailto:' service.", 
 			"source": "",
 			"terms": [
 				{
@@ -408,6 +670,15 @@
 				}
 			]
 		},
+		"rendering": {
+			"html": {
+				"form": "input",
+				"atttribute": {},
+				"input_type": "email"
+			}
+		}, 
+		"contact.name": {
+		"schema.Org": {
 		"@context": "http://purl.org/dc/terms/",
 		"@type": "Class",
 		"name": "Agent",
@@ -416,14 +687,16 @@
 			"@type": "",
 			"@context": "",
 			"relationship": ""
-		      },		
+		  }
+		 },
+		"documentation": {
 		"name": "contact.name",
-		"type": "text",
-		"multivalue": "false",
+		"type": "General text",
+		"multivalue": "true",
 		"required": "false",
-		"title": "Contact Person(s)",
+		"title": "Contact Person",
 		"definition": "Name of person(s) who has/have been asserted as the contact(s) for the resource in case of questions or follow-up by resource user.",
-		"scopeNotes": "", {
+		"scopeNotes": "The person named as a contact may or may not be affiliated with an organization. If there is an affiliated organization, the name of that organization can be entered in the Contact Organization field.", 
 			"source": "",
 			"terms": [
 				{
@@ -436,52 +709,1892 @@
 				}
 			]
 		},
+		"rendering": {
+	          "html": {
+			"form": "input",
+			"atttribute": {},
+			"input_type": "text"
+			}
+		},
+		"contact.org": {
+		"schema.Org": {
+		"@context": "http://purl.org/dc/terms/",
+		"@type": "Class",
+		"name": "Agent",
+		  "mapsToSchemaOrg": {
+			"property":"",
+			"@type": "",
+			"@context": "",
+			"relationship": ""
+		  }
+		 },
+		"documentation": {
+		"name": "contact.org",
+		"type": "General text",
+		"multivalue": "true",
+		"required": "false",
+		"title": "Contact Organization",
+		"definition": "Name of organization that has/have been asserted as the contact(s) for the resource in case of questions or follow-up by resource user.",
+		"scopeNotes": "The organization named may or may not be affiliated with a person named as a contact.  If there is an affiliated person, the name of that person can be entered in the Contact Person field.", 
+			"source": "",
+			"terms": [
+				{
+					"term": "",
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+				}
+			]
+		},
+		"rendering": {
+	          "html": {
+			"form": "input",
+			"atttribute": {},
+			"input_type": "text"
+			}
+		},			
+		"contributor_orgs.name": {
+			"schema.org": {
 		  "@context": "https://schema.org/",
 		  "@type": "CreativeWork",
-		  "name": "name",
-			  "name": "contributors.type",
+		  "name": "contributor",
+		  "mapsToSchemaOrg": {
+			  "property": "contributor",
+			  "@type": "Thing/CreativeWork/Organization, Person",
+			  "@context": "https://schema.org/",
+			  "@relationship": "same-as"
+		  }
+			},
+			"documentation": {
+			  "name": "contributor_orgs.name",
 			  "type": "General Text",
 			  "multivalue": "true",
 			  "required": "false",
-			  "title": "Contributor Type",
-			  "definition": "Type of contribution to the resource made by a person or organization.",
-			  "scopeNotes": "The values for this term should be taken from controlled value list;  more than one type can be chosen.", 
-			 "controlledVocabulary": {
-				 			"source":"LRMI Terms",
-			"terms":[
+			  "title": "Contributor Organization Name",
+			  "definition": "Name of organization that is a secondary contributor to the learningresource.  A contributor can also be an individual person.",
+			 "scopeNotes": "The organization  does not necessarily represent an affiliation with a contributor person.  This field is used sparingly due to ongoing maintenance restrictions and only when obvious from authoritative descriptive info found on the website or the resource itself.",						 "controlledVocabulary": {
+				  "source": "",
+				  "terms": [
+				  {
+				    "term": "",
+				    "mapsTo": {
+					  "term": "",
+				  "source": "",
+				  "relationship": ""
+			  }
+			  }
+		  ]
+	},
+	"rendering": {
+		"html": {
+			"form": "input",
+			"attributes": "",
+			"input_type": "text"
+		}
+	},
+ "contributor_orgs.name_identifier": { 
+ "schema.Org": {
+ "@context": "https://schema.org/",
+	"@type": "Thing",
+	"name": "contributor_orgs.name_identifier",
+	"mapsToSchemaOrg": {
+		"property":"value",
+		"@type": "Thing/Intangible/StructuredValue/PropertyValue",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		      },
+  "documentation":  {
+    "name": "contributor_orgs.name_identifier",
+	"type": "Text",
+	"multivalue": "false",
+	"required": "false",
+	"title": "Contributor Organization Identifier",
+	"definition": "The unique identifier for the organization contributing to the resource.",
+	"scopeNotes": "Enter the identifier as text for the organization contributing to the resource. The ID should be a persistent identifier of a type that is included in the list of identifier types found in the Contributing Organization Identifier Scheme field.",
+	"controlledVocabulary": {
+		"source": "",
+		"terms": [
+			{
+				"term": "",
+				"mapsTo": {
+					"term": "",
+				"source": "",
+				"relationship": ""
+			}
+			}
+		]
+	},
+	"rendering": {
+          "html": {
+            "form": "input",
+            "attribute":  "",
+            "input_type": "text"
+          }
+        }
+       },
+	 "contributor_orgs.name_identifier_type": {
+	 "schema.org": {},
+	 "documentation": {
+	   "name": "contributor_orgs.name_identifier_type",
+	   "type": "text",
+	   "multivalue": "false",
+	   "required": "false",
+	   "title": "Contributor Organization Identifier Scheme",
+	   "definition": "The identifier scheme associated with the unique identifier for the organization contributing to the resource.",
+	    "scopeNotes": "The value for this identifier should come from a controlled vocabulary set and entered as text.  See https://schema.org/docs/datamodel.html#identifierBg for more information.",
+	    "controlledVocabulary": {
+		"source": "",
+		"terms": [
+			{
+				"term": "", 
+				"mapsTo": {
+					"term": "",
+				"source": "",
+				"relationship": ""
+			}
+			}
+		]
+	},
+	  "rendering": {
+		  "html": {
+			  "form": "select",
+			  "attribute": "datalist",
+			  "input_type": "checkbox"
+		  }
+	  },
+	"contributor_orgs.type": {
+		"schema.Org": {},
+		"documentation": {
+		 "name": "contributor_orgs.type",
+		 "type": "General text",
+		 "multivalue": "true",
+		 "required": "false",
+		 "title": "Contribution Type",
+		 "definition": "Type of contribution to the resource made by an organization.",
+		 "scopeNotes": "The values for this term should be taken from controlled value list;  more than one type can be chosen.", 
+		 "controlledVocabulary": {
+			  "source": "",
+			  "terms": [
+				  {
+				    "term": "",
+			  "mapsTo": {
+				  "term": "",
+				  "source": "",
+				  "relationship": ""
+			  }
+			  }
+		  ]
+	},
+	"rendering": {
+		"html": {
+		  "form": "select",
+		  "attribute": "datalist", 
+		  "input_type": "checkbox"
+		}
+	},
+		"contributors.familyName": {
+		  "schema.Org": {
+			"@context": "https://schema.org/",
+		  "@type": "Thing/Person",
+		  "name": "contributors.familyName",
+		  "mapsToSchemaOrg": {
+			  "property":"familyName",
+			  "@type": "Thing/Person",
+			  "@context": "https://schema.org/",
+			  "relationship": "same-as"
+		  }
+		  },
+		  "documentation": {
+		     "name": "contributors.familyName",
+		     "type": "General text",
+		     "multivalue": "true",
+		     "required": "false",
+		    "title": "Contributing Person Family/Last Name",
+		    "definition": "Last or family name of person(s) contributing to the resource.",
+		"scopeNotes": "If the family or last name of the contributing person is more than one word, the names should be entered in reading order, e.g., El Saffar.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
 				{
-					"term":"",
-					"mapsTo": {
-						"term": ["Collaborator","Conceptualization","Data curation and stewardship","Endorser","Final product","Formal analysis","Funding and sponsorship","Illustration","investigation and raw data production","Methodology","Organizer","Other","Product administration and management","Resources","Software","Validation","Visualization","Voiceover video performer","Writing - original draft","Writing - review & editing"],  
-						"source": "LRMI Terms",
-						"relationship": ""
-					}
+				"term": "", 
+				"mapsTo": {
+					"term": "",
+					"source": "",
+					"relationship": ""
 				}
-				
-			]  
-		  },			  
-		  "@context": "https://schema.org/",
-		  "@type": "CreativeWork",
-		  "name": "name",
-			  "name": "title",
-			  "type": "General Text",
-			  "multivalue": "false",
-			  "required": "true",
-			  "title": "Title",
-			  "definition": "The title of the resource",
-			  "scopeNotes": "The title should be taken from the resource itself.  Each word in the title should be capitalized except for connectors are verbs.  If there is a subtitle, only the first word of the subtitle should be capitalized.", 
-			 "controlledVocabulary": {
-				 			"source":"",
-			"terms":[
+				}
+			]
+		},
+	  "rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "text"
+		  }
+	  },	
+	"contributors.givenName": { 
+	  "schema.Org": {
+	  "@context": "https://schema.org/",
+	  "@type": "Thing/Person",
+	  "name": "contributors.givenName",
+	  "mapsToSchemaOrg": {
+			"property":"givenName",
+			"@type": "Thing/Person",
+			"@context": "https://schema.org/",
+			"relationship": "same-as"
+		      }
+	  },
+	   "documentation": {
+		"name": "contributors.givenName",
+		"type": "General text",
+		"multivalue": "true",
+		"required": "false",
+		"title": "Contributing Person Given/First Name",
+		"definition": "Given or first name of person(s) contributing to the resource.",
+		"scopeNotes": "If the given or first name of the contributing person is more than one word or contains an initial, the names should be entered in reading order, e.g., Ruth S..",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
 				{
-					"term":"",
+					"term": "", 
 					"mapsTo": {
 						"term": "",
-						"source": "",
-						"relationship": ""
-					}
+					"source": "",
+					"relationship": ""
 				}
-				
-			]  
-		  },
+			}
+		]
+	},
+		   	  "rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "text"
+		  }
+	  },
+   	"contributors.name_identifier": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Thing",
+	"name": "contributors.name_identifier",
+	"mapsToSchemaOrg": {
+		"property":"value",
+		"@type": "Thing/Intangible/StructuredValue/PropertyValue",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},
+	"documentation": {
+		"name": "contributors.name_identifier",
+		"type": "General Text",
+		"multivalue": "false",
+		"required": "false",
+		"title": "Contributing Person Identifier",
+		"definition": "The unique identifier for the person(s) contributing to the resource.",
+		"scopeNotes": "Enter the identifier as text for the person(s) contributing to the resource. The ID should be a persistent identifier of a type that is included in the list of identifier types found in the Contributing Person Identifier Scheme field.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "",
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+				}
+			]
+		},
+	  "rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "text"
+		  }
+	  },
+		"contributors.name_identifier_type": {
+		"schema.org": {
+		"@context": "https://schema.Org",
+		"@type": "coverage",
+		"name": "contributors.name_identifier_type",
+		  "mapsToSchemaOrg": {
+			"property":"valueReference",
+			"@type": "Thing/Intangible/StructuredValue/PropertyValue",
+			"@context": "https://schema.org/",
+			"relationship": "same-as"
+		  }
+		},
+		"documentation": {
+		"name": "contributors.name_identifier_type",
+		"type": "General text",
+		"multivalue": "false",
+		"required": "false",
+		"title": "Contributing Person Identifier Scheme",
+		"definition": "The identifier scheme associated with the unique identifier for the person(s) contributing to the resource, e.g., ORCID.",
+		"scopeNotes": "The value for this identifier should come from a controlled vocabulary set and entered as text.  See https://schema.org/docs/datamodel.html#identifierBg for more information.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "select",
+			  "attribute": "datalist",
+			  "input_type": "checkbox"
+		  }
+	  }, 
+	"contributors.type": {
+		"schema.Org": {},
+		"documentation": {
+		 "name": "contributor.type",
+		 "type": "General text",
+		 "multivalue": "true",
+		 "required": "false",
+		 "title": "Contribution Type",
+		 "definition": "Type of contribution to the resource made by a person.",
+		 "scopeNotes": "The values for this term should be taken from controlled value list;  more than one type can be chosen.", 
+		 "controlledVocabulary": {
+			  "source": "",
+			  "terms": [
+				  {
+				    "term": "",
+			  "mapsTo": {
+				  "term": "",
+				  "source": "",
+				  "relationship": ""
+			  }
+			  }
+		  ]
+	},
+	"rendering": {
+		"html": {
+		  "form": "select",
+		  "attribute": "datalist", 
+		  "input_type": "checkbox"
+		}
+	},
+		 "country_of_origin": {
+	  	"schema.org": {
+		"@context": "http://purl.org/dc/terms/",
+		"@type": "coverage",
+		"name": "country_of_origin",
+			"mapsToSchemaOrg": {
+			"property":"",
+			"@type": "",
+			"@context": "",
+			"relationship": ""
+		}
+	},	
+	  	"documentation": {
+	  	"name": "country_of_origin",
+		"type": "General Text",
+		"multivalue": "true",
+		"required": "false",
+		"title": "Country of Origin",
+		"definition": "Code for country from which the resource was generated.",
+		"scopeNotes": "Values for this field will come from a controlled value set.  The resource may come from more than one country.  Determination of the country or countries of origin should come from the landing page, website or resource itself or ideally from the content creators.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "",
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+				}
+			]
+		},
+	  "rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "datalist, multiple",
+			  "input_type": "checkbox"
+		  }
+	  }, 
+	 "created": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "CreativeWork",
+	"name": "created",
+	"mapsToSchemaOrg": {
+		"property":"dateCreated",
+		"@type": "CreativeWork",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "created",
+		"type": "Datetime",
+		"multivalue": "false",
+		"required": "true",
+		"title": "MD Record Create Date",
+		"definition": "The date on which the metadata record was first saved as part of the input workflow.",
+		"scopeNotes": "The value for this field is system-generated at the time the MD record is saved to the system.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "output",
+			  "attribute": "",
+			  "input_type": ""
+		  }
+	  }, 
+  "creator": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "CreativeWork",
+	"name": "creator",
+	"mapsToSchemaOrg": {
+		"property":"creator",
+		"@type": "CreativeWork",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "creator",
+		"type": "General text",
+		"multivalue": "false",
+		"required": "true",
+		"title": "MD Record Creator Name",
+		"definition": "The name of the person creating the MD record for a resource.",
+		"scopeNotes": "The value for this field is system-generated from the login name of the person submitting the resource to the system.  Anonymous submission is no longer allowed.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "output",
+			  "attribute": "",
+			  "input_type": ""
+		  }
+	  },  
+	  "credential_status": {
+	  	"schema.org": {},
+	  	"documentation": {
+	  	"name": "credential_status",
+		"type": "General Text",
+		"multivalue": "false",
+		"required": "false",
+		"title": "Credential Offered",
+		"definition": "Declaration of whether a credential is offered for comopletion of the resource.",
+		"scopeNotes": "Responses include Yes, No, or Unknown.  Examples of a credential could include formal academic credentials or digital badges. Digital badges may also be known as microcredentials and are usually used to represent a way of acknowledging achievements or skill acquisition at a more granular level than a college degree. Those meeting the established criteria have an opportunity to earn and display digital badges in recognition of their engagement with the association offering the badge.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "",
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+				}
+			]
+		},
+	  "rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "datalist",
+			  "input_type": "radio"
+		  }
+	  },  
+	"ed_frameworks.name": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Thing/Intangible/AlignmentObject",
+	"name": "ed_frameworks.name",
+	"mapsToSchemaOrg": {
+		"property":"educationalFramework",
+		"@type": "Thing/Intangible/AlignmentObject",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "ed_frameworks.name",
+		"type": "General text",
+		"multivalue": "true",
+		"required": "false",
+		"title": "Educational Framework Name",
+		"definition": "The name of the educational framework to which the resource is aligned, if any.  An educational framework is a structured description of educational concepts such as a shared curriculum, syllabus or set of learning objectives, or a vocabulary for describing some other aspect of education such as educational levels or reading ability.",
+		"scopeNotes": "The values for this field should be chosen from the controlled vocabulary set. If the name of the educational framework is not included in the controlled vocabulary set, the name should be referred to the Editor for consideration as an addition to the controlled vocabulary set.  A resource can be aligned with more than one educational framework.  NOTE: the educational framework should be used along with the Educational Frameworks Node Name and Educational Frameworks Node Description. See https://blogs.pjjk.net/phil/explaining-the-lrmi-alignment-object/ for more information.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+			"rendering": {
+		  "html": {
+			  "form": "select",
+			  "attribute": "datalist",
+			  "input_type": "checkbox"
+		  }
+	  }, 
+	  "ed_frameworks.nodes.description": {
+	    "schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Thing/Intangible/AlignmentObject",
+	"name": "ed_frameworks.nodes.description",
+	"mapsToSchemaOrg": {
+		"property":"targetDescription",
+		"@type": "Thing/Intangible/AlignmentObject",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	  
+	"documentation": {
+	"name": "ed_frameworks.nodes.description",
+		"type": "General text",
+		"multivalue": "false",
+		"required": "false",
+		"title": "Educational Frameworks Node Description",
+		"definition": "A description of one or more subcategories of an educational framework to which a resource is associated.",
+		"scopeNotes": "The Educational Frameworks Node Description should be used in conjunction with the Educational Frameworks Name and the Educational Frameworks Node Name. Each node should have only one description and may include a URL to the node description in addition to the textual description.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+	"rendering":{
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "textarea"
+		  }
+	  }, 
+  	"ed_frameworks.nodes.name": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Thing/Intangible/AlignmentObject",
+	"name": "ed_frameworks.nodes.name",
+	"mapsToSchemaOrg": {
+		"property":"educationalFramework",
+		"@type": "Thing/Intangible/AlignmentObject",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "ed_frameworks.node.name",
+		"type": "General text",
+		"multivalue": "true",
+		"required": "false",
+		"title": "Educational Frameworks Node Name",
+		"definition": "The name of a subcategory of an educational framework to which a resource is associated.",
+		"scopeNotes": "The values for this field should be chosen from the controlled vocabulary set. A resource can be aligned with more than one node.  NOTE: the Educational Frameworks Node Name should be used along with the Educational Frameworks Name and the Educational Frameworks Node Description.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "select",
+			  "attribute": "datalist",
+			  "input_type": "checkbox"
+		  }
+		},
+	 "expertise_level": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Creative Work/LearningResource",
+	"name": "expertise_level",
+	"mapsToSchemaOrg": {
+		"property":"educationalLevel",
+		"@type": "CreativeWork/LearningResource",
+		"@context": "https://schema.org",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "expertise_level",
+		"type": "General text",
+		"multivalue": "false",
+		"required": "true",
+		"title": "Expertise Level",
+		"definition": "The skill level targeted for the topic being taught.",
+		"scopeNotes": "The values for this field should come from the controlled value set. Ideally, the level will be indicated by the resource landing page, website or within the resource itself.  See the Help menu for more guidance and examples of how to determine the skill level for a resource.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+
+		"rendering": {
+		  "html": {
+			  "form": "select",
+			  "attribute": "datalist",
+			  "input_type": "text"
+		  }
+	  },
+ "id": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Thing",
+	"name": "id",
+	"mapsToSchemaOrg": {
+		"property":"identifier",
+		"@type": "Thing",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "id",
+		"type": "Exact Match String",
+		"multivalue": "false",
+		"required": "true",
+		"title": "System MD Record ID",
+		"definition": "Unique identifier for the MD record generated by the system in UUID format.",
+		"scopeNotes": "The UUID generated by the system at the time of MD record creation is used to create the URL as a persistent identifier for the MD record.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "output",
+			  "attribute": "",
+			  "input_type": ""
+		  }
+	  }, 	
+	"keywords": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "CreativeWork",
+	"name": "keywords",
+	"mapsToSchemaOrg": {
+		"property":"keywords",
+		"@type": "text",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "keywords",
+		"type": "General text",
+		"multivalue": "true",
+		"required": "true",
+		"title": "Keyword(s)",
+		"definition": "Important phrases or words used to describe the resource.",
+		"scopeNotes": "The values for this field should be chosen from the controlled vocabulary set for keywords. If a keyword is not presently in the controlled vocabulary list, one can be added for consideration by the Editor.  Keywords are are used to provide more specific information about the resource, but should still be generic enough to be used for other resources as well.  Note that Subject Discipline is used to describe the subject domain to which the resource refers or from which the resource might provide examples.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "datalist",
+			  "input_type": "text"
+		  }
+	  }, 
+	"language_primary": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "CreativeWork",
+	"name": "language_primary",
+	"mapsToSchemaOrg": {
+		"property":"inLanguage",
+		"@type": "CreativeWork",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "language_primary",
+		"type": "General text",
+		"multivalue": "false",
+		"required": "true",
+		"title": "Primary Language",
+		"definition": "Original language in which the learning resource being described is published or made available.",
+		"scopeNotes": "The values for this field should be chosen from the controlled vocabulary set. A resource can be aligned with only one primary language.  If resource is available in other languages as translations, use Additional Language(s) field.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "select",
+			  "attribute": "datalist",
+			  "input_type": "radio"
+		  }
+	  }, 
+	  	"languages_secondary": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Thing",
+	"name": "languages_secondary",
+	"mapsToSchemaOrg": {
+		"property":"translatedInto",
+		"@type": "Language",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "languages_secondary",
+		"type": "General text",
+		"multivalue": "true",
+		"required": "false",
+		"title": "Additional Language(s)",
+		"definition": "Additional languages in which the resource is tranlated or made available, if any.",
+		"scopeNotes": "The values for this field should be chosen from the controlled vocabulary set. A resource can be aligned with more than one additionly language.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "select",
+			  "attribute": "datalist",
+			  "input_type": "radio"
+		  }
+	  },
+				"id": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Thing",
+	"name": "id",
+	"mapsToSchemaOrg": {
+		"property":"identifier",
+		"@type": "Thing",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "id",
+		"type": "Exact String Match",
+		"multivalue": "false",
+		"required": "true",
+		"title": "System MD Record ID",
+		"definition": "Unique identifier for the MD record generated by the system in UUID format.",
+		"scopeNotes": "The UUID generated by the system at the time of MD record creation is used to create the URL as a persistent identifier for the MD Record PID.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "output",
+			  "attribute": "",
+			  "input_type": ""
+		  }
+	  },
+	"license": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "CreativeWork",
+	"name": "license",
+	"mapsToSchemaOrg": {
+		"property":"license",
+		"@type": "Thing",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "license",
+		"type": "General text",
+		"multivalue": "false",
+		"required": "true",
+		"title": "License",
+		"definition": "A license for use of that applies to the resource, typically indicated by URL.",
+		"scopeNotes": "The values for this field should be chosen from the controlled vocabulary set. A resource should have only one license. If a license is not presently in the controlled vocabulary list, one can be added for consideration by the Editor.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "select",
+			  "attribute": "datalist",
+			  "input_type": "text"
+		  }
+		},
+		"locator_data": {
+	"schema.org": {
+	"@context": "https://purl.org/",
+	"@type": "dc/terms",
+	"name": "identifier",
+	"mapsToSchemaOrg": {
+	"property":"",
+	"@type": "",
+	"@context": "",
+	"relationship": ""
+	}
+	},	
+	"documentation": {
+	"name": "locator_data",
+	"type": "General text",
+	"multivalue": "false",
+	"required": "true",
+	"title": "Resource Location Identifier",
+	"definition": "The identifier for the learning resource or landing page for the resource that contains important contextual information including the direct resolvable link to the resource, if applicable.",
+	"scopeNotes": "The identifier could be used to construct a URL to the resource or landing page, if desired, but is not entered as a URL.",
+	"controlledVocabulary": {
+		"source": "",
+		"terms": [
+			{
+				"term": "", 
+				"mapsTo": {
+				"term": "",
+				"source": "",
+				"relationship": ""
+				}
+			}
+		]
+	},
+	"rendering": {
+	  "html": {
+		  "form": "input",
+		  "attribute": "",
+		  "input_type": "text"
+		  }
+	  }, 
+"locator_type": {
+	"schema.org": {
+	"@context": "https://purl.org/",
+	"@type": "dc/terms",
+	"name": "identifier",
+	"mapsToSchemaOrg": {
+		"property":"",
+		"@type": "",
+		"@context": "",
+		"relationship": ""
+		}
+	},	
+		"documentation": {
+		"name": "locator_type",
+		"type": "General text",
+		"multivalue": "false",
+		"required": "true",
+		"title": "Resource Location Identifier Type",
+		"definition": "Designation of location identifier type, e.g., DOI, ARK, Handle.",
+		"scopeNotes": "The values for this field should be chosen from the controlled vocabulary set. A resource location identifier should have only one identifier type. If an identifier type is not presently in the controlled vocabulary list, one can be added for consideration by consulting the Editor.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "select",
+			  "attribute": "datalist",
+			  "input_type": "checkbox"
+		  }
+	  }, 
+	"lr_outcomes": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Creative Work/LearningResource",
+	"name": "lr_outcomes",
+	"mapsToSchemaOrg": {
+		"property":"teaches",
+		"@type": "CreativeWork/LearningResource",
+		"@context": "https://schema.org",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "lr_outcomes",
+		"type": "General text",
+		"multivalue": "false",
+		"required": "true",
+		"title": "Learning Resource Outcomes",
+		"definition": "Descriptions of what knowledge, skills or abilities students should learn from the resource.",
+		"scopeNotes": "Descriptions of learning outcomes would, ideally, come from the resource landing page, website or the resource itself.  If that information is not available, use terms from Bloom's taxonomy as verbs in the descriptions of what is intended to be taught by the learning resource.  The categories of terms include Knowledge, Comprehension, Application, Analysis, Synthesis, and Evaluation.  From https://www.valamis.com/hub/learning-outcomes, The most useful learning outcomes include a verb that describes an observable action, a description of what the learner will be able to do and under which conditions they will be able to do it, and the performance level they should be able to reach. Also see the Help menu for more information.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "textarea"
+		  }
+	  },
+	 "lr_type": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Creative Work",
+	"name": "lr_type",
+	"mapsToSchemaOrg": {
+		"property":"learningResourceType",
+		"@type": "CreativeWork",
+		"@context": "https://schema.org",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "lr_type",
+		"type": "General text",
+		"multivalue": "false",
+		"required": "true",
+		"title": "Learning Resource Type",
+		"definition": "A characteristic that describes the predominant type or kind of learning resource.",
+		"scopeNotes": "The values for this field should be chosen from the controlled vocabulary set. A learning resource should have only one type. If a learning resource type type is not presently in the controlled vocabulary list, one can be added for consideration by consulting the Editor.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "select",
+			  "attribute": "datalist",
+			  "input_type": "multiple"
+		  }
+	  },  
+ "md_record_id": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Creative Work",
+	"name": "md_record_id",
+	"mapsToSchemaOrg": {
+		"property":"identifier",
+		"@type": "CreativeWork",
+		"@context": "https://schema.org",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "md_record_id",
+		"type": "General text",
+		"multivalue": "false",
+		"required": "true",
+		"title": "Md Record PID",
+		"definition": "Globally unique, persistent ID for the metadata record within the system for the resource being described.",
+		"scopeNotes": "The value for this field is generated from the UUID created by the system at the time of submission and is represented as a URI.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "output",
+			  "attribute": "",
+			  "input_type": "url"
+		  }
+	  },
+  "media_type": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Creative Work/MediaObject",
+	"name": "media_type",
+	"mapsToSchemaOrg": {
+		"property":"encodingFormat",
+		"@type": "CreativeWork/MediaObject",
+		"@context": "https://schema.org",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "media_type",
+		"type": "General text",
+		"multivalue": "false",
+		"required": "false",
+		"title": "Media Type",
+		"definition": "Media type of resource.",
+		"scopeNotes": "The values for this field should be chosen from the controlled vocabulary set. A learning resource should have only one media type. If a media type is not presently in the controlled vocabulary list, one can be added for consideration by consulting the Editor.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "select",
+			  "attribute": "datalist",
+			  "input_type": "text"
+		  }
+	  },
+	"modification_date": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "CreativeWork",
+	"name": "modification_date",
+	"mapsToSchemaOrg": {
+		"property":"dateModified",
+		"@type": "CreativeWork",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "modification_date",
+		"type": "Datetime",
+		"multivalue": "false",
+		"required": "true",
+		"title": "MD Record Modify Date",
+		"definition": "System generated date and time when MD record is modified.",
+		"scopeNotes": "Date and time will be applied by the system.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "output",
+			  "attribute": "",
+			  "input_type": "Datetime"
+		  }
+	  }, 
+"notes": {
+	"schema.org": {
+	"@context": "",
+	"@type": "",
+	"name": "",
+	"mapsToSchemaOrg": {
+		"property":"",
+		"@type": "",
+		"@context": "",
+		"relationship": ""
+		}
+	},	
+		"documentation": {
+		"name": "notes",
+		"type": "General text",
+		"multivalue": "false",
+		"required": "false",
+		"title": "MD Record Input Notes",
+		"definition": "Notes re: submission, review workflow or any issues needing to be brought to the attention of the Editor.",
+		"scopeNotes": "",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "textarea"
+		  }
+	  },
+ "pub_status": {
+	"schema.org": {
+	"@context": "",
+	"@type": "",
+	"name": "",
+	"mapsToSchemaOrg": {
+		"property":"",
+		"@type": "",
+		"@context": "",
+		"relationship": ""
+		}
+	},	
+		"documentation": {
+		"name": "pub_status",
+		"type": "General text",
+		"multivalue": "false",
+		"required": "true",
+		"title": "MD Record Publication Status",
+		"definition": "Status of metadata record within the system, i.e., in-process, in-review, pre-pub-review, deprecate-request, deprecated or published.",
+		"scopeNotes": "System generated with CV of: in-process when authenticated user saves brief record and moves to submitter;  in-review when submitter works on record and moves record to reviewer; pre-pub-review when reviewer moves record to editor to review for editing; deprecate-request when either submitter or reviewer determines a record should be unpublished or not considered for addition if the resource does not meet selection criteria;  deprecated when editor or administrator moves record is to be unpublished but not deleted from the system; and published when editor or administrator moves record is to be published and made available to the public.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "output",
+			  "attribute": "",
+			  "input_type": "textarea"
+		  }
+	  },
+	"published": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Creative Work",
+	"name": "published",
+	"mapsToSchemaOrg": {
+		"property":"datePublished",
+		"@type": "CreativeWork",
+		"@context": "https://schema.org",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "published",
+		"type": "Datetime",
+		"multivalue": "false",
+		"required": "false",
+		"title": "Published/Broadcast Date",
+		"definition": "Date of first broadcast / publication.",
+		"scopeNotes": "Format for date should be YYYY-MM-DD. Time will be applied by the system. If the day of the month is not known, use 01 for the first day of the publication month.  If the month of the year is not known, use 01 for the first month of the year.  If the resource is re-published with changes noted on the resource landing page, website or the resource itself upon access, use Modification Date instead, and if available, note the version designation.  Version number does not need to be added for the first publication date of the resource.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "datetime"
+		  }
+	  },
+	"publisher": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Creative Work",
+	"name": "publisher",
+	"mapsToSchemaOrg": {
+		"property":"publisher",
+		"@type": "CreativeWork",
+		"@context": "https://schema.org/Organization",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "publisher",
+		"type": "General Text",
+		"multivalue": "false",
+		"required": "false",
+		"title": "Publisher",
+		"definition": "The organization credited with publishing or broadcasting the resource.",
+		"scopeNotes": "The organization included as publisher should not represent the repository where the resource is stored unless the repository also publishes the resource and provides a persistent identifier for the resource such as a DOI.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "text"
+		  }
+	  },
+	"purpose": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Creative Work",
+	"name": "purpose",
+	"mapsToSchemaOrg": {
+		"property":"educationalUse",
+		"@type": "CreativeWork",
+		"@context": "https://schema.org/LearningResourceType",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "purpose",
+		"type": "General Text",
+		"multivalue": "false",
+		"required": "false",
+		"title": "Educational Purpose",
+		"definition": "The purpose of the resource in the context of education; e.g., instruction, professional education, assessment.",
+		"scopeNotes": "The values for this field should come from the controlled vocabulary set.  There should be only one purpose declared fro each resource.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "datalist",
+			  "input_type": "checkbox"
+		  }
+	  },  
+	"rating": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Thing/Intangible/Rating",
+	"name": "rating",
+	"mapsToSchemaOrg": {
+		"property":"ratingValue",
+		"@type": "Thing/Intangible/Rating/CreativeWork",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "rating",
+		"type": "Floating Point",
+		"multivalue": "false",
+		"required": "false",
+		"title": "Aggregated User Ratings for Resource",
+		"definition": "The aggregation of input from all user assessments evaluating  users' reaction to the learning resource following Kirkpatrick's model of training evaluation.",
+		"scopeNotes": "The value is calculated as an average of all the user ratings for each of the questions in the default survey. The values reflect the responses for each question of the default survey that users have made in answer to record their reaction to the resource as a training or educational entity. The questions reflect a user's evaluation of Level 1 of Kirkpatarick's Model of learning evaluation.  There may be more than one user response to each question.  If there are no user responses to the question, this field will not appear on the resource record.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "datalist",
+			  "input_type": "floatingPoint"
+		  }
+	  }, 
+	"ratings": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Thing/Intangible/Rating",
+	"name": "ratings",
+	"mapsToSchemaOrg": {
+		"property":"ratingValue",
+		"@type": "Thing/Intangible/Rating/CreativeWork",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "ratings",
+		"type": "Floating Point",
+		"multivalue": "false",
+		"required": "false",
+		"title": "User Ratings for Resource",
+		"definition": "Inputs from users assessing each user's reaction to the learning resource following Kirkpatrick's model of training evaluation.",
+		"scopeNotes": "The values represent the user ratings for each of the questions in the default survey.  he values for this field will usually reflect a 5 point Likert scale or may be yes/now questions.  The values reflect an assessment that a user has made in answer to selected questions about their reaction to the resource as a training or educational entity.  The questions reflect a user's evaluation of Level 1 of Kirkpatarick's Model of learning evaluation.  There may be more than one rating associated with each resource. See https://educationaltechnology.net/kirkpatrick-model-four-levels-learning-evaluation/ for more information about the Kirkpatrick model. If there are no user responses to the question, this field will not appear.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "output",
+			  "attribute": "",
+			  "input_type": "floatingPoint"
+		  }
+	  }, 
+	"resource_modification_date": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "CreativeWork",
+	"name": "resource_modification_date",
+	"mapsToSchemaOrg": {
+		"property":"dateModified",
+		"@type": "CreativeWork",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "resource_modification_date",
+		"type": "Datetime",
+		"multivalue": "false",
+		"required": "false",
+		"title": "Last Modification Date",
+		"definition": "Date in which the resource has last been modified from the original published or broadcast version.",
+		"scopeNotes": "This value may be used in addition to or in lieu of version information found in that MD element.  As with other dates, format of dates should be YYYY-MM-DD, but may be displayed differently. Time will be applied by the system.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "Datetime"
+		  }
+	  }, 
+	"status": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "CreativeWork",
+	"name": "resource_modification_date",
+	"mapsToSchemaOrg": {
+		"property":"dateModified",
+		"@type": "CreativeWork",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "status",
+		"type": "General Text",
+		"multivalue": "false",
+		"required": "true",
+		"title": "System Publication Status",
+		"definition": "System generated publication status of the resource w/in the registry as a yes for published or no for not published.",
+		"scopeNotes": "System generated value that works with with pub_status to the extent that value is No until editor or administrator moves the resource to the published status when the value changes to Yes and is made visible to the public..",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "output",
+			  "attribute": "",
+			  "input_type": ""
+		  }
+	  }, 
+ 	"subject": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Thing",
+	"name": "subject",
+	"mapsToSchemaOrg": {
+		"property":"about",
+		"@type": "Thing",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "subject",
+		"type": "General Text",
+		"multivalue": "true",
+		"required": "false",
+		"title": "Subject Discipline",
+		"definition": "Subject domain(s) toward which the resource is  targeted. There may be more than one value for this field.",
+		"scopeNotes": "The values for this field should come from a controlled value set.  The source of the list is one generated by the RDA ETHRD-IG.  Other values can be added to the controlled value list by consulting with the Editor.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "multiple",
+			  "input_type": "Checkbox"
+		  }
+	  },  
+	"submitter_email": {
+	"schema.org": {
+	"@context": "http://www.w3.org/2006/vcard/ns#hasEmail",
+	"@type": "owl:ObjectProperty",
+	"name": "hasEmail",
+	"mapsToSchemaOrg": {
+		"property":"",
+		"@type": "",
+		"@context": "",
+		"relationship": ""
+		}
+	},	
+		"documentation": {
+		"name": "submitter_email",
+		"type": "General Text",
+		"multivalue": "false",
+		"required": "true",
+		"title": "Submission Contact Email Address",
+		"definition": "Email address of person who submitted the resource.",
+		"scopeNotes": "The persons who submit resources to be added to the registry will be required to enter their email addresses.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "text"
+		  }
+	  },
+	"submitter_name": {
+	"schema.org": {
+	"@context": "http://www.w3.org/2006/vcard/ns#hasEmail",
+	"@type": "owl:Class",
+	"name": "Contact",
+	"mapsToSchemaOrg": {
+		"property":"",
+		"@type": "",
+		"@context": "",
+		"relationship": ""
+		}
+	},	
+		"documentation": {
+		"name": "submitter_name",
+		"type": "General Text",
+		"multivalue": "false",
+		"required": "true",
+		"title": "Submission Contact Person",
+		"definition": "The name of person who submitted the resource.",
+		"scopeNotes": "The persons who submit resources to be added to the registry will be required to enter their names so that they can be contacted about the submitted resource's content or status.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "text"
+		  }
+	  },
+ 	"target_audience": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "Thing/Intangible/ Audience/ EducationalAudience",
+	"name": "target_audience",
+	"mapsToSchemaOrg": {
+		"property":"educationalRole",
+		"@type": "Thing/Intangible/ Audience/ EducationalAudience",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "target_audience",
+		"type": "General Text",
+		"multivalue": "true",
+		"required": "false",
+		"title": "Target Audience",
+		"definition": "Audience(s) for which the resource is intended. .",
+		"scopeNotes": "The values for this field should come from a controlled value set. There may be more than one value for this field, and should be used in conjunction wih the Learning Outcomes and Expertise Level fields.  Additional values for this field can be added the the controlled value list by consulting with the Editor.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "multiple",
+			  "input_type": "Checkbox"
+		  }
+	  }, 
+	"title": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "CreativeWork",
+	"name": "title",
+	"mapsToSchemaOrg": {
+		"property":"name",
+		"@type": "CreativeWork",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "title",
+		"type": "General Text",
+		"multivalue": "false",
+		"required": "true",
+		"title": "Resource Title",
+		"definition": "The name of the resource.",
+		"scopeNotes": "The title should be taken from the resource itself.  Each word in the title should be capitalized except for connectors (such as and).  If there is a subtitle, only the first word of the subtitle should be capitalized.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "textarea"
+		  }
+	  }, 
+	"url": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "CreativeWork",
+	"name": "url",
+	"mapsToSchemaOrg": {
+		"property":"URL",
+		"@type": "CreativeWork",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "url",
+		"type": "General Text",
+		"multivalue": "false",
+		"required": "true",
+		"title": "Direct Resource Link",
+		"definition": "URL that resolves to a downloadable version of the learning resource or to a landing page for the resource that contains important contextual information including the direct resolvable link to the resource, if applicable.",
+		"scopeNotes": "The URL should be taken from a citation such as a DOI or other persistent URL, if available rather than from a a catalog or registry for the resource (such as Zenodo) as the link to the registry may change.  If a URL from a citation is not available (e.g., a DOI), use an identifier deemed persistent or long-lasting from the repository which stores the resource.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "textarea"
+		  }
+	  }, 
+	"usage_info": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "CreativeWork",
+	"name": "usage_info",
+	"mapsToSchemaOrg": {
+		"property":"usageInfo",
+		"@type": "CreativeWork",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "usage_info",
+		"type": "General Text",
+		"multivalue": "false",
+		"required": "false",
+		"title": "Usage Information",
+		"definition": "Descriptive information about using the resource, not addressed by the License information field.",
+		"scopeNotes": "The description included should be used in addition to license field if more information about conditions for use are important, e.g., rights statements. Consider using the rights statements CV found at:  https://rightsstatements.org/en/about.html.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "textarea"
+		  }
+	  }, 
+	"version": {
+	"schema.org": {
+	"@context": "https://schema.org/",
+	"@type": "CreativeWork",
+	"name": "version",
+	"mapsToSchemaOrg": {
+		"property":"usageInfo",
+		"@type": "CreativeWork",
+		"@context": "https://schema.org/",
+		"relationship": "same-as"
+		}
+	},	
+		"documentation": {
+		"name": "version",
+		"type": "General Text",
+		"multivalue": "false",
+		"required": "false",
+		"title": "Version",
+		"definition": "The specific version of the resource, if declared.",
+		"scopeNotes": "The version may be used in conjunction with the Modification Date, if declared.  It is not generally necessary to state version information for the first version of a resource.",
+		"controlledVocabulary": {
+			"source": "",
+			"terms": [
+				{
+					"term": "", 
+					"mapsTo": {
+						"term": "",
+					"source": "",
+					"relationship": ""
+				}
+			}
+		]
+	},
+		"rendering": {
+		  "html": {
+			  "form": "input",
+			  "attribute": "",
+			  "input_type": "text"
+		  }
+	  }
+  }
 }

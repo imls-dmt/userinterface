@@ -1,10 +1,13 @@
 <template>
   <div class="container">
+    <auths  :key="reloads"
+    :local_groups="local_groups"
+    :local_auths="local_auths"
+    :resourceID="id"></auths>
     <div class="title">
-      <span v-if="$route.name != 'Resource'">{{ index }}. </span>
       <router-link :to="`/Resource/${item.id}`"> {{ item.title }} </router-link>
-      <img :src="license" class="license" />
-      <img :src="access_cost" class="access_cost" />
+      <img :src="license" class="license, icon" />
+      <img :src="access_cost" class="access_cost, icon" />
     </div>
     <table class="metadata">
       <span class="authors">
@@ -170,8 +173,8 @@
         <tr>
           <td class="diagnostic" colspan="2">
             <hr />
-            {{ item.pub_status }} / {{ item.created }} -
-            {{ item.modification_date }} / {{ item.id }} / {{ item.score }}
+            {{ item.id }} / {{item.status}} / {{ item.pub_status }} / {{ item.created }} -
+            {{ item.modification_date }} / {{ item.score }}
           </td>
         </tr>
       </div>
@@ -191,15 +194,17 @@
 </template>
 
 <script>
-import access_cost_true from "@/assets/fee.png";
-import access_cost_false from "@/assets/no-fee.png";
+import access_cost_true from "@/assets/noun-money-3749301_modified.png";
+import access_cost_false from "@/assets/noun-money-free-3749255.png";
 import license_cc_by from "@/assets/cc-by.png";
 import license_cc_by_sa from "@/assets/cc-by-sa.png";
 import license_cc_publicdomain from "@/assets/cc-publicdomain.png";
+import { mapGetters } from "vuex";
+import auths from "./auths.vue"
 
 export default {
-  props: ["index", "item", "nResources", "initialFull"],
-
+  props: ["index", "item", "nResources", "initialFull", "id"],
+  components: {auths},
   name: "ResultItem",
   // licenses: {
   //     "CC BY 2.0": license_cc_by,
@@ -219,6 +224,13 @@ export default {
   },
 
   computed: {
+    ...mapGetters(["loggedin", "username", "groups", "auth"]),
+    local_groups() {
+      return this.$store.getters.groups;
+    },
+    local_auths() {
+      return this.$store.getters.auth;
+    },
     resourceAction() {
       if (this.is_full) {
         console.log("show less");

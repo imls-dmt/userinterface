@@ -1,6 +1,5 @@
-<img src="/images/house-sparrow-tiny.jpg"
-    style="float: left; margin-right: 10px;" />
-
-Bacon ipsum dolor amet pork chop shank spare ribs, short loin cupim biltong tongue chuck prosciutto swine alcatra. Hamburger fatback andouille, pig strip steak short ribs prosciutto ground round pork loin. Sirloin tail short loin cupim capicola landjaeger turducken pig frankfurter beef ribs short ribs meatloaf ball tip strip steak. Meatball sausage boudin, tail prosciutto ground round pork chop tongue bresaola. Fatback ground round kielbasa cupim pork. Capicola burgdoggen andouille, leberkas ribeye jowl chislic pastrami kevin meatball short loin pork. Corned beef rump ground round pork loin spare ribs.
-
 ![house sparrow](/images/house-sparrow-tiny.jpg)
+
+Check out the resources recently added on the topic of data "governance."  Data governance (DG) is the process of managing the availability, usability, integrity and security of the data in enterprise systems, based on internal data standards and policies that also control data usage.  While the primary focus of the resources is on larger scale business enterprises, the principles are applicable to any organization that creates and manages data.  The key search term to use to find these resources is "governance" -- let us know at clearinghouse#d@esipfed.org is you would like more resources on this or related topics.  Better yet, give us your reaction to the resource after you've listened to the webinar and viewed the slides using the DMTC Assessment Survey.  You can find the link to the Assessment Survey at the bottom of the record for each resource.  
+
+

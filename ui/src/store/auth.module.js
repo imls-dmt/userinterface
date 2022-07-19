@@ -50,6 +50,7 @@ export const auth = {
 			);
 		},
 		logout({ commit }) {
+			console.log("entering auth.module.js logout action")
 			commit('setWorking', true);
 			AuthService.logout();
 			commit('logout');

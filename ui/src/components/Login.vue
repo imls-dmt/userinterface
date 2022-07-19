@@ -12,38 +12,6 @@
         </span>
       </ul>
       <p>
-        Your groups authorize you to perform the following actions in the
-        Clearinghouse:<br />
-        <img
-          v-if="auth.create"
-          src="@/assets/noun-create-document-1868022.png"
-          alt="Create new resource"
-          title="Create new resource"
-          class="icon"
-        />
-        <img
-          v-if="auth.update"
-          src="@/assets/noun-check-mark-1867972.png"
-          alt="Review/update resource"
-          title="Review/update resource"
-          class="icon"
-        />
-        <img
-          v-if="auth.publish"
-          src="@/assets/noun-share-symbol-1868078.png"
-          alt="Publish/unpublish a resource"
-          title="Publish/unpublish a resource"
-          class="icon"
-        />
-        <img
-          v-if="auth.del"
-          src="@/assets/noun-dustbin-1868018.png"
-          alt="Delete a resource"
-          title="Delete a resource"
-          class="icon"
-        />
-      </p>
-      <p>
         To request that you be added to additional DMTC groups please
         <a
           href="mailto:clearinghouseEd@esipfed.org?subject=Request for DMTC group change"
@@ -95,6 +63,8 @@
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 import { mapGetters } from "vuex";
+import axios from 'axios';
+
 
 export default {
   name: "Login",
@@ -104,7 +74,7 @@ export default {
     Field,
     ErrorMessage,
   },
-
+  
   data() {
     const schema = yup.object().shape({
       username: yup.string().required("Username is required!"),
@@ -115,6 +85,9 @@ export default {
       loading: false,
       message: "",
       schema,
+      reloads: 0,
+      local_groups: [],
+      local_auths: [],
     };
   },
 
@@ -130,12 +103,15 @@ export default {
       this.$store.dispatch("login", user).then(
         () => {
           //console.log(response)
-          this.loading = false;
           //this.$router.push("/profile");
           this.$store.dispatch("getGroups").then(() => {
             console.log("getting the user's groups");
             console.log(this.$store.state.groups);
+            this.local_groups = this.$store.getters.groups
+            this.local_auths = this.$store.getters.auth
           });
+          this.reloads++;
+          this.loading = false;
         },
         (error) => {
           this.loading = false;
@@ -149,7 +125,13 @@ export default {
       );
     },
     handleLogout() {
-      this.$store.dispatch("logout");
+      console.log("entering handleLogout")
+      this.loading = true;
+      let url = '/api/logout';
+      axios.get(url)
+      this.$store.commit('logout')
+      //this.$store.dispatch("logout");
+      this.loading = false;
     },
   },
 };

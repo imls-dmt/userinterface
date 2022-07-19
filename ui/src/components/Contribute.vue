@@ -4,13 +4,8 @@
       <p>
         If you are
         <router-link :to="{ name: 'Login' }">logged into</router-link> the
-        Clearinghouse you may submit new materials including:
+        Clearinghouse you may submit new learning resources and edit existing ones if you have sufficient permissions.
       </p>
-      <ul>
-        <li>New learning resources</li>
-        <!-- <li>New assessment questions</li> -->
-        <!-- <li> New assessment question groups for use in learning resource surveys </li> -->
-      </ul>
     </div>
     <div v-else>
       <!-- <p>You are logged in as <b>{{ username }}</b>, and your assigned groups are
@@ -18,9 +13,11 @@
                 <span v-if="index > 0">, </span>
                 <b>{{ group }}</b></span>. You can create and submit new learning resources for review and publication. 
             </p> -->
+      <div v-if="id">You are editing learning resource: {{ id }}</div>
+      <div v-else>You are creating a new resource.</div>
       <suspense>
         <template #default>
-          <ResourceCreate />
+          <ResourceCreate :resourceID="id"/>
         </template>
         <template #fallback>
           <p>Loading metadata template ...</p>
@@ -124,9 +121,7 @@ export default {
       questions: [],
     };
   },
-  props: {
-    msg: String,
-  },
+  props: ["id"],
   computed: {
     ...mapGetters(["loggedin", "username", "groups"]),
     qPriv() {

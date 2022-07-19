@@ -1,139 +1,125 @@
 {
-	"documentation": "https://esip-dev-02.edacnm.org/api/resources/documentation.html", 
-	"hits-total": 1, 
-	"hits-returned": 1, 
-	"facets": {
-		"authors.givenName": {}, 
-		"authors.familyName": {}, 
-		"author_org.name": {}, 
-		"subject": {}, 
-		"keywords": {}, 
-		"license": {}, 
-		"usage_info": {}, 
-		"publisher": {}, 
-		"accessibility_features.name": {}, 
-		"language_primary": {}, 
-		"languages_secondary": {}, 
-		"ed_frameworks.name": {}, 
-		"author_names": {}, 
-		"ed_frameworks.nodes.name": {}, 
-		"target_audience": {}, 
-		"lr_type": {}, 
-		"purpose": {}, 
-		"media_type": {}, 
-		"access_cost": {}
-	}, 
-	"results": [
-		{
-			"title": "The Oxford Common File Layout", 
-			"status": 1, 
-			"pub_status": "published", 
-			"modification_date": "2022-02-22T16:00:45Z", 
-			"resource_modification_date": "1900-01-01T00:00:00Z", 
-			"url": "https://zenodo.org/record/2642296#.XLYcp-hKiUk", 
-			"access_cost": 0, 
-			"submitter_name": "Jacob Wikle", 
-			"submitter_email": "jwikle@unm.edu", 
-			"authors": [
+		"pub_status": "in-process",
+		"title": "Ocean Teacher Information Management Courses",
+		"url": "https://classroom.oceanteacher.org/tag/index.php?tag=Information%20Management",
+		"authors": [
 				{
-					"givenName": "Neil", 
-					"familyName": "Jefferies", 
-					"name_identifier": "demoid1", 
-					"name_identifier_type": "demoidType1"
+						"givenName": "Neil",
+						"familyName": "Jefferies",
+						"name_identifier": "demoid1",
+						"name_identifier_type": "demoidType1"
 				},
 				{
-					"givenName": "demoNeil2", 
-					"familyName": "demoJefferies2", 
-					"name_identifier": "demoid2", 
-					"name_identifier_type": "demoidType2"
+						"givenName": "demoNeil2",
+						"familyName": "demoJefferies2",
+						"name_identifier": "demoid2",
+						"name_identifier_type": "demoidType2"
 				}
-				
-			], 
-			"author_names": [
-				"Neil Jefferies"
-			], 
-			"author_org": {
-				"name": "University of Oxford Bodleian Libraries", 
-				"name_identifier": "demo1", 
+		],
+		"author_org": {
+				"name": "Ocean Teacher Global Academy",
+				"name_identifier": "xyz",
 				"name_identifier_type": "GRID"
-			}, 
-			"contact": {
-				"name": "Neil Jefferies", 
-				"org": "University of Oxford Bodleian Libraries", 
-				"email": "contact@noreply.com"
-			}, 
-			"abstract_data": "The Oxford Common File Layout (OCFL) specification describes an application-independent approach to the storage of digital information in a structured, transparent, and predictable manner. It is designed to promote long-term object management best practices within digital repositories.&nbsp; This presentation was given at under the topic of Preservation Tools, Techniques and Policies for the Research Data Alliance Preserving Scientific Annotation Working Group on April 4, 2017.&nbsp;<br />\r\n&nbsp;", 
-			"abstract_format": "filtered_html", 
-			"subject": "Arts and Humanities", 
-			"keywords": [
-				"Data backup", 
-				"Data management", 
-				"Data preservation", 
-				"Data storage"
-			], 
-			"license": "Creative Commons Attribution 4.0 International - CC BY 4.0", 
-			"usage_info": "Khan Academy Terms of Service", 
-			"citation": "Jefferies, Neil. (2019, April). The Oxford Common File Layout. Zenodo. https://doi.org/10.5281/zenodo.2642296. ", 
-			"locator_data": "10.5281/zenodo.2642296", 
-			"locator_type": "DOI", 
-			"publisher": "Research Data Alliance (RDA)", 
-			"version": "", 
-			"created": "2019-04-16T12:25:50", 
-			"published": "2019-04-04T00:00:00Z", 
-			"accessibility_features": [
-				"Augmentation - provision of content in learning resource by alternate means, e.g., by alternative text for a graphic image.",
-				"Structure and Navigation - aids to structure and navigation of the learning resource content, e.g., by including an index or table of contents."
-			], 
-			"accessibility_summary": "Accessibility summary text", 
-			"language_primary": "en", 
-			"languages_secondary": ["en", "ar", "de"], 
-			"ed_frameworks": [
-				{"name": "FAIR Data Principles", "nodes": [{"description": "", "name": "Re-usable"}, {"description": "", "name": "Re-usable"}]},
-				{"name": "FAIR Data Principles", "nodes": [{"description": "", "name": "Re-usable"}]}], 
-			"target_audience": [
-				"Data manager", 
-				"Data professional", 
-				"Mid-career research scientist", 
-				"Repository manager", 
-				"Research faculty", 
-				"Research scientist"
-			], 
-			"purpose": "Instruction - detailed information about aspects or processes related to data management or data skills.", 
-			"completion_time": "Up to 1 hour", 
-			"media_type": "Presentation - representation of the particular way in which an author shows, describes or explains one or more concepts, e.g., a set of Powerpoint slides.", 
-			"lr_type": "Lesson - detailed description of an element of instruction in a course, [could be] contained in a unit of one or more lessons, and used by a teacher to guide class instruction.  Example: presentation slides on a topic.", 
-			"creator": "jwikle", 
-			"md_record_id": "", 
-			"ratings": [], 
-			"rating": 0.0, 
-			"id": "1cfbeae6-e594-3d61-bc3f-3e9a64f14fa8", 
-			"contributors": [
+		},
+		"contact": {
+				"name": "contact name",
+				"org": "contact org",
+				"email": "contact email"
+		},
+		"abstract_data": "Ocean Teacher is a comprehensive e-Learning platform developed by the International Oceanographic Data and Information Exchange (IODE) to help build equitable capacity related to ocean research, observations, and services in UNESCO&#39;s Intergovernmental Oceanographic Commission.&nbsp; This series of presentations, short courses is focused on<strong>&nbsp;information management in the ocean sciences</strong>&nbsp;and is intended to be used in conjunction with classroom training.&nbsp;",
+		"keywords": [
+				"Appraisal - Core Trustworthy Data Repositories Requirements",
+				"Confidentiality/Ethics -  - Core Trustworthy Data Repositories Requirements",
+				"Context - Core Trustworthy Data Repositories Requirements",
+				"Data archiving",
+				"Data discovery and identification - Core Trustworthy Data Repositories Requirements",
+				"Data integrity and authenticity - Core Trustworthy Data Repositories Requirements",
+				"Data quality - Core Trustworthy Data Repositories Requirements",
+				"Data reuse - Core Trustworthy Data Repositories Requirements",
+				"Documented storage procedures - Core Trustworthy Data Repositories Requirements",
+				"Licenses - Core Trustworthy Data Repositories Requirements",
+				"Marine data",
+				"Mission/Scope - Core Trustworthy Data Repositories Requirements",
+				"Ocean data",
+				"Organizational infrastructure -  - Core Trustworthy Data Repositories Requirements",
+				"Preservation plan - Core Trustworthy Data Repositories Requirements",
+				"Security - Core Trustworthy Data Repositories Requirements",
+				"Technical infrastructure - Core Trustworthy Data Repositories Requirements",
+				"Workflows - Core Trustworthy Data Repositories Requirements"
+		],
+		"license": "Apache-2.0",
+		"usage_info": "usage info",
+		"citation": "Jefferies, Neil. (2019, April). The Oxford Common File Layout. Zenodo. https://doi.org/10.5281/zenodo.2642296.",
+		"locator_data": "locator data",
+		"locator_type": "locator type",
+		"publisher": "Ocean Teacher Global Academy",
+		"accesibility_summary": "",
+		"language_primary": "az",
+		"languages_secondary": [
+				"fr",
+				"pt",
+				"es"
+		],
+		"ed_frameworks": [
 				{
-					"familyName": "Teperek",
-					"givenName": "Marta ",
-					"type": "Collaborator"
+						"name": "USGS Science Support Framework",
+						"nodes": [
+								"Acquire",
+								"Manage Quality"
+						]
 				},
 				{
-					"familyName":"demo2",
-					"givenName":"demo2",
-					"type":"demo2"
-				}	
-			], 
-			"contributor_orgs": [
-			{
-				"name": "Institute of Museum and Library Services (IMLS)",
-				"type": "Funding and sponsorship"
-			},
-			{
-				"name": "Center for Informatics Research in Science and Scholarship, GSLIS (CIRSS)",
-				"type": "Funding and sponsorship"
-			},
-			{
-				"name": "University of Illinois Urbana-Champaign Graduate School of Library and Information Science (GSLIS)",
-				"type": "Funding and sponsorship"
-			}
-			], 
-			"score": 3.9206405
-		}
-	]
+						"name": "FAIR Data Principles",
+						"nodes": [
+								"Findable",
+								"Interoperable"
+						]
+				}
+		],
+		"target_audience": [
+				"Citizen scientist",
+				"Data supporter",
+				"another audience"
+		],
+		"completion_time": "More than 1 Week",
+		"media_type": "Collection - a group or set of items that comprise a single learning resource, e.g., a PDF version of a slide presentation, an audio file of the presentation and a textual representation of the oral transcription of the presentation.",
+		"lr_type": "Demonstration / Simulation - imitation or modeling of a real-world process.",
+		"lr_outcomes": "learning outcomes",
+		"access_conditions": "Access conditions",
+		"expertise_level": "Intermediate",
+		"country_of_origin": "AU",
+		"contributors": [
+				{
+						"familyName": "Teperek",
+						"givenName": "Marta ",
+						"type": "Collaborator"
+				},
+				{
+						"familyName": "demo2",
+						"givenName": "demo2",
+						"type": "demo2"
+				}
+		],
+		"contributor_orgs": [
+				{
+						"name": "International Oceanographic Data and Information Exchange (IODE)",
+						"name_identifier": "N.A.",
+						"name_identifier_type": "N.A.",
+						"type": "Funding and sponsorship"
+				},
+				{
+						"name": "ICSU - World Data System (WDS)",
+						"name_identifier": "N.A.",
+						"name_identifier_type": "N.A.",
+						"type": "Endorser"
+				}
+		],
+		"resource_modification_date": "2022-07-01",
+		"accesibility_features": [],
+		"access_cost": null,
+		"accessibility_summary": "Accesibility summary",
+		"credential_status": null,
+		"notes": [],
+		"purpose": "Assessment - the evaluation, measurement and documentation of the skills or knowledge about data management.",
+		"subject": [ "Arts and Humanities", "Arts and Humanities: Digital Humanities" ]
 }

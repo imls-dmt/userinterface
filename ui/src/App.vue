@@ -2,7 +2,7 @@
   <div>
     <Navbar></Navbar>
     <hr />
-    <router-view></router-view>
+    <router-view :key="$route.fullPath"></router-view> <!-- https://forum.vuejs.org/t/how-to-reload-component-when-navigating-among-pages-rendered-by-a-same-component/112316-->
     <Footer></Footer>
   </div>
 </template>
@@ -53,14 +53,27 @@ export default {
   flex: 1 1 200px;
 }
 
+.bottom-blocks h1 {
+  font-size: 2rem;
+}
+
+.bottom-blocks h2 {
+  font-size: 1.5rem;
+}
+
+.bottom-blocks h3 {
+  font-size: 1rem;
+}
+
+
 .emph {
   font-style: italic;
 }
 
 .diagnostic {
   display: none;
-  font-size: 8pt;
-  color: gray;
+  font-size: .75em;
+  color: black;
   padding: 0px;
   margin: 0px;
 }
@@ -87,7 +100,7 @@ export default {
 
 .checkbox-box {
   display: inline;
-  margin-right: 6pt;
+  margin-right: 18pt;
 }
 
 .list-container {

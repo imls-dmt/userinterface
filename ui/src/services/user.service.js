@@ -1,7 +1,8 @@
 import axios from 'axios';
 //import authHeader from './auth-header';
 
-const API_URL = 'https://www.dmtc-devel.org';
+//const API_URL = 'https://www.dmtc-devel.org';
+const API_URL = '';
 
 class UserService {
    getGroups() {

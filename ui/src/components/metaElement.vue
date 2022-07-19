@@ -62,7 +62,7 @@
     </div>
     
     <!--languages_secondary as a flexDataList - CHANGE TO SELECT MULTIPLE LIST-->
-    <div v-else-if="element['keyName'] == 'general___languages_secondary'">
+    <!-- <div v-else-if="element['keyName'] == 'general___languages_secondary'">
       <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b> (select one or more options from the pop-up list below)</label>
       <select 
         :name="element['keyName']"
@@ -78,7 +78,7 @@
         {{ option['value'] }}
       </option>
       </select>
-    </div>
+    </div> -->
     
     <!-- general___publisher as datalist-->
     <div v-else-if="element['keyName'] == 'general___publisher'">
@@ -98,44 +98,10 @@
       </div>
     </div>
     
-    <!-- ed_frameworks__name as select single -->
-    <div v-else-if="element['keyName'] == 'educational_information___ed_frameworks__name'">
-    <div>
-      <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b> (select one option from the pop-up list below)</label>
-      <select 
-        :name="element['keyName']"
-        :id="element['keyName']"  
-        class="form-control">
-        <option value="n/a" selected>n/a</option>
-        <option
-          v-for="(option, index) in element['options']"
-          :key="index"
-          :value="option['value']"
-        >
-        {{ option['value'] }}
-      </option>
-      </select>
-    </div>
-    </div>
+
     
-    <!-- educational_information___ed_frameworks__nodes__name as select multiple -->
-    <div v-else-if="element['keyName'] == 'educational_information___ed_frameworks__nodes__name'">
-      <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b> (select one or more options from the pop-up list below)</label>
-      <select 
-        :name="element['keyName']"
-        :id="element['keyName']" 
-        class="form-control" 
-        multiple>
-        <option value="n/a" selected>n/a</option>
-        <option
-          v-for="(option, index) in element['options']"
-          :key="index"
-          :value="option['value']"
-        >
-        {{ option['value'] }}
-      </option>
-      </select>
-    </div>
+
+    
     
     
     
@@ -164,12 +130,14 @@
                 :name="option['key']"
                 :type="element['input_type']"
                 :id="option['key'] + index.toString()"
+                class="checkbox-box"
                 checked
               />
           <input v-else 
             :name="option['key']" 
             :type="element['input_type']"
             :id="option['key'] + index.toString()"
+            class="checkbox-box"
            />
           <label :for="option['key'] + index.toString()">{{ option["key"] }}</label>
           </div>
@@ -236,7 +204,7 @@
     <!--Select element-->
     <div v-else-if="element['element'] == 'select'">
       <div>
-        <span v-if="typeof element['attribute'] !== 'undefined' && element['attribute'].includes('multiple')">
+        <span v-if="typeof element['attributes'] !== 'undefined' && element['attributes'].includes('multiple')">
           <label :for="element['keyName']" class="form-control-label"><b>{{element["label"]}}</b> (select one or more options from the pop-up list below)</label>
           <select 
             :name="element['keyName']"
@@ -247,7 +215,7 @@
             <option
               v-for="(option, index) in element['options']"
               :key="index"
-              :value="option['value']"
+              
             >
             {{ option['value'] }}
           </option>
@@ -265,7 +233,7 @@
             :key="index"
             :value="option['value']"
           >
-          {{ option['value'] }}
+          {{ option['key'] }}
         </option>
         </select>
         </span>
@@ -324,7 +292,9 @@
 <script>
 //import { Field, ErrorMessage } from "vee-validate";
 export default {
-  props: ["element", "fieldName"], 
+  props: ["element", 
+          "fieldName", 
+        ], 
   name: "MetaElement",
   //	components: {
   //		Field,
