@@ -46,10 +46,10 @@
         </tr>
 
         <tr class="detail_item">
-          <td class="element-title">Authoring<br />Organization(s):</td>
+          <td class="element-title">Authoring Organization(s):</td>
           <td>
             {{ item.author_org.name }}
-            <span v-if="item.author_org.name_identifier != ''">{{ item.author_org.name }}</span>
+            <span v-if="item.author_org.name_identifier != ''"> ({{ item.author_org.name_identifier }})</span>
           </td>
         </tr>
 
@@ -84,7 +84,7 @@
           <td class="element-title">Keywords:</td>
           <td>
             <span v-for="(key, index) in item.keywords" :key="key">
-              <span v-if="index != 0">, </span>{{ key }}
+              <span v-if="index != 0"><br /></span>{{ key }}
             </span>
           </td>
         </tr>
@@ -92,14 +92,23 @@
         <tr class="detail_item">
           <td class="element-title">Subject Discipline:</td>
           <td>
-            {{ item.subject }}
+            <span v-for="(key, index) in item.subject" :key="key">
+              <span v-if="index != 0"><br /></span>{{ key }}
+            </span>
           </td>
         </tr>
 
         <tr class="detail_item">
           <td class="element-title">Publisher:</td>
           <td>
-            {{ item.Publisher }}
+            {{ item.publisher }}
+          </td>
+        </tr>
+
+        <tr class="detail_item">
+          <td class="element-title">Learning Resource Type:</td>
+          <td>
+            {{ item.lr_type }}
           </td>
         </tr>
 
@@ -111,12 +120,97 @@
         </tr>
 
         <tr class="detail_item">
-          <td class="element-title">Contact<br />Organization(s):</td>
+          <td class="element-title">Contact Organization(s):</td>
           <td>
             {{ item.contact.org }}
           </td>
         </tr>
+        <tr class="detail_item">
+          <td class="element-title">Contact Name:</td>
+          <td>
+            {{ item.contact.name }}
+          </td>
+        </tr>
+        <tr class="detail_item">
+          <td class="element-title">Contact email:</td>
+          <td>
+            {{ item.contact.email }}
+          </td>
+        </tr>
+        <tr class="detail_item">
+          <td class="element-title">Usage Information:</td>
+          <td>
+            {{ item.usage_info }}
+          </td>
+        </tr>
+        <tr class="detail_item">
+          <td class="element-title">Citation:</td>
+          <td>
+            {{ item.citation }}
+          </td>
+        </tr>
+        <tr class="detail_item">
+          <td class="element-title">Locator Data:</td>
+          <td>
+            {{ item.locator_data }} <span v-if="item.locator_data != ''">({{ item.locator_type}})</span>
+          </td>
+        </tr>
+        <tr class="detail_item">
+          <td class="element-title">Accesibility Summary:</td>
+          <td>
+            {{ item.accesibility_summary }}
+          </td>
+        </tr>
+        <tr class="detail_item">
+          <td class="element-title">Secondary Languages:</td>
+          <td>
+            <span v-for="(key, index) in item.languages_secondary" :key="key">
+              <span v-if="index != 0">, </span>{{ key }}
+            </span>
+          </td>
+        </tr>
 
+        <tr class="detail_item">
+          <td class="element-title">Access Conditions:</td>
+          <td>
+            {{ item.access_conditions }}
+          </td>
+        </tr>
+
+        <tr class="detail_item">
+          <td class="element-title">Expertise Level:</td>
+          <td>
+            {{ item.expertise_level }}
+          </td>
+        </tr>
+        
+        <tr class="detail_item">
+          <td class="element-title">Country of Origin:</td>
+          <td>
+            {{ item.country_of_origin }}
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="element-title">Contributors:</td>
+          <td>
+            <span v-for="(contributor, index) in item.contributors" :key="contributor">
+              <span v-if="index != 0">, </span>
+              {{ contributor.givenName }} {{ contributor.familyName }} <span v-if="contributor.type != ''">({{ contributor.type }})</span>
+            </span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="element-title">Contributing Organizations:</td>
+          <td>
+            <span v-for="(contributor, index) in item.contributor_orgs" :key="contributor">
+              <span v-if="index != 0"><br /></span>
+              {{ contributor.name }} <span v-if="contributor.name_identifier != 'N.A.'">({{ contributor.name_identifier }})</span> <span v-if="contributor.type != ''"> - {{ contributor.type }}</span>
+            </span>
+          </td>
+        </tr>
+        
         <tr class="detail_title">
           <td colspan="2">Educational Information</td>
         </tr>
@@ -129,47 +223,55 @@
         </tr>
 
         <tr class="detail_item">
-          <td class="element-title">Learning<br />Resource Type:</td>
+          <td class="element-title">Credential Status:</td>
+          <td>
+            {{ item.credential_status }}
+          </td>
+        </tr>
+        
+        <tr class="detail_item">
+          <td class="element-title">Learning Resource Type:</td>
           <td>
             {{ item.lr_type }}
           </td>
         </tr>
 
         <tr class="detail_item">
-          <td class="element-title">Target<br />Audience:</td>
+          <td class="element-title">Target Audience:</td>
           <td>
             <span v-for="(key, index) in item.target_audience" :key="key">
-              <span v-if="index != 0">, </span>{{ key }}
+              <span v-if="index != 0"><br /></span>{{ key }}
             </span>
           </td>
         </tr>
 
         <tr class="detail_item">
-          <td class="element-title">Intended time<br />to complete:</td>
+          <td class="element-title">Intended time to complete:</td>
           <td>
             {{ item.completion_time }}
           </td>
         </tr>
 
-        <span v-if="item.ed_frameworks[0]">
-          <tr class="detail_item">
-            <td class="element-title">Framework:</td>
+        <tr class="detail_item">
+          <td class="element-title">Learning Outcomes:</td>
+          <td>
+            {{ item.lr_outcomes }}
+          </td>
+        </tr>
+        
+           <tr class="detail_item">
+            <td class="element-title">Educational Framework(s):</td>
             <td>
-              {{ item.ed_frameworks[0].name }}
-            </td>
-          </tr>
-          <tr class="detail_item">
-            <td class="element-title">Framework Node:</td>
-            <td>
-              <span
-                v-for="(key, index) in item.ed_frameworks[0].nodes"
-                :key="key"
-              >
-                <span v-if="index != 0">, </span>{{ key.name }}
+              <span v-for="(key, index) in item.ed_frameworks" :key="key">
+                <span v-if="index != 0"><br /></span>{{ key['name'] }} 
+                (
+                <span v-for="(key, index) in key['nodes']" :key="key">
+                  <span v-if="index != 0">, </span>{{ key }}
+                </span>
+                )
               </span>
             </td>
           </tr>
-        </span>
 
         <tr>
           <td class="diagnostic" colspan="2">
@@ -340,6 +442,9 @@ export default {
 
 .element-title {
   font-weight: bold;
+  text-align: right;
+  padding-right: 10px;
+  width: 175px;
 }
 
 .diagnostic {
