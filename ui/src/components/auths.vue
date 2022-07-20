@@ -5,7 +5,12 @@
 	<!-- <p>{{ local_auths }}</p> -->
 	<div class="row">
 		<span v-if="resourceID && (local_auths.update || local_auths.submit_publish || local_auths.publish || local_auths.del)" class="col"> 
-			<router-link :to="`/Contribute/${resourceID}`"> edit resource </router-link>&nbsp;
+			<router-link :to="`/Contribute/${resourceID}`"> 
+			<button
+			type="button" 
+			class="flexiButton submit_button">
+			Edit Resource</button>
+			</router-link>&nbsp;
 			Workflow:
 	<select id="workflowSelect" @change="workflow($event)">
 		<option

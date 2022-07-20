@@ -9,7 +9,7 @@
         <img class="stars_image" src="@/assets/five-star.png"  v-bind:style="{marginLeft: starsLeftMargin + 'px', zIndex: 1}" />
         <img class="stars_image" src="@/assets/110x20-white.png" v-bind:style="{ marginLeft: starsLeftMargin+(starsWidth*item.rating/5) + 'px', zIndex: 2}" />
         <img class="stars_image" src="@/assets/five-star-hollow.png"  v-bind:style="{marginLeft: starsLeftMargin + 'px', zIndex: 3}"/> 
-        <div v-if="item.rating > 0" v-bind:style="{ zIndex: 4 }">{{ item.rating.toFixed(1) }}</div>
+        <div v-if="item.ratings.length > 0" v-bind:style="{ zIndex: 4 }">{{ item.rating.toFixed(1) }}</div>
         <div v-else v-bind:style="{ zIndex: 4 }">n/a</div>
     </div>
 
@@ -167,7 +167,7 @@
         <tr class="detail_item">
           <td class="element-title">Accesibility Summary:</td>
           <td>
-            {{ item.accesibility_summary }}
+            {{ item.accessibility_summary }}
           </td>
         </tr>
         <tr class="detail_item">
@@ -220,7 +220,28 @@
           </td>
         </tr>
         
-        <tr class="detail_title">
+        <tr class="detail_item">
+          <td class="element-title">Date of Metadata Creation:</td>
+          <td>
+            {{ item.created }}
+          </td>
+        </tr>
+        
+        <tr class="detail_item">
+          <td class="element-title">Date of Most Recent Metadata Update:</td>
+          <td>
+            {{ item.modification_date }}
+          </td>
+        </tr>
+        
+ <tr class="detail_item">
+   <td class="element-title">Date of Metadata Publication:</td>
+   <td>
+     {{ item.published }}
+   </td>
+ </tr>
+ 
+       <tr class="detail_title">
           <td colspan="2">Educational Information</td>
         </tr>
 
