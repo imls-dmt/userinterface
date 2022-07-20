@@ -1094,10 +1094,12 @@ export default {
             );
             //console.log(options)
             values.forEach(function (v) {
+              if (v == "") {return}
               console.log(v)
               options.find((c) => c.value == v).selected = true;
             });
             options.find((c) => c.value == "n/a").selected = false;
+          
 
           } else if (elementSub == "target_audience-datalist") {
             console.log("target_audience-datalist: ", elements[element].id)

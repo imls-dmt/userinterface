@@ -3,8 +3,7 @@
     <auths  :key="reloads"
     :local_groups="local_groups"
     :local_auths="local_auths"
-    :resourceID="id"
-    :status="item.pub_status"></auths>
+    :resourceID="id"></auths>
     <div class="title">
       <router-link :to="`/Resource/${item.id}`"> {{ item.title }} </router-link>
       <img :src="license" class="license, icon" />
@@ -50,6 +49,7 @@
           <td class="element-title">Authoring<br />Organization(s):</td>
           <td>
             {{ item.author_org.name }}
+            <span v-if="item.author_org.name_identifier != ''">{{ item.author_org.name }}</span>
           </td>
         </tr>
 
