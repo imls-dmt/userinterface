@@ -4,6 +4,15 @@
     :local_groups="local_groups"
     :local_auths="local_auths"
     :resourceID="id"></auths>
+    
+    <div class="stars">
+        <img class="stars_image" src="@/assets/five-star.png"  v-bind:style="{marginLeft: starsLeftMargin + 'px', zIndex: 1}" />
+        <img class="stars_image" src="@/assets/110x20-white.png" v-bind:style="{ marginLeft: starsLeftMargin+(starsWidth*item.rating/5) + 'px', zIndex: 2}" />
+        <img class="stars_image" src="@/assets/five-star-hollow.png"  v-bind:style="{marginLeft: starsLeftMargin + 'px', zIndex: 3}"/> 
+        <div v-if="item.rating > 0" v-bind:style="{ zIndex: 4 }">{{ item.rating.toFixed(1) }}</div>
+        <div v-else v-bind:style="{ zIndex: 4 }">n/a</div>
+    </div>
+
     <div class="title">
       <router-link :to="`/Resource/${item.id}`"> {{ item.title }} </router-link>
       <img :src="license" class="license, icon" />
@@ -323,6 +332,8 @@ export default {
       license: null,
       results: [],
       is_full: false,
+      starsWidth: 92,
+      starsLeftMargin: 30,
     };
   },
 
@@ -450,4 +461,25 @@ export default {
 .diagnostic {
   font-size: xx-small;
 }
+
+.stars_container {
+    position: static;
+    min-height: 20px;
+    top: 0px;
+    right: 0px;
+}
+
+.stars {
+    position: static;
+    top: 0px;
+    left: 0px;
+}
+
+.stars_image {
+    position: absolute;
+    width: 92px;
+    height:20px;    
+
+}
+
 </style>
