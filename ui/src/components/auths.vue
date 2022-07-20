@@ -4,80 +4,76 @@
 	<!-- <p>{{ local_groups }}</p> -->
 	<!-- <p>{{ local_auths }}</p> -->
 	<div class="row">
-		<!-- <div v-if="local_auths.create_short && !resourceID"
-					class="col">
-		<img
-			src="@/assets/create_resource_shortform.png"
-			alt="Create new resource - short metadata form"
-			title="Create new resource - short metadata form"
-		/>
-		<span>Create - short form</span>
-		</div>
-		<div v-if="local_auths.create && !resourceID"
-					class="col">
-		<img
-			src="@/assets/noun-create-document-1868022.png"
-			alt="Create new resource - full metadata form"
-			title="Create new resource - full metadata form"
-		/>
-		<span>Create - full form</span>
-		</div> -->
-		<div v-if="local_auths.update && resourceID"
-					class="col">
-		<router-link :to="`/Contribute/${resourceID}`">
-			<img
-				src="@/assets/document_edit.png"
-				alt="Edit resource metadata"
-				title="Edit resource metadata"
-			/>
-			<span>Edit resource</span>
-		</router-link>
-		</div>
-		<div v-if="local_auths.update && resourceID"
-					class="col">
-		<img
-			src="@/assets/pre-publish_review.png"
-			alt="Submit for pre-publication review"
-			title="Submit for pre-publication review"
-		/>
-		<span>Pre-publish review</span>
-		</div>
-		<div v-if="local_auths.update && resourceID"
-					class="col">
-		<img
-			src="@/assets/pre-deprecation_review.png"
-			alt="Submit for pre-deprecation review"
-			title="Submit for pre-deprecation review"
-		/>
-		<span>Pre-deprecation review</span>
-		</div>
-		<div v-if="local_auths.publish && resourceID"
-					class="col">
-		<img
-			src="@/assets/noun-share-symbol-1868078.png"
-			alt="Publish a resource"
-			title="Publish a resource"
-		/>
-		<span>Publish resource</span>
-		</div>
-		<div v-if="local_auths.publish && resourceID"
-					class="col">
-		<img
-			src="@/assets/unpublish.png"
-			alt="Unpublish a resource"
-			title="Unpublish a resource"
-		/>
-		<span>Unpublish resource</span>
-		</div>
-		<div v-if="local_auths.del && resourceID"
-					class="col">
-		<img
-			src="@/assets/noun-dustbin-1868018.png"
-			alt="Deprecate a resource"
-			title="Deprecate a resource"
-		/>
-		<span>Deprecate resource</span>
-		</div>
+		<span v-if="resourceID && (local_auths.update || local_auths.publish || local_auths.del)" class="col"> Workflow:
+	<select id="workflowSelect" @change="workflow($event)">
+		<option
+			v-if="local_auths.update && localStatus == 'in-process'"
+				id="wf_inprocess"
+				value="wf_inprocess"
+				selected>
+					In process</option>
+		<option
+				v-else-if="local_auths.update"
+				id="wf_inprocess"
+				value="wf_inprocess">Set to "in process"</option>
+
+			<option
+						v-if="local_auths.update && localStatus == 'in-review'"
+						id="wf_revert_to_inprocess"
+						value="wf_revert_to_inprocess"
+						selected>
+							In review - revert "in process"</option>
+				<option
+						v-else-if="local_auths.update"
+						id="wf_inreview"
+						value="wf_inreview">Submit for review</option>
+				
+				<option
+							v-if="local_auths.update && localStatus == 'pre-pub-review'"
+							id="wf_revert_to_inreview"
+							value="wf_revert_to_inreview"
+							selected>In pre-publication review - revert to "in review"</option>
+						<option
+							v-else-if="local_auths.update"
+							id="wf_prepub"
+							value="wf_prepub">Submit for pre-publication review</option>
+						
+						<option
+								v-if="local_auths.publish && localStatus == 'published'"
+								id="wf_pub_nochange"
+								value="wf_pub_nochange"
+								selected>Published</option>
+							<option
+								v-else-if="local_auths.publish"
+								id="wf_pub"
+								value="wf_pub">Publish</option>
+							
+							<option
+										v-if="local_auths.update && localStatus == 'deprecate-request'"
+										id="wf_revert_to_inreview"
+										value="wf_revert_to_inreview"
+										selected>In pre-deprecation review</option>
+									<option
+										v-else-if="local_auths.update"
+										id="wf_predel"
+										value="wf_predel">Submit for pre-deprecation review</option> 
+								
+								<option
+											v-if="local_auths.del && localStatus == 'deprecated'"
+											id="wf_revert_to_predel"
+											value="wf_revert_to_predel"
+											selected>Resource deprecated"</option>
+										<option
+											v-else-if="local_auths.del"
+											id="wf_del"
+											value="wf_del">
+											Deprecate resource</option>
+				
+
+
+	</select>
+		</span>
+
 	</div>
 
 </div>	
