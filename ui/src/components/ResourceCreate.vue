@@ -1210,7 +1210,8 @@ export default {
   }
   
   .system_metadata td {
-    padding: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
   
   .field_title {
