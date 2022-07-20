@@ -143,9 +143,11 @@ export default new Vuex.Store({
       } else if (state.groups.includes("submitter")) {
         state.auth.create_short = true;
         state.auth.create = true;
-        state.auth.update = false;
-        state.auth.del = false;
+        state.auth.update = true;
+        state.auth.submit_publish = false;
         state.auth.publish = false;
+        state.auth.submit_delete = true;
+        state.auth.del = false;
       } else if ( state.groups.includes("lauth") || state.groups.includes("oauth")) {
         state.auth.create_short = true;
         state.auth.create = false;

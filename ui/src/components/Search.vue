@@ -103,7 +103,7 @@ export default {
         lr_type: ["Learning Resource Type", "show"],
         purpose: ["Educational Purpose", "show"],
         "ed_frameworks.name": ["Educational Frameworks", "show"], // uncomment this line when ed_frameworks key issue is resolved in API,
-        status: ["Publication Status Code", "show"],
+        status: ["Publication Status Code", "hide"],
         pub_status: ["Publication Status", "show"]
       },
       filters: [],
