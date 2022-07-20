@@ -3,7 +3,8 @@
     <auths  :key="reloads"
     :local_groups="local_groups"
     :local_auths="local_auths"
-    :resourceID="id"></auths>
+    :resourceID="id"
+    :status="item.pub_status"></auths>
     <div class="title">
       <router-link :to="`/Resource/${item.id}`"> {{ item.title }} </router-link>
       <img :src="license" class="license, icon" />
