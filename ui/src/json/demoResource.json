@@ -1,0 +1,125 @@
+{
+		"pub_status": "in-process",
+		"title": "Ocean Teacher Information Management Courses",
+		"url": "https://classroom.oceanteacher.org/tag/index.php?tag=Information%20Management",
+		"authors": [
+				{
+						"givenName": "Neil",
+						"familyName": "Jefferies",
+						"name_identifier": "demoid1",
+						"name_identifier_type": "demoidType1"
+				},
+				{
+						"givenName": "demoNeil2",
+						"familyName": "demoJefferies2",
+						"name_identifier": "demoid2",
+						"name_identifier_type": "demoidType2"
+				}
+		],
+		"author_org": {
+				"name": "Ocean Teacher Global Academy",
+				"name_identifier": "xyz",
+				"name_identifier_type": "GRID"
+		},
+		"contact": {
+				"name": "contact name",
+				"org": "contact org",
+				"email": "contact email"
+		},
+		"abstract_data": "Ocean Teacher is a comprehensive e-Learning platform developed by the International Oceanographic Data and Information Exchange (IODE) to help build equitable capacity related to ocean research, observations, and services in UNESCO&#39;s Intergovernmental Oceanographic Commission.&nbsp; This series of presentations, short courses is focused on<strong>&nbsp;information management in the ocean sciences</strong>&nbsp;and is intended to be used in conjunction with classroom training.&nbsp;",
+		"keywords": [
+				"Appraisal - Core Trustworthy Data Repositories Requirements",
+				"Confidentiality/Ethics -  - Core Trustworthy Data Repositories Requirements",
+				"Context - Core Trustworthy Data Repositories Requirements",
+				"Data archiving",
+				"Data discovery and identification - Core Trustworthy Data Repositories Requirements",
+				"Data integrity and authenticity - Core Trustworthy Data Repositories Requirements",
+				"Data quality - Core Trustworthy Data Repositories Requirements",
+				"Data reuse - Core Trustworthy Data Repositories Requirements",
+				"Documented storage procedures - Core Trustworthy Data Repositories Requirements",
+				"Licenses - Core Trustworthy Data Repositories Requirements",
+				"Marine data",
+				"Mission/Scope - Core Trustworthy Data Repositories Requirements",
+				"Ocean data",
+				"Organizational infrastructure -  - Core Trustworthy Data Repositories Requirements",
+				"Preservation plan - Core Trustworthy Data Repositories Requirements",
+				"Security - Core Trustworthy Data Repositories Requirements",
+				"Technical infrastructure - Core Trustworthy Data Repositories Requirements",
+				"Workflows - Core Trustworthy Data Repositories Requirements"
+		],
+		"license": "Apache-2.0",
+		"usage_info": "usage info",
+		"citation": "Jefferies, Neil. (2019, April). The Oxford Common File Layout. Zenodo. https://doi.org/10.5281/zenodo.2642296.",
+		"locator_data": "locator data",
+		"locator_type": "locator type",
+		"publisher": "Ocean Teacher Global Academy",
+		"accesibility_summary": "",
+		"language_primary": "az",
+		"languages_secondary": [
+				"fr",
+				"pt",
+				"es"
+		],
+		"ed_frameworks": [
+				{
+						"name": "USGS Science Support Framework",
+						"nodes": [
+								"Acquire",
+								"Manage Quality"
+						]
+				},
+				{
+						"name": "FAIR Data Principles",
+						"nodes": [
+								"Findable",
+								"Interoperable"
+						]
+				}
+		],
+		"target_audience": [
+				"Citizen scientist",
+				"Data supporter",
+				"another audience"
+		],
+		"completion_time": "More than 1 Week",
+		"media_type": "Collection - a group or set of items that comprise a single learning resource, e.g., a PDF version of a slide presentation, an audio file of the presentation and a textual representation of the oral transcription of the presentation.",
+		"lr_type": "Demonstration / Simulation - imitation or modeling of a real-world process.",
+		"lr_outcomes": "learning outcomes",
+		"access_conditions": "Access conditions",
+		"expertise_level": "Intermediate",
+		"country_of_origin": "AU",
+		"contributors": [
+				{
+						"familyName": "Teperek",
+						"givenName": "Marta ",
+						"type": "Collaborator"
+				},
+				{
+						"familyName": "demo2",
+						"givenName": "demo2",
+						"type": "demo2"
+				}
+		],
+		"contributor_orgs": [
+				{
+						"name": "International Oceanographic Data and Information Exchange (IODE)",
+						"name_identifier": "N.A.",
+						"name_identifier_type": "N.A.",
+						"type": "Funding and sponsorship"
+				},
+				{
+						"name": "ICSU - World Data System (WDS)",
+						"name_identifier": "N.A.",
+						"name_identifier_type": "N.A.",
+						"type": "Endorser"
+				}
+		],
+		"resource_modification_date": "2022-07-01",
+		"accesibility_features": [],
+		"access_cost": null,
+		"accessibility_summary": "Accesibility summary",
+		"credential_status": null,
+		"notes": [],
+		"purpose": "Assessment - the evaluation, measurement and documentation of the skills or knowledge about data management.",
+		"subject": [ "Arts and Humanities", "Arts and Humanities: Digital Humanities" ]
+}

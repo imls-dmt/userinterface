@@ -1,0 +1,56 @@
+{
+  "news": [
+    {
+      "author": "Nancy Hoebelheinrich",
+      "date": "2022-03-14T12:00:00Z",
+      "title": "RDA ETHRD IG releasing a draft minimal metadata set for learning resources",
+      "thumbnail": "",
+      "associated-resources": [],
+      "content": "source/blog/news_001.md"
+    },
+    {
+      "author": "Nancy Hoebelheinrich",
+      "date": "2022-07-19T12:00:00Z",
+      "title": "Core Characteristics of the DMTC documented for longer-term sustainability",
+      "thumbnail": "",
+      "associated-resources": [],
+      "content": "source/blog/news_002.md"
+    }
+  ],
+  "features": [
+    {
+      "author": "Me, myself, and I",
+      "date": "2021-05-13T14:52:16Z",
+      "title": "A great resource",
+      "thumbnail": "/images/frameworks/cdi-ssf-components.jpg",
+      "associated-resources": [],
+      "content": "/source/blog/feature_001.md"
+    },
+    {
+      "author": "Me, myself, and I",
+      "date": "2021-05-17T12:00:00Z",
+      "title": "another great resource",
+      "thumbnail": "/images/frameworks/dataone-mini.png",
+      "associated-resources": [],
+      "content": "/source/blog/feature_002.md"
+    }
+  ],
+  "announcements": [
+    {
+      "author": "Me, myself, and I",
+      "date": "2021-05-13T14:52:16Z",
+      "title": "Soft Launch of the Enhanced DMTC coming your way -- soon!",
+      "thumbnail": "/images/frameworks/cdi-ssf-components.jpg",
+      "associated-resources": [],
+      "content": "/source/blog/announce_001.md"
+    },
+    {
+      "author": "Nancy Hoebelheinrich",
+      "date": "2022-07-16T12:00:00Z",
+      "title": "Test Drive the new DMTC Resource Submission Form!",
+      "thumbnail": "/images/frameworks/dataone-mini.png",
+      "associated-resources": [],
+      "content": "/source/blog/announce_002.md"
+    }
+  ]
+}
