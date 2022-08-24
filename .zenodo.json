@@ -1,0 +1,27 @@
+{
+  "title":"User interface code for the Data Management Training Clearinghouse",
+  "description":"This is the collection of VUE 3 code developed in support of the <a href='https://www.dmtc-prod.org/home'>user interface</a> for the enhanced Data Management Training Clearinghouse from 2018-2022. This user interface is designed as a single-page web application and is dependent upon the server-side <a href='https://www.dmtc-prod.org/api'>application programming interface (API)</a> developed in parallel with the user interface.",
+  "creators":[
+    {
+      "name":"Benedict, Karl",
+      "affiliation":"University of New Mexico",
+      "orcid":"0000-0002-9109-2072"
+    },
+    {
+      "name":"Wong, Mona",
+      "affiliation":"San Diego Supercomputer Center"
+    },
+    {
+      "name":"Hoebelheinrich, Nancy",
+      "affiliation":"Knowledge Motifs, LLC",
+      "orcid":"0000-0002-6797-7903"
+    },
+    {
+      "name":"Barrett, Hays",
+      "affiliation":"University of New Mexico"
+    }
+  ],
+  "upload_type":"software",
+  "access_right":"open",
+  "license":"Apache-2.0"
+}
