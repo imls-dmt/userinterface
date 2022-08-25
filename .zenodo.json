@@ -1,5 +1,5 @@
 {
-  "version":"0.1.0-2022-07ESIPDemo"
+  "version":"0.1.0-2022-07ESIPDemo",
   "title":"User interface code for the Data Management Training Clearinghouse",
   "description":"This is the collection of VUE 3 code developed in support of the <a href='https://www.dmtc-prod.org/home'>user interface</a> for the enhanced Data Management Training Clearinghouse from 2018-2022. This user interface is designed as a single-page web application and is dependent upon the server-side <a href='https://www.dmtc-prod.org/api'>application programming interface (API)</a> developed in parallel with the user interface. Development of the user interface and underlying service platform has been supported by the Institute of Museum and Library Services (https://ror.org/030prv062, Award Number LG-70-18-0092-18), the Science Gateways Community Institute, and the Earth Science Information Partners (https://ror.org/03q5xa910).",
   "keywords":[
@@ -8,7 +8,7 @@
     "User Interface",
     "Vue 3",
     "Clearinghouse"
-  ]
+  ],
   "creators":[
     {
       "name":"Benedict, Karl",
