@@ -36,7 +36,7 @@
   "contributors":[
     {
       "name":"Earth Science Information Partners",
-      "type":"Funder"
+      "type":"Sponsor"
     },
     {
       "name":"Earth Science Information Partners",
@@ -44,11 +44,11 @@
     },
     {
       "name":"Institute of Museum and Library Services (IMLS)",
-      "type":"Funder"
+      "type":"Sponsor"
     },
     {
       "name":"Science Gateway Community Institute",
-      "type":"Funder"
+      "type":"Sponsor"
     }
    ]
 }
