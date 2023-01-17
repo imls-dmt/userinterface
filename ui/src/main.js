@@ -8,35 +8,35 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "./plugins/font-awesome";
 
-import About from "./components/About.vue";
-import Contribute from "./components/Contribute.vue";
-import Home from "./components/Home.vue";
-import Search from "./components/Search.vue";
-import Support from "./components/Support.vue";
-import Resource from "./components/Resource.vue";
-import ResourceWrap from "./components/ResourceWrap.vue";
-import ResourceEdit from "./components/ResourceEdit.vue";
-import ResourceCreate from "./components/ResourceCreate.vue";
+import PageAbout from "./components/Page-About.vue";
+import Contribute from "./components/Page-Contribute.vue";
+import PageHome from "./components/Page-Home.vue";
+import PageSearch from "./components/Page-Search.vue";
+import PageSupport from "./components/Page-Support.vue";
+import CompResource from "./components/Comp-Resource.vue";
+import ResourceWrap from "./components/Comp-ResourceWrap.vue";
+import ResourceEdit from "./components/Comp-ResourceEdit.vue";
+import ResourceCreate from "./components/Comp-ResourceCreate.vue";
 
-import Survey from "./components/Survey.vue";
+import PageSurvey from "./components/Page-Survey.vue";
 import SurveyResults from "./components/SurveyResults.vue";
-import Login from "./components/Login.vue";
-import Blog from "./components/Blog.vue";
-import Profile from "./components/Profile.vue";
+import PageLogin from "./components/Page-Login.vue";
+import PageBlog from "./components/Page-Blog.vue";
+import PageProfile from "./components/Page-Profile.vue";
 //import VueCookies from "vue-cookies";
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: "/", redirect: "/home" },
-    { path: "/home", name: "Home", component: Home },
-    { path: "/about", name: "About", component: About },
+    { path: "/home", name: "Home", component: PageHome },
+    { path: "/about", name: "About", component: PageAbout },
     { path: "/contribute/:id?", 
       name: "Contribute", 
       component: Contribute,
       props: true},
-    { path: "/search", name: "Search", component: Search },
-    { path: "/support", name: "Support", component: Support },
+    { path: "/search", name: "Search", component: PageSearch },
+    { path: "/support", name: "Support", component: PageSupport },
     {
       path: "/resource/:id",
       name: "Resource",
@@ -58,7 +58,7 @@ const router = createRouter({
     {
       path: "/survey/:id",
       name: "Survey",
-      component: Survey,
+      component: PageSurvey,
       props: true,
     },
     {
@@ -68,9 +68,9 @@ const router = createRouter({
       props: true,
     },
     //{ path: "/login", name: "Login", component: Login },
-    { path: "/blog", name: "Blog", component: Blog },
-    { path: "/login", name: "Login", component: Login },
-    { path: "/profile", name: "Profile", component: Profile },
+    { path: "/blog", name: "Blog", component: PageBlog },
+    { path: "/login", name: "Login", component: PageLogin },
+    { path: "/profile", name: "Profile", component: PageProfile },
   ],
 });
 

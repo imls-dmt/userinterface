@@ -1,21 +1,21 @@
 <template>
   <div>
-    <Navbar></Navbar>
+    <AppNavbar></AppNavbar>
     <hr />
     <router-view :key="$route.fullPath"></router-view> <!-- https://forum.vuejs.org/t/how-to-reload-component-when-navigating-among-pages-rendered-by-a-same-component/112316-->
-    <Footer></Footer>
+    <AppFooter></AppFooter>
   </div>
 </template>
 
 <script>
-import Navbar from "./components/Navbar.vue";
-import Footer from "./components/Footer.vue";
+import AppNavbar from "./components/App-Navbar.vue";
+import AppFooter from "./components/App-Footer.vue";
 
 export default {
   name: "App",
   components: {
-    Navbar,
-    Footer,
+    AppNavbar,
+    AppFooter,
   },
   provide: {
     $appApiBase: "https://www.dmtc-devel.org",
