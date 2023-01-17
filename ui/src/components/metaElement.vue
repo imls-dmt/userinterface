@@ -97,12 +97,21 @@
         </datalist>
       </div>
     </div>
-    
 
-    
+   <!-- general___url custom label (override the label provided through the API JSON-->
+    <div v-else-if="element['keyName'] == 'general___url'">
+      <div>
+      <label :for="element['keyName']" class="form-control-label"><b>URL to landing page</b></label>
+      <input
+        :name="element['keyName']"
+        :id="element['keyName']"
+        :type="element['input_type']"
+        class="form-control"
+        :placeholder="'Enter the ' + element['label'] + ' here' "
+      />
+    </div>
+   </div>
 
-    
-    
     
     
     

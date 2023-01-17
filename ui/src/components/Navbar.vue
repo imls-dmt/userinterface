@@ -38,6 +38,13 @@ export default {
   props: {
     msg: String,
   },
+  
+  mounted() {
+    this.$store.dispatch("getGroups").then(() => {
+      console.log("getting the user's groups");
+      console.log(this.$store.state.groups);
+    });
+  }
 };
 </script>
 

@@ -116,6 +116,8 @@ export default new Vuex.Store({
     },
     setGroups(state, groups) {
       state.groups = groups.data.groups;
+      state.user.username = groups.data.name;
+      if (state.groups.length == 0) {state.user.loggedIn = false} else {state.user.loggedIn = true}
       if (state.groups.includes("admin")) {
         state.auth.create_short = true;
         state.auth.create = true;

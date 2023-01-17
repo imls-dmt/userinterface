@@ -417,15 +417,24 @@ export default {
       baseMetadataForRendering: [],
       advancedMetadataFields: [
         {
-          group: "general",
-          groupTitle: "Core Information",
+        group: "required-for-submission",
+        groupTitle: "Required for Submission",
+        fields: [
+          //"general___submitter_name",
+          //"general___submitter_email",
+          "general___title",
+          "general___url",
+          "access_constraints___access_cost", // removing this while trying to resolve question about value mapping
+        ],
+      },
+        {
+          group: "required-for-prepublication",
+          groupTitle: "Required for Pre-publication",
           fields: [
             //"general___submitter_name",
             //"general___submitter_email",
-            "general___title",
             "general___abstract_data",
             "general___keywords",
-            "general___url",
             "general___citation",
             "general___language_primary",
             "general___languages_secondary",
@@ -436,7 +445,6 @@ export default {
             "general___country_of_origin",
             "general___resource_modification_date",
             "general___usage_info",
-            //"access_constraints___access_cost", // removing this while trying to resolve question about value mapping
           ],
         },
         {

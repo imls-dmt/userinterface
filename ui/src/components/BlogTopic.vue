@@ -2,7 +2,7 @@
   <div class="blog-item">
     <div v-for="item in items" :key="item.date">
       <h3 class="blog-title">{{ item.title }}</h3>
-      <p class="blog-date">&nbsp;- {{ item.date }}</p>
+      <p class="blog-date">&nbsp;- {{ item.date.substring(0,10) }}</p>
       <BlogContentBlock :block="item"></BlogContentBlock>
     </div>
   </div>

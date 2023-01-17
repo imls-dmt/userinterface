@@ -54,6 +54,18 @@
             </div>
           </div>
         </Form>
+        or <br />
+        <Form @submit="orcidLogin">
+          <div class="form-group">
+          <button class="btn btn-primary btn-block" :disabled="loading">
+            <span
+              v-show="loading"
+              class="spinner-border spinner-border-sm"
+            ></span>
+            <span>Login through ORCID</span>
+          </button>
+        </div>
+        </Form>
       </div>
     </span>
   </div>
@@ -94,7 +106,7 @@ export default {
   computed: {
     ...mapGetters(["loggedin", "username", "groups", "auth"]),
   },
-
+  
   methods: {
     handleLogin(user) {
       this.loading = true;
@@ -123,6 +135,9 @@ export default {
             error.toString();
         }
       );
+    },
+    orcidLogin() {
+      console.log("Entering ORCID login process")
     },
     handleLogout() {
       console.log("entering handleLogout")
