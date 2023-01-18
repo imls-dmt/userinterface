@@ -22,6 +22,7 @@
                             "
                             :for="filter.options[option]"
                         >
+                            <span v-if="filter.options[option]>0">
                             <input
                                 type="checkbox"
                                 :id="filter.key"
@@ -36,9 +37,11 @@
                                     filter.options[option]
                                 }})
                             </label>
+                            </span>
                         </div>
                         <div v-else :for="filter.options[option]">
                             <!-- wasn't able to get v-model="options_selected" instead of saveOption() to work!-->
+                            <span v-if="filter.options[option]>0">
                             <input
                                 type="checkbox"
                                 :id="filter.key"
@@ -52,6 +55,7 @@
                                     filter.options[option]
                                 }})
                             </label>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -106,7 +110,16 @@ export default {
         },
 
         total() {
-            return Object.keys(this.filter.options).length;
+            //return Object.keys(this.filter.options).length;
+            let count = 0
+            let options = this.filter["options"]
+            //console.log(options)
+            for (let key of Object.keys(options)) {
+                //console.log(options[key])
+                if (options[key] > 0) {count = count + 1}
+            }
+            //console.log(count);
+            return count;
         },
     },
 
