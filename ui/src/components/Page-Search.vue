@@ -32,7 +32,7 @@
           <div class="results-header">
             <div>
               <span class="label">Search Results:</span>
-              <span>{{ search_result["hits-total"] }}</span>
+              <span>{{ offset + 1 }}-{{ offset + items_per_page }} out of {{ search_result["hits-total"] }} learning resources.&nbsp;</span>
             </div>
             <div class="pagination">
               <button @click="gotoPage('first')" :disabled="no_prev">
@@ -59,7 +59,22 @@
               </span>
             </div>
           </div>
-          <div class="sortby"><b>Sort By:</b> Latest First</div>
+          <div class="sortby"><b>Sort By:</b>
+          <span id="v-model-select">
+            <select v-model="sort_field" @change="changeSort">
+              <option value="score" selected>Relevance</option>
+              <option value="created">Creation Date</option>
+              <option value="modification_date">Modification Date</option>
+              <option value="rating">Rating</option>
+            </select>
+          </span>
+          <span id="v-model-select">
+            <select v-model="sort_order" @change="changeSort">
+              <option value="desc" selected>Descending</option>
+              <option value="asc">Ascending</option>
+            </select>
+          </span>
+          </div>
           <hr />
           <div v-for="(item, index) in search_result.results" :key="item">
             <ResultItem 
@@ -115,6 +130,8 @@ export default {
       offset: 0,
       quick_search_string: "",
       search_result: [],
+      sort_field: "score",
+      sort_order: "desc",
       sort_str: "score desc",
       start_index: 1,
       is_full: false,
@@ -131,6 +148,10 @@ export default {
       this.items_per_page = parseInt(this.items_per_page);
       // console.log("items_per_page 2 = ", this.items_per_page);
       this.getSearchResults();
+    },
+    changeSort() {
+      this.sort_str = this.sort_field + " " + this.sort_order
+     this.getSearchResults();
     },
 
     doClear() {
@@ -160,6 +181,7 @@ export default {
       // console.log("quick_search_string = ", this.quick_search_string);
 
       this.error = false;
+      this.offset = 0;
       let body = this.setupPostContent();
       this.$currentSearch = body;
       this.$searchHistory.unshift(body);
@@ -254,7 +276,7 @@ export default {
       let post_content = { search: [] };
       post_content.limit = this.items_per_page;
       post_content.offset = this.offset;
-      post_content.sort_str = this.sort_str;
+      post_content.sort = this.sort_field + " " + this.sort_order;
       post_content.facet_limit = this.facet_limit;
       post_content.facet_sort = this.facet_sort;
       //console.log("xquick_search_string = ", this.quick_search_string);
