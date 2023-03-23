@@ -19,6 +19,7 @@ const initialState = {
     loggedIn: false,
     username: "",
   },
+  quickSearch: "",
   groups: [],
   auth: {
     create_short: false,
@@ -48,6 +49,7 @@ export default new Vuex.Store({
     authDelete: (state) => state.auth.del,
     authPublish: (state) => state.auth.publish,
     results: (state) => state.results,
+    quickSearch: (state) => state.quickSearch,
   },
   actions: {
     login({ commit }, user) {
@@ -177,6 +179,9 @@ export default new Vuex.Store({
       state.results = results;
       console.log(state);
     },
-
+    setQuickSearch(state, quickSearch) {
+      state.quickSearch = quickSearch;
+      console.log(state)
+    }
   },
 });

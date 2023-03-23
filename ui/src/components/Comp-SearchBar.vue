@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+    
 export default {
     name: "SearchBar",
     props: ["value_in"],
@@ -41,12 +43,16 @@ export default {
             search_string: this.value_in,
         };
     },
+    computed: {
+        ...mapGetters(["quickSearch"]),
+      },
 
     methods: {
         doClear() {
             this.search_string = "";
+            console.log(this.$route.name)
             if (this.$route.name == "Search")
-                this.$emit("value_out", this.search_string);
+                this.$emit("value_out", "!!!clear!!!");
         },
 
         doSearch() {

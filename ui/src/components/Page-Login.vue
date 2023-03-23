@@ -54,7 +54,7 @@
             </div>
           </div>
         </Form>
-        or <br />
+<!--         or <br />
         <Form @submit="orcidLogin">
           <div class="form-group">
           <button class="btn btn-primary btn-block" :disabled="loading">
@@ -65,7 +65,7 @@
             <span>Login through ORCID</span>
           </button>
         </div>
-        </Form>
+        </Form> -->
       </div>
     </span>
   </div>

@@ -53,6 +53,27 @@ export default {
   flex: 1 1 200px;
 }
 
+.blog-content img {
+ float: left;
+  padding-right:1em;
+  width: 200px;
+}
+
+.content img {
+ float: left;
+  padding-right:1em;
+  width: 200px;
+}
+
+.content p,h3,h2,h1 {
+  clear: both;
+}
+
+.content h3,h2,h1 {
+  padding-top: 1em
+}
+
+
 .bottom-blocks h1 {
   font-size: 2rem;
 }

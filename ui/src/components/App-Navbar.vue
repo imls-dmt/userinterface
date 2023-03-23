@@ -13,9 +13,9 @@
       <span class="link">
         <router-link :to="{ name: 'Contribute' }"> Contribute </router-link>
       </span>
-      <span class="link">
+<!--       <span class="link">
         <router-link :to="{ name: 'Support' }"> Support </router-link>
-      </span>
+      </span> -->
       <span class="link">
         <router-link :to="{ name: 'Blog' }"> Blog </router-link>
       </span>

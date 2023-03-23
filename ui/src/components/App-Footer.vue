@@ -18,7 +18,7 @@
             <a href="https://usgs.gov">USGS</a>.
         </p>
         <p>
-            Copyright &copy; 2020 Earth Science Information Partners. All rights
+            Copyright &copy; {{ currentYear }} Earth Science Information Partners. All rights
             reserved.
         </p>
     </div>
@@ -30,6 +30,14 @@ export default {
     props: {
         msg: String,
     },
+    
+    computed: {
+       currentYear() {
+           return  new Date().getFullYear();
+       }
+       
+    },
+
 };
 </script>
 

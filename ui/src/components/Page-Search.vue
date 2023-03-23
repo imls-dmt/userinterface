@@ -25,6 +25,7 @@
               :filter="filter"
               :selected_in="filters_selected[filter.key]"
               @selected_out="filterUpdated"
+              :key="cleared"
             ></FilterItem>
           </div>
         </div>
@@ -32,7 +33,7 @@
           <div class="results-header">
             <div>
               <span class="label">Search Results:</span>
-              <span>{{ offset + 1 }}-{{ offset + items_per_page }} out of {{ search_result["hits-total"] }} learning resources.&nbsp;</span>
+              <span>{{ offset + 1 }}-{{ Math.min((offset + items_per_page),search_result["hits-total"]) }} out of {{ search_result["hits-total"] }} learning resources.&nbsp;</span>
             </div>
             <div class="pagination">
               <button @click="gotoPage('first')" :disabled="no_prev">
@@ -136,7 +137,8 @@ export default {
       start_index: 1,
       is_full: false,
       facet_limit: -1,
-      facet_sort: "count"
+      facet_sort: "count",
+      cleared: 0
     };
   },
 
@@ -149,14 +151,18 @@ export default {
       // console.log("items_per_page 2 = ", this.items_per_page);
       this.getSearchResults();
     },
+    
     changeSort() {
       this.sort_str = this.sort_field + " " + this.sort_order
      this.getSearchResults();
     },
 
     doClear() {
-      this.quick_search_string = "";
       this.filters_selected = {};
+      this.cleared = this.cleared + 1;
+      console.log("cleared" + this.cleared)
+      //this.quick_search_string = "";
+      //this.filters_selected = {};
       this.getSearchResults();
     },
 
@@ -181,7 +187,6 @@ export default {
       // console.log("quick_search_string = ", this.quick_search_string);
 
       this.error = false;
-      this.offset = 0;
       let body = this.setupPostContent();
       this.$currentSearch = body;
       this.$searchHistory.unshift(body);
@@ -439,7 +444,14 @@ export default {
     updateResults(data) {
       // console.log("Search.updateResults()");
       // console.log("data = ", data);
-      this.quick_search_string = data;
+      if (data == "!!!clear!!!") {
+        this.quick_search_string = "";
+        this.filters_selected = {};
+        this.cleared = this.cleared + 1;
+      } else {
+        this.quick_search_string = data; 
+      }
+      this.offset = 0;      
       this.getSearchResults();
     },
   },

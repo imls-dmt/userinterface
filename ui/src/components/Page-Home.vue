@@ -6,7 +6,7 @@
         <HomeContentBlock :block="home_content['block_01']"></HomeContentBlock>
         <HeroImages :data="home_content['hero_images']"></HeroImages>
       </div>
-      <SearchBar :value_in="nothing"></SearchBar>
+      <!-- <SearchBar :value_in="nothing"></SearchBar> -->
       <div class="bottom-container">
         <div class="bottom-blocks">
           <h2 class="bottom">Featured Resources</h2>
@@ -29,12 +29,16 @@
 <script>
 import HomeContentBlock from "./Comp-HomeContentBlock.vue";
 import HeroImages from "./Comp-HeroImages.vue";
-import SearchBar from "./Comp-SearchBar.vue";
+//import SearchBar from "./Comp-SearchBar.vue";
 import BlogTopic from "./Comp-BlogTopic.vue";
 
 export default {
   name: "PageHome",
-  components: { HomeContentBlock, HeroImages, SearchBar, BlogTopic },
+  components: { 
+    HomeContentBlock, 
+    HeroImages, 
+    //SearchBar, 
+    BlogTopic },
 
   data() {
     return {
@@ -115,10 +119,10 @@ export default {
 }
 
 .bottom-blocks {
-  flex: 0 0 300px;
+  flex: 2 2 25%;
   padding: 6px;
   border-style: solid;
-  border-width: 1px;
+  border-width: .5px;
   margin-left: auto;
   margin-right: auto;
 }
