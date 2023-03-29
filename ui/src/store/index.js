@@ -27,7 +27,7 @@ const initialState = {
     update: false,
     submit_publish: false,
     publish: false,
-    submit_delete: false, 
+    submit_delete: false,
     del: false,
   },
   results: [],
@@ -119,7 +119,11 @@ export default new Vuex.Store({
     setGroups(state, groups) {
       state.groups = groups.data.groups;
       state.user.username = groups.data.name;
-      if (state.groups.length == 0) {state.user.loggedIn = false} else {state.user.loggedIn = true}
+      if (state.groups.length == 0) {
+        state.user.loggedIn = false;
+      } else {
+        state.user.loggedIn = true;
+      }
       if (state.groups.includes("admin")) {
         state.auth.create_short = true;
         state.auth.create = true;
@@ -152,7 +156,10 @@ export default new Vuex.Store({
         state.auth.publish = false;
         state.auth.submit_delete = true;
         state.auth.del = false;
-      } else if ( state.groups.includes("lauth") || state.groups.includes("oauth")) {
+      } else if (
+        state.groups.includes("lauth") ||
+        state.groups.includes("oauth")
+      ) {
         state.auth.create_short = true;
         state.auth.create = false;
         state.auth.update = false;
@@ -181,7 +188,7 @@ export default new Vuex.Store({
     },
     setQuickSearch(state, quickSearch) {
       state.quickSearch = quickSearch;
-      console.log(state)
-    }
+      console.log(state);
+    },
   },
 });
