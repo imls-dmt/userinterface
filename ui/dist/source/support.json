@@ -1,0 +1,85 @@
+{
+  "submissionWorkflow": [
+    {
+      "author": "Nancy Hoebelheinrich",
+      "date": "2023-1-20T10:50:00Z",
+      "title": "Submission Flowchart",
+      "thumbnail": "",
+      "associated-resources": [],
+      "content": "source/support/submission_001.md"
+    },
+    {
+      "author": "Nancy Hoebelheinrich",
+      "date": "2023-1-20T10:50:00Z",
+      "title": "Submission Processes",
+      "thumbnail": "",
+      "associated-resources": [],
+      "content": "source/support/submission_002.md"
+    },
+    {
+      "author": "Nancy Hoebelheinrich",
+      "date": "2023-3-19T10:53:00Z",
+      "title": "Selection Criteria for DMTC (rev. 2021-11-03)",
+      "thumbnail": "",
+      "associated-resources": [],
+      "content": "source/support/selectionCriteria.md"
+    }
+  ],
+
+  "publishingWorkflow": [
+    {
+      "author": "Nancy Hoebelheinrich",
+      "date": "2023-1-16T14:52:16Z",
+      "title": "Publishing Flowchart",
+      "thumbnail": "",
+      "associated-resources": [],
+      "content": "/source/support/publishing_001.md"
+    },
+    {
+      "author": "Nancy Hoebelheinrich",
+      "date": "2023-1-17T12:00:00Z",
+      "title": "Publishing Processes",
+      "thumbnail": "",
+      "associated-resources": [],
+      "content": "/source/support/publishing_002.md"
+    }
+  ],
+
+  "MDnuances": [
+    {
+      "author": "Nancy Hoebelheinrich",
+      "date": "2023-01-18T14:52:16Z",
+      "title": "Examples",
+      "thumbnail": "",
+      "associated-resources": [],
+      "content": "/source/support/MDnuances_001.md"
+    },
+    {
+      "author": "Nancy Hoebelheinrich",
+      "date": "2023-01-18T12:00:00Z",
+      "title": "Maintenance and Monitoring Processes",
+      "thumbnail": "",
+      "associated-resources": [],
+      "content": "/source/support/MDnuances_002.md"
+    }
+  ],
+
+  "tipsandtricks": [
+    {
+      "author": "Nancy Hoebelheinrich",
+      "date": "2023-01-18T14:52:16Z",
+      "title": "Adding to CVs",
+      "thumbnail": "",
+      "associated-resources": [],
+      "content": "/source/support/tips_001.md"
+    },
+    {
+      "author": "Nancy Hoebelheinrich",
+      "date": "2023-01-18T12:00:00Z",
+      "title": "Formatting Preferences",
+      "thumbnail": "",
+      "associated-resources": [],
+      "content": "/source/support/tips_002.md"
+    }
+  ]
+}

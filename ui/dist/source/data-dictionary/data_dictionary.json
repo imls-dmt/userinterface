@@ -1652,9 +1652,9 @@
 	"type": "General text",
 	"multivalue": "false",
 	"required": "true",
-	"title": "Resource Location Identifier",
-	"definition": "The identifier for the learning resource or landing page for the resource that contains important contextual information including the direct resolvable link to the resource, if applicable.",
-	"scopeNotes": "The identifier could be used to construct a URL to the resource or landing page, if desired, but is not entered as a URL.",
+	"title": "Citation Locator",
+	"definition": "The identifier for the learning resource used as part of a citation, if available.",
+	"scopeNotes": "May be different from the URL for the landing page of the resource. The identifier could be used to construct a URL to the resource or landing page, if desired, but is not entered as a URL.",
 	"controlledVocabulary": {
 		"source": "",
 		"terms": [
@@ -1692,9 +1692,9 @@
 		"type": "General text",
 		"multivalue": "false",
 		"required": "true",
-		"title": "Resource Location Identifier Type",
-		"definition": "Designation of location identifier type, e.g., DOI, ARK, Handle.",
-		"scopeNotes": "The values for this field should be chosen from the controlled vocabulary set. A resource location identifier should have only one identifier type. If an identifier type is not presently in the controlled vocabulary list, one can be added for consideration by consulting the Editor.",
+		"title": "Citation Locator Type",
+		"definition": "Designation of citation locatorr type, e.g., DOI, ARK, Handle.",
+		"scopeNotes": "The values for this field should be chosen from the controlled vocabulary set. A citation locator should have only one identifier type. If an identifier type is not presently in the controlled vocabulary list, one can be added for consideration by consulting the Editor.",
 		"controlledVocabulary": {
 			"source": "",
 			"terms": [
