@@ -13,9 +13,9 @@
       <span class="link">
         <router-link :to="{ name: 'Contribute' }"> Contribute </router-link>
       </span>
-<!--       <span class="link">
+      <span class="link">
         <router-link :to="{ name: 'Support' }"> Support </router-link>
-      </span> -->
+      </span>
       <span class="link">
         <router-link :to="{ name: 'Blog' }"> Blog </router-link>
       </span>
@@ -38,13 +38,13 @@ export default {
   props: {
     msg: String,
   },
-  
+
   mounted() {
     this.$store.dispatch("getGroups").then(() => {
       console.log("getting the user's groups");
       console.log(this.$store.state.groups);
     });
-  }
+  },
 };
 </script>
 

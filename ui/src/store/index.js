@@ -1,14 +1,3 @@
-// import { createStore } from "vuex";
-// import { auth } from "./auth.module";
-//
-// const store = createStore({
-// 	modules: {
-// 		auth,
-// 	},
-// });
-//
-// export default store;
-
 import Vuex from "vuex";
 import AuthService from "../services/auth.service";
 import UserService from "../services/user.service";

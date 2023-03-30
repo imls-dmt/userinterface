@@ -1,14 +1,38 @@
 <template>
-  <div>This is the Support page</div>
+  <div>
+    <div>
+      <div>
+        <h1>Submission Workflow</h1>
+        <SupportTopic topic="submissionWorkflow"></SupportTopic>
+      </div>
+      <!--
+      <div>
+        <h1>Publishing Workflow</h1>
+        <SupportTopic topic="publishingWorkflow"></SupportTopic>
+      </div>
+      
+      <div>
+        <h1>Process Nuances</h1>
+        <SupportTopic topic="MDnuances"></SupportTopic>
+      </div>
+      
+      <div>
+        <h1>Tips and Tricks</h1>
+        <SupportTopic topic="tipsandtricks"></SupportTopic>
+      </div>
+    --></div>
+  </div>
 </template>
 
 <script>
+import SupportTopic from "./Comp-SupportTopic.vue";
 export default {
-  name: 'PageSupport',
+  name: "PageSupport",
+  components: { SupportTopic },
   props: {
-    msg: String
-  }
-}
+    msg: String,
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -2,7 +2,8 @@
   <div>
     <AppNavbar></AppNavbar>
     <hr />
-    <router-view :key="$route.fullPath"></router-view> <!-- https://forum.vuejs.org/t/how-to-reload-component-when-navigating-among-pages-rendered-by-a-same-component/112316-->
+    <router-view :key="$route.fullPath"></router-view>
+    <!-- https://forum.vuejs.org/t/how-to-reload-component-when-navigating-among-pages-rendered-by-a-same-component/112316-->
     <AppFooter></AppFooter>
   </div>
 </template>
@@ -54,25 +55,35 @@ export default {
 }
 
 .blog-content img {
- float: left;
-  padding-right:1em;
+  float: left;
+  padding-right: 1em;
   width: 200px;
+}
+
+.support img {
+  float: left;
+  padding-right: 1em;
+  width: 80%;
 }
 
 .content img {
- float: left;
-  padding-right:1em;
+  float: left;
+  padding-right: 1em;
   width: 200px;
 }
 
-.content p,h3,h2,h1 {
+.content p,
+h3,
+h2,
+h1 {
   clear: both;
 }
 
-.content h3,h2,h1 {
-  padding-top: 1em
+.content h3,
+h2,
+h1 {
+  padding-top: 1em;
 }
-
 
 .bottom-blocks h1 {
   font-size: 2rem;
@@ -86,14 +97,13 @@ export default {
   font-size: 1rem;
 }
 
-
 .emph {
   font-style: italic;
 }
 
 .diagnostic {
   display: none;
-  font-size: .75em;
+  font-size: 0.75em;
   color: black;
   padding: 0px;
   margin: 0px;

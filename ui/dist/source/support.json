@@ -18,13 +18,14 @@
     },
     {
       "author": "Nancy Hoebelheinrich",
-      "date":  "2023-3-19T10:53:00Z",
-      "title": "Selection Criteria for DMTC",
+      "date": "2023-3-19T10:53:00Z",
+      "title": "Selection Criteria for DMTC (rev. 2021-11-03)",
       "thumbnail": "",
       "associated-resources": [],
-      "content": "resources-workflow/blob/master/Selection%20Criteria.md"
+      "content": "source/support/selectionCriteria.md"
     }
   ],
+
   "publishingWorkflow": [
     {
       "author": "Nancy Hoebelheinrich",
@@ -43,7 +44,8 @@
       "content": "/source/support/publishing_002.md"
     }
   ],
-   "MDnuances": [
+
+  "MDnuances": [
     {
       "author": "Nancy Hoebelheinrich",
       "date": "2023-01-18T14:52:16Z",
@@ -51,7 +53,7 @@
       "thumbnail": "",
       "associated-resources": [],
       "content": "/source/support/MDnuances_001.md"
-    }
+    },
     {
       "author": "Nancy Hoebelheinrich",
       "date": "2023-01-18T12:00:00Z",
@@ -59,7 +61,8 @@
       "thumbnail": "",
       "associated-resources": [],
       "content": "/source/support/MDnuances_002.md"
-    },
+    }
+  ],
 
   "tipsandtricks": [
     {

@@ -16,13 +16,16 @@
         <li v-for="(survey, index) in surveys" :key="index">
           {{ survey.label }} survey<br />
           <router-link :to="`/survey-result/${survey.id}`"
-            ><img src="@/assets/Graph.png" style="width: 36px"
-          /></router-link>
-          View feedback provided for this learning resource. <br />
-          <router-link :to="`/survey/${survey.id}`"
-            ><img src="@/assets/Pencil.png" style="width: 36px"
-          /></router-link>
-          Provide feedback on this learning resource.
+            ><img src="@/assets/Graph.png" style="width: 36px" />View feedback
+            provided for this learning resource.</router-link
+          >
+          <br />
+          <span v-if="loggedin">
+            <router-link :to="`/survey/${survey.id}`"
+              ><img src="@/assets/Pencil.png" style="width: 36px" />Provide
+              feedback on this learning resource.</router-link
+            >
+          </span>
         </li>
       </ul>
       <p v-else>
