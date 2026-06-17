@@ -45,7 +45,7 @@
           <h2>ORCID Login</h2>
           <div>
             <a
-              href="https://www.dmtc-devel.org/api/orcid_sign_in"
+              href="api/orcid_sign_in"
               rel="noreferrer"
             >
               <button>

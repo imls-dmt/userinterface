@@ -55,7 +55,7 @@
                 <td class="field_title">Publication/Workflow status (pub_status)</td><td>{{ resource['pub_status'] }}</td>
               </tr>
               <tr>
-                <td class="field_title">Resource metadata publication date (published)</td><td>{{ resource['published'] }}</td>
+                <td class="field_title">Resource Publication or Broadcast Date</td><td>{{ resource['published'] }}</td>
               </tr>
               <tr>
                   <td class="field_title">Resource metadata creation date (created)</td><td>{{ resource['created'] }}</td>
@@ -283,7 +283,8 @@ export default {
     //Form,
   },
   async setup(props) {
-    let apibase = inject("$appApiBase");
+    //let apibase = inject("$appApiBase");
+    let apibase =""
     let fetchBase = "/api/resource/?metadata=true";
     let resourceFetchBase = "/api/resources/?id=";
     let action = ref("create")
@@ -442,6 +443,7 @@ export default {
             "general___completion_time",
             "general___expertise_level",
             "general___publisher",
+            "general___published",
             "general___country_of_origin",
             "general___resource_modification_date",
             "general___usage_info",
@@ -830,7 +832,8 @@ export default {
       console.log(returnObject);
 
       // submit the generated metadata to create/update resource
-      let apibase = this.apiBase;
+      //let apibase = this.apiBase;
+      let apibase =""
       let url = apibase.concat("/api/resource/");
       console.log(url);
       axios({

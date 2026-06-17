@@ -19,7 +19,7 @@ export default {
     AppFooter,
   },
   provide: {
-    $appApiBase: "https://www.dmtc-devel.org",
+    $appApiBase: "https://www.dmtc-prod.org",
   },
 };
 </script>

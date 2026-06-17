@@ -235,7 +235,7 @@
         </tr>
         
  <tr class="detail_item">
-   <td class="element-title">Date of Metadata Publication:</td>
+   <td class="element-title">Date of Resource Publication or Broadcast:</td>
    <td>
      {{ item.published }}
    </td>
