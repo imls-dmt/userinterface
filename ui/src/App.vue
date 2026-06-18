@@ -19,7 +19,7 @@ export default {
     AppFooter,
   },
   provide: {
-    $appApiBase: "https://www.dmtc-devel.org",
+    $appApiBase: process.env.VUE_APP_API_BASE || "",
   },
 };
 </script>
