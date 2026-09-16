@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/210629792.svg)](https://zenodo.org/badge/latestdoi/210629792)
+
 # userinterface
 User Interface for DMT Clearinghouse (DMTC).
 
@@ -23,5 +25,4 @@ The three provided shell scripts:
 * devel - `localhost:8082`
 * testing - `localhost:8081`
 * production - `localhost:80`
-
 

@@ -9,7 +9,6 @@
 // Markedown component from https://vuejsexamples.com/a-vue-3-markdown-it-wrapper-plugin/
 import VueMarkdownIt from "vue3-markdown-it";
 
-// const url_root = "http://static.dmtc-devel.org/";
 
 export default {
     name: "AboutContentBlock",

@@ -2,4 +2,10 @@
 .idea
 node_modules/
 .nova
+ui/dist/
+ui/yarn.lock
+ui/yarn-error.log
 *.bbprojectd
+.env
+.env.local
+.env.*.local

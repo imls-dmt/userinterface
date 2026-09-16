@@ -2,6 +2,7 @@
   <div class="flex-container">
     <div class="left">
       <span>
+        <em>new-production</em>
         <router-link :to="{ name: 'Home' }">
           <img alt="ESIP logo" src="@/assets/esip-logo.png" class="logo" />
           <span class="title">Data Management Training</span>

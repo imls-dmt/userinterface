@@ -55,7 +55,7 @@
                 <td class="field_title">Publication/Workflow status (pub_status)</td><td>{{ resource['pub_status'] }}</td>
               </tr>
               <tr>
-                <td class="field_title">Resource metadata publication date (published)</td><td>{{ resource['published'] }}</td>
+                <td class="field_title">Resource Publication or Broadcast Date</td><td>{{ resource['published'] }}</td>
               </tr>
               <tr>
                   <td class="field_title">Resource metadata creation date (created)</td><td>{{ resource['created'] }}</td>
@@ -442,6 +442,7 @@ export default {
             "general___completion_time",
             "general___expertise_level",
             "general___publisher",
+            "general___published",
             "general___country_of_origin",
             "general___resource_modification_date",
             "general___usage_info",
