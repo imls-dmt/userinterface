@@ -529,7 +529,7 @@ export default {
           group: "accessibility",
           groupTitle: "Accessibiilty Features",
           fields: [
-            //"accessibility___accessibility_features__name",  // hidden until update and submission can be fixed
+            "accessibility___accessibility_features__name",
             "accessibility___accessibility_summary",
           ],
         },
@@ -583,6 +583,23 @@ export default {
       this.componentKey = this.componentKey + 1;
       console.log("new mode: ", this.mode)
     },
+    /**
+     * Values of the checked checkboxes whose id starts with `prefix`, de-duplicated.
+     * Unchecking an item in a selected-items list removes it from the submission
+     * (issue #67); previously every checkbox in the list was collected.
+     */
+    collectChecked(prefix, parseJson = false) {
+      const seen = new Set();
+      const out = [];
+      for (const el of Array.from(document.getElementById("metadataForm").elements)) {
+        if (el.type === "checkbox" && el.checked && typeof el.id === "string" && el.id.startsWith(prefix)) {
+          if (seen.has(el.value)) continue;
+          seen.add(el.value);
+          out.push(parseJson ? JSON.parse(el.value) : el.value);
+        }
+      }
+      return out;
+    },
     handleSubmission() {
       console.log("entering handleSubmission");
       var elements = document.getElementById("metadataForm").elements;
@@ -607,22 +624,7 @@ export default {
       returnObject["submitter_email"] =
         fieldValues["general___submitter_email"];
       //authors =================================
-      var authorElements = document.getElementById("metadataForm").elements;
-      var authorsSet = new Set(); // need to first create a set to eliminate duplicates
-      for (let element in authorElements) {
-        if (
-          typeof authorElements[element].id !== "undefined" &&
-          authorElements[element].id.startsWith("authors-list-")
-        ) {
-          authorsSet.add(authorElements[element].value);
-        }
-      }
-      var authorsArr = Array.from(authorsSet);
-      var authorsList = [];
-      for (let element in authorsArr) {
-        authorsList.push(JSON.parse(authorsArr[element]));
-      }
-      returnObject["authors"] = authorsList;
+      returnObject["authors"] = this.collectChecked("authors-list-", true);
       //=========================================
       returnObject["author_org"] = {};
       returnObject["author_org"]["name"] =
@@ -659,20 +661,7 @@ export default {
 
       
       //keywords ================================
-      var keywordsElements = document.getElementById("metadataForm").elements;
-      var keywordsSet = new Set(); // need to first create a set to eliminate duplicates
-      for (let element in keywordsElements) {
-        if (
-          typeof keywordsElements[element].id !== "undefined" &&
-          keywordsElements[element].id.startsWith(
-            "general___keywords-datalist-"
-          )
-        ) {
-          keywordsSet.add(keywordsElements[element].value);
-        }
-      }
-      var keywordsList = Array.from(keywordsSet);
-      returnObject["keywords"] = keywordsList;
+      returnObject["keywords"] = this.collectChecked("general___keywords-datalist-");
       //=========================================
       returnObject["license"] =
         fieldValues["access_constraints___license-datalist"];
@@ -683,26 +672,19 @@ export default {
       returnObject["locator_type"] =
         fieldValues["resource_location___locator_type"];
       returnObject["publisher"] = fieldValues["general___publisher-datalist"];
-      //returnObject["accesibility_features"] =
-      //  fieldValues["accessibility___accessibility_features__name"];
-      // accessibility features =================
+      // accessibility (issues #42, #87): the API stores accessibility_features as a
+      // list of {name} objects and accessibility_summary as text. Both keys were
+      // previously written with a spelling the API does not know, so nothing was saved.
       var accessibilityElement = document.getElementById(
         "accessibility___accessibility_features__name"
       );
-      //console.log(typeof(accessibilityElement), " ", accessibilityElement, " text: " , accessibilityElement === null)
-      if (accessibilityElement === null) {
-        //console.log("entering default accessibility value")
-        returnObject["accesibility_features"] = [];
-      } else {
-        //console.log("entereing provided accessibility value")
-        var selectedAccessibilityOptions = [
-          ...accessibilityElement.selectedOptions,
-        ].map((option) => option.value);
-        console.log("selected ccessibility options", selectedAccessibilityOptions)
-        //returnObject["accesibility_features"] = selectedAccessibilityOptions;
-      }
-      //=========================================
-      returnObject["accesibility_summary"] =
+      returnObject["accessibility_features"] = accessibilityElement
+        ? [...accessibilityElement.selectedOptions]
+            .map((option) => option.value)
+            .filter((v) => v && v !== "n/a")
+            .map((name) => ({ name }))
+        : [];
+      returnObject["accessibility_summary"] =
         fieldValues["accessibility___accessibility_summary"];
       returnObject["language_primary"] =
         fieldValues["general___language_primary"];
@@ -723,39 +705,10 @@ export default {
 
       //=========================================
       //educational frameworks ==================
-      var frameworkElements = document.getElementById("metadataForm").elements;
-      var frameworkSet = new Set(); // need to first create a set to eliminate duplicates
-      for (let element in frameworkElements) {
-        if (
-          typeof frameworkElements[element].id !== "undefined" &&
-          frameworkElements[element].id.startsWith("frameworks-list-")
-        ) {
-          frameworkSet.add(frameworkElements[element].value);
-        }
-      }
-      var frameworkArr = Array.from(frameworkSet);
-      var frameworkList = [];
-      for (let element in frameworkArr) {
-        frameworkList.push(JSON.parse(frameworkArr[element]));
-      }
-      returnObject["ed_frameworks"] = frameworkList;
+      returnObject["ed_frameworks"] = this.collectChecked("frameworks-list-", true);
       //=========================================
       // target audience ========================
-      var targetAudienceElements =
-        document.getElementById("metadataForm").elements;
-      var targetAudienceSet = new Set(); // need to first create a set to eliminate duplicates
-      for (let element in targetAudienceElements) {
-        if (
-          typeof targetAudienceElements[element].id !== "undefined" &&
-          targetAudienceElements[element].id.startsWith(
-            "educational_information___target_audience-datalist-"
-          )
-        ) {
-          targetAudienceSet.add(targetAudienceElements[element].value);
-        }
-      }
-      var targetAudienceList = Array.from(targetAudienceSet);
-      returnObject["target_audience"] = targetAudienceList;
+      returnObject["target_audience"] = this.collectChecked("educational_information___target_audience-datalist-");
       //=========================================
       returnObject["purpose"] =
         fieldValues["educational_information___purpose"];
@@ -778,42 +731,10 @@ export default {
         fieldValues["general___resource_modification_date"]
      
       //contributors ============================
-      var contributorElements =
-        document.getElementById("metadataForm").elements;
-      var contributorSet = new Set(); // need to first create a set to eliminate duplicates
-      for (let element in contributorElements) {
-        if (
-          typeof contributorElements[element].id !== "undefined" &&
-          contributorElements[element].id.startsWith("contributors-list-")
-        ) {
-          contributorSet.add(contributorElements[element].value);
-        }
-      }
-      var contributorArr = Array.from(contributorSet);
-      var contributorList = [];
-      for (let element in contributorArr) {
-        contributorList.push(JSON.parse(contributorArr[element]));
-      }
-      returnObject["contributors"] = contributorList;
+      returnObject["contributors"] = this.collectChecked("contributors-list-", true);
       //=========================================
       //contributor orgs ========================
-      var contributorOrgElements =
-        document.getElementById("metadataForm").elements;
-      var contributorOrgSet = new Set(); // need to first create a set to eliminate duplicates
-      for (let element in contributorOrgElements) {
-        if (
-          typeof contributorOrgElements[element].id !== "undefined" &&
-          contributorOrgElements[element].id.startsWith("contributorOrgs-list-")
-        ) {
-          contributorOrgSet.add(contributorOrgElements[element].value);
-        }
-      }
-      var contributorOrgArr = Array.from(contributorOrgSet);
-      var contributorOrgList = [];
-      for (let element in contributorOrgArr) {
-        contributorOrgList.push(JSON.parse(contributorOrgArr[element]));
-      }
-      returnObject["contributor_orgs"] = contributorOrgList;
+      returnObject["contributor_orgs"] = this.collectChecked("contributorOrgs-list-", true);
       //=========================================
 
       // the resource ID will be added to the metadata if an existing record is being edited instead
@@ -1120,12 +1041,13 @@ export default {
             console.log(options)
             // updated to select the 'name' element from within each value object
             if (values) {
-            values.forEach(function (v) {
-                console.log(v)
-                options.find((c) => c.value == v['name']).selected = true;
+              values.forEach(function (v) {
+                const opt = options.find((c) => c.value == v["name"]);
+                if (opt) opt.selected = true;
               });
-             } 
-            options.find((c) => c.value == "n/a").selected = false;
+            }
+            const na = options.find((c) => c.value == "n/a");
+            if (na) na.selected = false;
           } else if (elementSub == "accessibility_summary") {
             console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub])
             elements[elementID].value = resource[elementSub];

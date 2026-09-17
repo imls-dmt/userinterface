@@ -166,7 +166,7 @@
           </td>
         </tr>
         <tr class="detail_item">
-          <td class="element-title">Accesibility Summary:</td>
+          <td class="element-title">Accessibility Summary:</td>
           <td>
             {{ item.accessibility_summary }}
           </td>
