@@ -3,7 +3,9 @@
     <CompAuths  :key="reloads"
     :local_groups="local_groups"
     :local_auths="local_auths"
-    :resourceID="id"></CompAuths>
+    :resourceID="id"
+    :status="pubStatus"
+    @status-changed="onStatusChanged"></CompAuths>
     
     <div class="stars">
         <img class="stars_image" src="@/assets/five-star.png"  v-bind:style="{marginLeft: starsLeftMargin + 'px', zIndex: 1}" />
@@ -307,7 +309,7 @@
         <tr>
           <td class="diagnostic" colspan="2">
             <hr />
-            {{ item.id }} / {{item.status}} / {{ item.pub_status }} / {{ item.created }} -
+            {{ item.id }} / {{item.status}} / {{ pubStatus }} / {{ item.created }} -
             {{ item.modification_date }} / {{ item.score }}
           </td>
         </tr>
@@ -351,6 +353,9 @@ export default {
     return {
       abstract_full: "",
       abstract_short: "",
+      // Local copy of the workflow state so a change made through CompAuths shows
+      // immediately without mutating the item prop or re-running the search.
+      pubStatus: this.item.pub_status,
       access_cost: access_cost_false,
       error: false,
       license: null,
@@ -359,6 +364,12 @@ export default {
       starsWidth: 92,
       starsLeftMargin: 30,
     };
+  },
+
+  watch: {
+    "item.pub_status"(value) {
+      this.pubStatus = value;
+    },
   },
 
   computed: {
@@ -407,6 +418,9 @@ export default {
 
   methods: {
     safeHttpUrl,
+    onStatusChanged(newStatus) {
+      this.pubStatus = newStatus;
+    },
     toggleAbstract() {
       if (this.$route.name == "Search") {
         this.is_full = !this.is_full;

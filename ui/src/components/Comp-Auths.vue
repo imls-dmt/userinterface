@@ -14,7 +14,7 @@
 			Workflow:
 	<select id="workflowSelect" @change="workflow($event)">
 		<option
-			v-if="local_auths.update && status == 'in-process'"
+			v-if="local_auths.update && localStatus == 'in-process'"
 				id="wf_inprocess"
 				value="wf_inprocess"
 				selected>
@@ -25,7 +25,7 @@
 				value="wf_inprocess">Set to "in process"</option>
 
 			<option
-						v-if="local_auths.update && status == 'in-review'"
+						v-if="local_auths.update && localStatus == 'in-review'"
 						id="wf_revert_to_inprocess"
 						value="wf_revert_to_inprocess"
 						selected>
@@ -36,7 +36,7 @@
 						value="wf_inreview">Submit for review</option>
 				
 				<option
-							v-if="local_auths.submit_publish && status == 'pre-pub-review'"
+							v-if="local_auths.submit_publish && localStatus == 'pre-pub-review'"
 							id="wf_revert_to_inreview"
 							value="wf_revert_to_inreview"
 							selected>In pre-publication review</option>
@@ -46,7 +46,7 @@
 							value="wf_prepub">Submit for pre-publication review</option>
 						
 						<option
-								v-if="local_auths.publish && status == 'published'"
+								v-if="local_auths.publish && localStatus == 'published'"
 								id="wf_pub_nochange"
 								value="wf_pub_nochange"
 								selected>Published</option>
@@ -56,7 +56,7 @@
 								value="wf_pub">Publish</option>
 							
 							<option
-										v-if="local_auths.submit_publish && status == 'deprecate-request'"
+										v-if="local_auths.submit_publish && localStatus == 'deprecate-request'"
 										id="wf_revert_to_inreview"
 										value="wf_revert_to_inreview"
 										selected>In pre-deprecation review</option>
@@ -66,7 +66,7 @@
 										value="wf_predel">Submit for pre-deprecation review</option> 
 								
 								<option
-											v-if="local_auths.del && status == 'deprecated'"
+											v-if="local_auths.del && localStatus == 'deprecated'"
 											id="wf_revert_to_predel"
 											value="wf_revert_to_predel"
 											selected>Resource deprecated</option>
@@ -92,6 +92,7 @@ import axios from "axios";
 
 export default {
 	name: "CompAuths",
+	emits: ["status-changed"],
 	props: ["resourceID", 
 					"local_groups", 
 					"local_auths", 
@@ -102,8 +103,15 @@ export default {
 							apiBase: inject("$appApiBase"),
 							resource: {},
 							componentKey: 0,
-							localStatus: status
+							// Initialised from the prop; previously read the global window.status,
+							// so the dropdown never reflected the record's real state.
+							localStatus: this.status
 						};
+					},
+					watch: {
+						status(newValue) {
+							this.localStatus = newValue;
+						},
 					},
 					methods: {
 						workflow(event) {
@@ -162,15 +170,14 @@ export default {
 									console.log(this.resource)
 									alert("Congratulations, your workflow status update for record resource ID: " +
 											this.resource["id"] + " to " + newPubStatus + " was successful.")
-									//this.loadResource(this.resource)
 									this.localStatus = this.resource['pub_status'];
+									this.$emit("status-changed", this.localStatus);
 								} else {
-									console.log(response.data);
-									alert(
-										"Your submission failed with an error of: ",
-										response.data
-									);
+									const detail = response.data && (response.data.error || response.data.message);
+									alert("Your submission failed with an error of: " + (detail || JSON.stringify(response.data)));
 								}
+							}).catch((err) => {
+								alert("Your submission failed: " + (err.message || err));
 							});
 						}
 					}
