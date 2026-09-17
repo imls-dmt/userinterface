@@ -48,9 +48,10 @@
         <tr class="detail_item">
           <td class="element-title">URL:</td>
           <td>
-            <a :href="item.url" target="item">
+            <a v-if="safeHttpUrl(item.url)" :href="safeHttpUrl(item.url)" target="_blank" rel="noopener noreferrer">
               {{ item.url }}
             </a>
+            <span v-else>{{ item.url }}</span>
           </td>
         </tr>
 
@@ -328,6 +329,7 @@
 
 <script>
 import { sanitizeHtml, textExcerpt } from "../utils/markdown";
+import { safeHttpUrl } from "../utils/links";
 import access_cost_true from "@/assets/noun-money-3749301_modified.png";
 import access_cost_false from "@/assets/noun-money-free-3749255.png";
 import license_cc_by from "@/assets/cc-by.png";
@@ -404,6 +406,7 @@ export default {
   },
 
   methods: {
+    safeHttpUrl,
     toggleAbstract() {
       if (this.$route.name == "Search") {
         this.is_full = !this.is_full;
