@@ -283,8 +283,7 @@ export default {
     //Form,
   },
   async setup(props) {
-    //let apibase = inject("$appApiBase");
-    let apibase =""
+    let apibase = inject("$appApiBase");
     let fetchBase = "/api/resource/?metadata=true";
     let resourceFetchBase = "/api/resources/?id=";
     let action = ref("create")
@@ -832,8 +831,7 @@ export default {
       console.log(returnObject);
 
       // submit the generated metadata to create/update resource
-      //let apibase = this.apiBase;
-      let apibase =""
+      let apibase = this.apiBase;
       let url = apibase.concat("/api/resource/");
       console.log(url);
       axios({

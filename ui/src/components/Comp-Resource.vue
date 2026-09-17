@@ -56,8 +56,7 @@ export default {
 
   async setup(props) {
     console.log("Setup - starting for resource ID: ", props.id);
-    //let apiBase = inject("$appApiBase");
-    let apiBase =""
+    let apiBase = inject("$appApiBase");
     let fetchBase = "/api/resources/?id=";
     let surveyBase = "/api/surveys/?resourceid=";
     let isLoaded = false;
