@@ -3,7 +3,9 @@
     <CompAuths  :key="reloads"
     :local_groups="local_groups"
     :local_auths="local_auths"
-    :resourceID="id"></CompAuths>
+    :resourceID="id"
+    :status="pubStatus"
+    @status-changed="onStatusChanged"></CompAuths>
     
     <div class="stars">
         <img class="stars_image" src="@/assets/five-star.png"  v-bind:style="{marginLeft: starsLeftMargin + 'px', zIndex: 1}" />
@@ -48,9 +50,10 @@
         <tr class="detail_item">
           <td class="element-title">URL:</td>
           <td>
-            <a :href="item.url" target="item">
+            <a v-if="safeHttpUrl(item.url)" :href="safeHttpUrl(item.url)" target="_blank" rel="noopener noreferrer">
               {{ item.url }}
             </a>
+            <span v-else>{{ item.url }}</span>
           </td>
         </tr>
 
@@ -165,7 +168,7 @@
           </td>
         </tr>
         <tr class="detail_item">
-          <td class="element-title">Accesibility Summary:</td>
+          <td class="element-title">Accessibility Summary:</td>
           <td>
             {{ item.accessibility_summary }}
           </td>
@@ -306,7 +309,7 @@
         <tr>
           <td class="diagnostic" colspan="2">
             <hr />
-            {{ item.id }} / {{item.status}} / {{ item.pub_status }} / {{ item.created }} -
+            {{ item.id }} / {{item.status}} / {{ pubStatus }} / {{ item.created }} -
             {{ item.modification_date }} / {{ item.score }}
           </td>
         </tr>
@@ -328,6 +331,7 @@
 
 <script>
 import { sanitizeHtml, textExcerpt } from "../utils/markdown";
+import { safeHttpUrl } from "../utils/links";
 import access_cost_true from "@/assets/noun-money-3749301_modified.png";
 import access_cost_false from "@/assets/noun-money-free-3749255.png";
 import license_cc_by from "@/assets/cc-by.png";
@@ -349,6 +353,9 @@ export default {
     return {
       abstract_full: "",
       abstract_short: "",
+      // Local copy of the workflow state so a change made through CompAuths shows
+      // immediately without mutating the item prop or re-running the search.
+      pubStatus: this.item.pub_status,
       access_cost: access_cost_false,
       error: false,
       license: null,
@@ -357,6 +364,12 @@ export default {
       starsWidth: 92,
       starsLeftMargin: 30,
     };
+  },
+
+  watch: {
+    "item.pub_status"(value) {
+      this.pubStatus = value;
+    },
   },
 
   computed: {
@@ -404,6 +417,10 @@ export default {
   },
 
   methods: {
+    safeHttpUrl,
+    onStatusChanged(newStatus) {
+      this.pubStatus = newStatus;
+    },
     toggleAbstract() {
       if (this.$route.name == "Search") {
         this.is_full = !this.is_full;

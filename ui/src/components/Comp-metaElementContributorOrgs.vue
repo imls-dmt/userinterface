@@ -76,9 +76,10 @@ export default {
           //console.log("An unhandled field element type of " + this.template[this.authorFields[fieldIndex]['element']] + " has been encountered")
         }
         
-        console.log(value)
         valuesList.push(value)
-        values[field] = value
+        // Store under the schema key (e.g. familyName, name, type), not the
+        // full form field id, so the API and the display code find it (issue #89).
+        values[field.replace(/^.*__/, "")] = value
       }
       console.log(values)
       const checkboxID = listID + "-" + self.crypto.randomUUID()

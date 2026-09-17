@@ -1,12 +1,8 @@
-import axios from 'axios';
-//import authHeader from './auth-header';
-
-// original value
-const API_URL = '';
+import http from "../utils/http";
 
 class UserService {
-   getGroups() {
-       return axios.get(API_URL.concat('/api/user/groups'), { withCredentials: true });
+  getGroups() {
+    return http.get("/api/user/groups");
   }
 }
 

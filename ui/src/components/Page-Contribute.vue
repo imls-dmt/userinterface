@@ -126,14 +126,14 @@ export default {
     ...mapGetters(["loggedin", "username", "groups"]),
     qPriv() {
       return (
-        this.$store.getters.groups.indexOf("editor") > 0 ||
-        this.$store.getters.groups.indexOf("admin") > 0
+        this.$store.getters.groups.includes("editor") ||
+        this.$store.getters.groups.includes("admin")
       );
     },
     gPriv() {
       return (
-        this.$store.getters.groups.indexOf("editor") > 0 ||
-        this.$store.getters.groups.indexOf("admin") > 0
+        this.$store.getters.groups.includes("editor") ||
+        this.$store.getters.groups.includes("admin")
       );
     },
     noQuestions() {

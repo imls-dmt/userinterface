@@ -100,7 +100,7 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 //import { required } from 'vee-validate/dist/rules'
 import * as yup from "yup";
 import { mapGetters } from "vuex";
-import axios from "axios";
+import AuthService from "../services/auth.service";
 
 export default {
   name: "PageLogin",
@@ -162,14 +162,18 @@ export default {
       );
     },
 
-    handleLogout() {
-      console.log("entering handleLogout");
+    async handleLogout() {
       this.loading = true;
-      let url = "/api/logout";
-      axios.get(url);
-      this.$store.commit("logout");
-      //this.$store.dispatch("logout");
-      this.loading = false;
+      this.message = "";
+      try {
+        // End the server session first; only then forget the client state.
+        await AuthService.logout();
+      } catch (err) {
+        this.message = "Logout may not have completed on the server: " + (err.message || err);
+      } finally {
+        this.$store.commit("logout");
+        this.loading = false;
+      }
     },
   },
 };

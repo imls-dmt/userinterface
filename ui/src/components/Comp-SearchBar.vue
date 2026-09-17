@@ -62,9 +62,11 @@ export default {
             if (this.$route.name == "Search")
                 this.$emit("value_out", this.search_string);
             else
+                // A query parameter survives navigation and makes the search bookmarkable;
+                // Vue Router 4 drops params that are not part of the route path.
                 this.$router.push({
                     name: "Search",
-                    params: { search_string: this.search_string },
+                    query: { q: this.search_string },
                 });
         },
 
