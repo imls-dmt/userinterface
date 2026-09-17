@@ -1,0 +1,3 @@
+[submodule "ui/public"]
+	path = ui/public
+	url = https://github.com/imls-dmt/ui-static-content.git

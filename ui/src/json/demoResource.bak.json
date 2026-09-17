@@ -1,0 +1,150 @@
+{
+			"title": "Ocean Teacher Information Management Courses",
+			"status": 1,
+			"pub_status": "published",
+			"modification_date": "2022-07-14T11:45:04Z",
+			"resource_modification_date": "1900-01-01T00:00:00Z",
+			"url": "https://classroom.oceanteacher.org/tag/index.php?tag=Information%20Management",
+			"access_cost": 0,
+			"submitter_name": "Abby Pennington",
+			"submitter_email": "abbypenn93@gmail.com",
+			"authors": [
+				{
+					"givenName": "Neil", 
+					"familyName": "Jefferies", 
+					"name_identifier": "demoid1", 
+					"name_identifier_type": "demoidType1"
+				},
+				{
+					"givenName": "demoNeil2", 
+					"familyName": "demoJefferies2", 
+					"name_identifier": "demoid2", 
+					"name_identifier_type": "demoidType2"
+				}
+			], 
+			"author_names": [
+				"Neil Jefferies"
+			], 
+			"author_org": {
+					"name": "Ocean Teacher Global Academy",
+					"name_identifier": "xyz",
+					"name_identifier_type": "GRID"
+			},
+			"contact": {
+					"name": "Claudia  Delgado",
+					"org": "Ocean Teacher Global Academy",
+					"email": "noreply@nodomain.com"
+			},
+			"abstract_data": "Ocean Teacher is a comprehensive e-Learning platform developed by the International Oceanographic Data and Information Exchange (IODE) to help build equitable capacity related to ocean research, observations, and services in UNESCO&#39;s Intergovernmental Oceanographic Commission.&nbsp; This series of presentations, short courses is focused on<strong>&nbsp;information management in the ocean sciences</strong>&nbsp;and is intended to be used in conjunction with classroom training.&nbsp;",
+			"abstract_format": "filtered_html",
+			"subject": [
+					"Physical Sciences and Mathematics: Oceanography and Atmospheric Sciences and Meteorology"
+			],
+			"keywords": [
+					"Appraisal - Core Trustworthy Data Repositories Requirements",
+					"Confidentiality/Ethics -  - Core Trustworthy Data Repositories Requirements",
+					"Context - Core Trustworthy Data Repositories Requirements",
+					"Data archiving",
+					"Data discovery and identification - Core Trustworthy Data Repositories Requirements",
+					"Data integrity and authenticity - Core Trustworthy Data Repositories Requirements",
+					"Data quality - Core Trustworthy Data Repositories Requirements",
+					"Data reuse - Core Trustworthy Data Repositories Requirements",
+					"Documented storage procedures - Core Trustworthy Data Repositories Requirements",
+					"Licenses - Core Trustworthy Data Repositories Requirements",
+					"Marine data",
+					"Mission/Scope - Core Trustworthy Data Repositories Requirements",
+					"Ocean data",
+					"Organizational infrastructure -  - Core Trustworthy Data Repositories Requirements",
+					"Preservation plan - Core Trustworthy Data Repositories Requirements",
+					"Security - Core Trustworthy Data Repositories Requirements",
+					"Technical infrastructure - Core Trustworthy Data Repositories Requirements",
+					"Workflows - Core Trustworthy Data Repositories Requirements"
+			],
+			"license": "Creative Commons Attribution-ShareAlike 4.0 International License - CC BY-SA 4.0",
+			"usage_info": "Khan Academy Terms of Service",
+			"citation": "Jefferies, Neil. (2019, April). The Oxford Common File Layout. Zenodo. https://doi.org/10.5281/zenodo.2642296.",
+			"locator_data": "10.5281/zenodo.2642296",
+			"locator_type": "DOI",
+			"publisher": "Ocean Teacher Global Academy",
+			"version": "",
+			"created": "2017-11-25T11:35:06",
+			"published": "2019-04-04T00:00:00Z",
+			"accessibility_features": [
+				{
+					"name": "Augmentation - provision of content in learning resource by alternate means, e.g., by alternative text for a graphic image."
+				},
+				{
+					"name": "Structure and Navigation - aids to structure and navigation of the learning resource content, e.g., by including an index or table of contents."
+				}
+			], 
+			"accessibility_summary": "Accessibility summary text", 
+			"language_primary": "en",
+			"languages_secondary": [
+					"fr",
+					"pt",
+					"es"
+			],
+			"ed_frameworks": [
+					{
+							"name": "USGS Science Support Framework",
+							"nodes": ["Acquire", "Manage Quality"]
+					},
+					{
+							"name": "FAIR Data Principles", 
+							"nodes": ["Findable","Interoperable"]
+					}
+			],
+			"target_audience": [
+					"Data supporter",
+					"Data manager",
+					"Data professional"
+			],
+			"purpose": "Professional Development - increasing knowledge and capabilities related to managing the data produced, used or re-used, curated and/or archived.",
+			"completion_time": "More than 1 Week",
+			"media_type": "Collection - a group or set of items that comprise a single learning resource, e.g., a PDF version of a slide presentation, an audio file of the presentation and a textual representation of the oral transcription of the presentation.",
+			"lr_type": "Course -  series of units and lessons used to teach the skills and knowledge required by its curriculum.",
+			"creator": "Nhoebelheinrich",
+			"md_record_id": "",
+			"ratings": [],
+			"rating": 0.0,
+			"id": "de1b3a43-568b-3bba-abe0-4dcdc13e821e",
+			"contributors": [
+				{
+					"familyName": "Teperek",
+					"givenName": "Marta ",
+					"type": "Collaborator"
+				},
+				{
+					"familyName":"demo2",
+					"givenName":"demo2",
+					"type":"demo2"
+				}	
+			], 
+			"contributor_orgs": [
+					{
+							"name": "International Oceanographic Data and Information Exchange (IODE)",
+							"name_identifier": "N.A.",
+							"name_identifier_type": "N.A.",
+							"type": "Funding and sponsorship"
+					},
+					{
+							"name": "International Oceanographic Data and Information Exchange (IODE)",
+							"name_identifier": "N.A.",
+							"name_identifier_type": "N.A.",
+							"type": "Funding and sponsorship"
+					},
+					{
+							"name": "ICSU - World Data System (WDS)",
+							"name_identifier": "N.A.",
+							"name_identifier_type": "N.A.",
+							"type": "Endorser"
+					}
+			],
+			"score": 4.172878,
+			"access_conditions": "Access conditions",
+			"country_of_origin": "AT",
+			"credential_status": "No",
+			"expertise_level": "Intermediate",
+			"lr_outcomes": "learning outcomes",
+			"notes": []
+	}
