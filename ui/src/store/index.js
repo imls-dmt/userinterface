@@ -71,7 +71,6 @@ export default new Vuex.Store({
     getGroups({ commit }) {
       commit("setWorking", true);
       return UserService.getGroups().then((result) => {
-        console.log(result);
         commit("setGroups", result);
         commit("setWorking", false);
       });
@@ -80,13 +79,11 @@ export default new Vuex.Store({
   mutations: {
     loginSuccess(state) {
       state.user.loggedIn = true;
-      console.log(state);
     },
     loginFailure(state) {
       state.user.loggedIn = false;
       state.user.username = null;
       state.user.groups = [];
-      console.log(state);
     },
     logout(state) {
       state.user.loggedIn = false;
@@ -99,11 +96,9 @@ export default new Vuex.Store({
       state.auth.publish = false;
       state.auth.submit_delete = false;
       state.auth.del = false;
-      console.log(state);
     },
     setUsername(state, username) {
       state.user.username = username;
-      console.log(state);
     },
     setGroups(state, groups) {
       state.groups = groups.data.groups;
@@ -165,19 +160,15 @@ export default new Vuex.Store({
         state.auth.submit_delete = false;
         state.auth.del = false;
       }
-      console.log(state);
     },
     setWorking(state, workingState) {
       state.working = workingState;
-      console.log(state);
     },
     setResults(state, results) {
       state.results = results;
-      console.log(state);
     },
     setQuickSearch(state, quickSearch) {
       state.quickSearch = quickSearch;
-      console.log(state);
     },
   },
 });

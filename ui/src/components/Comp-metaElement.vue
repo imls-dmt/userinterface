@@ -299,6 +299,7 @@
 </template>
 
 <script>
+import { appendCheckboxListItem } from "../utils/dom";
 //import { Field, ErrorMessage } from "vee-validate";
 export default {
   props: ["element", 
@@ -316,33 +317,20 @@ export default {
   },
   methods: {
     genUUID() {return self.crypto.randomUUID()},
-    flexDataListAdd(event) {
+    flexDataListAdd() {
       const dlID = this.fieldName + "-datalist";
-      const dlID_selector = "#" + dlID;
-      const listID = this.fieldName + "-list"
-      const checkboxName = dlID + "-values"
-      const Value = JSON.stringify(document.querySelector(dlID_selector).value);
-      const checkboxID = dlID + "-" + self.crypto.randomUUID()
-      //console.log(dlID)
-      //console.log(Value)
-      if (Value !== "") {
-        if (document.getElementById(listID).innerHTML == "This is where the selected items will be displayed") {
-          document.getElementById(listID).innerHTML = "<input type=checkbox name=" + checkboxName + 
-          " id=" + checkboxID +
-          " value=" + Value +
-          " checked class='flexdatalist_checkbox' />" + 
-          " <label for=" + checkboxID + ">" + Value + "</label>"
-        } else {
-          document.getElementById(listID).innerHTML += "<br/><input type=checkbox name=" + checkboxName + 
-            " id=" + checkboxID +
-            " value=" + Value +
-            " checked class='flexdatalist_checkbox' />" + 
-            " <label for=" + checkboxID + ">" + Value + "</label>"
-        }
-      } else {
-        alert("You must select or enter a value before adding it to the list.")
+      const input = document.querySelector("#" + dlID);
+      const value = (input && input.value) || "";
+      if (value === "") {
+        alert("You must select or enter a value before adding it to the list.");
+        return;
       }
-      document.querySelector(dlID_selector).value = ""
+      appendCheckboxListItem(document.getElementById(this.fieldName + "-list"), {
+        name: dlID + "-values",
+        id: dlID + "-" + self.crypto.randomUUID(),
+        value,
+      });
+      input.value = "";
     }
   }
 };

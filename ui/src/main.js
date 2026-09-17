@@ -6,7 +6,6 @@ import App from "./App.vue";
 import store from "./store";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { FontAwesomeIcon } from "./plugins/font-awesome";
 
 import PageAbout from "./components/Page-About.vue";
 import Contribute from "./components/Page-Contribute.vue";
@@ -77,7 +76,6 @@ const app = createApp(App);
 app.use(router);
 app.use(store);
 //app.use(axios);
-app.component("font-awesome-icon", FontAwesomeIcon);
 app.mount("#app");
 
 // add global properties that will be used across components

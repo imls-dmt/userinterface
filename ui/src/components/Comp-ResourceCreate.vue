@@ -259,6 +259,7 @@
 </template>
 
 <script>
+import { appendCheckboxListItem } from "../utils/dom";
 //import { Form } from "vee-validate";
 //import * as yup from "yup";
 import { mapGetters } from "vuex";
@@ -919,49 +920,19 @@ export default {
     },
     flexDataListAdd(elementKey, checkboxValue) {
       const dlID = elementKey + "-datalist";
-      const dlID_selector = "#" + dlID;
       const listID = elementKey + "-list";
-      const checkboxName = dlID + "-values";
-      const Value = JSON.stringify(checkboxValue);
-      const checkboxID = dlID + "-" + self.crypto.randomUUID();
-      //console.log(dlID)
-      //console.log(Value)
-      if (Value !== "") {
-        if (
-          document.getElementById(listID).innerHTML ==
-          "This is where the selected items will be displayed"
-        ) {
-          document.getElementById(listID).innerHTML =
-            "<input type=checkbox name=" +
-            checkboxName +
-            " id=" +
-            checkboxID +
-            " value=" +
-            Value +
-            " checked class='flexdatalist_checkbox'/>" +
-            " <label for=" +
-            checkboxID +
-            ">" +
-            Value +
-            "</label>";
-        } else {
-          document.getElementById(listID).innerHTML +=
-            "<br/><input type=checkbox name=" +
-            checkboxName +
-            " id=" +
-            checkboxID +
-            " value=" +
-            Value +
-            " checked class='flexdatalist_checkbox'/>" +
-            " <label for=" +
-            checkboxID +
-            ">" +
-            Value +
-            "</label>";
-        }
-      } else {
+      const value = typeof checkboxValue === "string" ? checkboxValue : JSON.stringify(checkboxValue);
+      if (value === "") {
         alert("You must select or enter a value before adding it to the list.");
+        return;
       }
+      // Built with DOM APIs (utils/dom.js): stored keywords/audience terms are
+      // submitter-entered and were previously concatenated into innerHTML.
+      appendCheckboxListItem(document.getElementById(listID), {
+        name: dlID + "-values",
+        id: dlID + "-" + self.crypto.randomUUID(),
+        value,
+      });
     },
     loadResource(resource) {
       console.log("Entering loadResource")
@@ -1020,7 +991,7 @@ export default {
             console.log("keywords-datalist: ", elements[element].id)
             let elementKey = elements[elementID].id;
             elementKey = elementKey.replace("-datalist", "");
-            document.getElementById(elementKey + "-list").innerHTML =
+            document.getElementById(elementKey + "-list").textContent =
               "This is where the selected items will be displayed";
             for (let index in resource["keywords"]) {
               this.flexDataListAdd(elementKey, resource["keywords"][index]);
@@ -1114,7 +1085,7 @@ export default {
             console.log("target_audience-datalist: ", elements[element].id)
             let elementKey = elements[elementID].id;
             elementKey = elementKey.replace("-datalist", "");
-            document.getElementById(elementKey + "-list").innerHTML =
+            document.getElementById(elementKey + "-list").textContent =
               "This is where the selected items will be displayed";
             for (let index in resource["target_audience"]) {
               this.flexDataListAdd(elementKey, resource["target_audience"][index]);
