@@ -3,20 +3,20 @@
     <div v-for="item in items" :key="item.date">
       <h3 class="blog-title">{{ item.title }}</h3>
       <p class="blog-date">&nbsp;- {{ item.date.substring(0,10) }}</p>
-      <BlogContentBlock :block="item"></BlogContentBlock>
+      <MarkdownBlock :block="item" wrapper-class="blog-content"></MarkdownBlock>
     </div>
   </div>
 </template>
 
 <script>
-import BlogContentBlock from "./Comp-BlogContentBlock.vue";
+import MarkdownBlock from "./Comp-MarkdownBlock.vue";
 export default {
   name: "BlogTopic",
   props: {
     topic: String, // either "features", "news", or "announcements"
   },
   //
-  components: { BlogContentBlock },
+  components: { MarkdownBlock },
   //
   data() {
     return {

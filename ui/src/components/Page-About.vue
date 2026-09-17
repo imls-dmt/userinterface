@@ -2,17 +2,17 @@
   <div v-if="isLoaded">
     <div class="flex-container">
         <div class="block_01">
-            <AboutContentBlock :block="about_content['block_01']">
-            </AboutContentBlock>
+            <MarkdownBlock :block="about_content['block_01']">
+            </MarkdownBlock>
         </div>
         <div class="block_02">
-            <AboutContentBlock :block="about_content['block_02']">
-            </AboutContentBlock>
+            <MarkdownBlock :block="about_content['block_02']">
+            </MarkdownBlock>
         </div>
         <!-- 
 <div class="block_03">
-            <AboutContentBlock :block="about_content['block_03']">
-            </AboutContentBlock>
+            <MarkdownBlock :block="about_content['block_03']">
+            </MarkdownBlock>
         </div>
  -->
     </div>
@@ -21,10 +21,10 @@
 </template>
 
 <script>
-import AboutContentBlock from "./AboutContentBlock.vue"
+import MarkdownBlock from "./Comp-MarkdownBlock.vue"
 export default {
   name: 'PageAbout',
-  components: { AboutContentBlock },
+  components: { MarkdownBlock },
   
   data() {
     return {

@@ -191,6 +191,7 @@
 </template>
 
 <script>
+import { sanitizeHtml, textExcerpt } from "../utils/markdown";
 import access_cost_true from "@/assets/fee.png";
 import access_cost_false from "@/assets/no-fee.png";
 import license_cc_by from "@/assets/cc-by.png";
@@ -234,8 +235,9 @@ export default {
   mounted() {
     // console.log("ResultItem item : ", this.item);
     this.is_full = this.initialFull;
-    this.abstract_full = this.item.abstract_data;
-    this.abstract_short = this.item.abstract_data.substring(0, 300) + " ...";
+    // Abstracts are submitter-entered and may contain HTML: sanitize before v-html.
+    this.abstract_full = sanitizeHtml(this.item.abstract_data);
+    this.abstract_short = textExcerpt(this.item.abstract_data, 300);
 
     if (this.item.access_cost) this.access_cost = access_cost_true;
 

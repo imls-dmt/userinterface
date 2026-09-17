@@ -2,20 +2,20 @@
   <div>
     <div v-for="item in items" :key="item.date">
       <h3>{{ item.title }}</h3>
-      <SupportContentBlock :block="item"></SupportContentBlock>
+      <MarkdownBlock :block="item" wrapper-class="support"></MarkdownBlock>
     </div>
   </div>
 </template>
 
 <script>
-import SupportContentBlock from "./Comp-SupportContentBlock.vue";
+import MarkdownBlock from "./Comp-MarkdownBlock.vue";
 export default {
   name: "SupportTopic",
   props: {
     topic: String, // either "submissionWorkflow", "publishingWorkflow", "MDnuances", or "tipsandtricks"
   },
   //
-  components: { SupportContentBlock },
+  components: { MarkdownBlock },
   //
   data() {
     return {
