@@ -3,7 +3,7 @@
   <div v-if="isLoaded">
     <div class="flex-container">
       <div class="top-container">
-        <HomeContentBlock :block="home_content['block_01']"></HomeContentBlock>
+        <MarkdownBlock :block="home_content['block_01']"></MarkdownBlock>
         <HeroImages :data="home_content['hero_images']"></HeroImages>
       </div>
       <!-- <SearchBar :value_in="nothing"></SearchBar> -->
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import HomeContentBlock from "./Comp-HomeContentBlock.vue";
+import MarkdownBlock from "./Comp-MarkdownBlock.vue";
 import HeroImages from "./Comp-HeroImages.vue";
 //import SearchBar from "./Comp-SearchBar.vue";
 import BlogTopic from "./Comp-BlogTopic.vue";
@@ -35,7 +35,7 @@ import BlogTopic from "./Comp-BlogTopic.vue";
 export default {
   name: "PageHome",
   components: { 
-    HomeContentBlock, 
+    MarkdownBlock, 
     HeroImages, 
     //SearchBar, 
     BlogTopic },
