@@ -70,10 +70,17 @@ export default new Vuex.Store({
     },
     getGroups({ commit }) {
       commit("setWorking", true);
-      return UserService.getGroups().then((result) => {
-        commit("setGroups", result);
-        commit("setWorking", false);
-      });
+      return UserService.getGroups()
+        .then((result) => {
+          commit("setGroups", result);
+        })
+        .catch(() => {
+          // Anonymous visitors get no groups; never leave the spinner on.
+          commit("setGroups", { data: { groups: [], name: null } });
+        })
+        .finally(() => {
+          commit("setWorking", false);
+        });
     },
   },
   mutations: {

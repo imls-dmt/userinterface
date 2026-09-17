@@ -458,8 +458,8 @@ export default {
 
   beforeMount() {
     // console.log("Search.beforeMount()");
-    if (this.$route.params && this.$route.params["search_string"])
-      this.quick_search_string = this.$route.params.search_string;
+    if (this.$route.query && typeof this.$route.query.q === "string")
+      this.quick_search_string = this.$route.query.q;
     // console.log("quick_search_string = ", this.quick_search_string);
   },
 
