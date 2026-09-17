@@ -23,7 +23,6 @@ import SurveyResults from "./components/SurveyResults.vue";
 import PageLogin from "./components/Page-Login.vue";
 import PageBlog from "./components/Page-Blog.vue";
 import PageProfile from "./components/Page-Profile.vue";
-//import VueCookies from "vue-cookies";
 
 const router = createRouter({
   history: createWebHistory(),
