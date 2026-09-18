@@ -14,7 +14,9 @@ class AuthService {
   }
 
   logout() {
-    return http.get("/api/logout");
+    // Trailing slash: the route is /api/logout/, and a redirect from Flask
+    // would change scheme behind a proxy and be refused by the browser.
+    return http.get("/api/logout/");
   }
 }
 
