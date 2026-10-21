@@ -260,6 +260,7 @@
 
 <script>
 import { appendCheckboxListItem } from "../utils/dom";
+import { normalizeYesNo } from "../utils/yesNo";
 //import { Form } from "vee-validate";
 //import * as yup from "yup";
 import { mapGetters } from "vuex";
@@ -447,6 +448,7 @@ export default {
             "general___country_of_origin",
             "general___resource_modification_date",
             "general___usage_info",
+            "general___version",
           ],
         },
         {
@@ -495,7 +497,7 @@ export default {
             "educational_information___purpose",
             "educational_information___subject",
             "educational_information___target_audience",
-            //"general___credential_status", //excluded until submission and loading implemented
+            "general___credential_status",
             "general___lr_outcomes",
           ],
         },
@@ -717,8 +719,10 @@ export default {
       returnObject["media_type"] = fieldValues["general___media_type-datalist"];
       returnObject["lr_type"] =
         fieldValues["educational_information___lr_type"];
-      returnObject["credential_status"] = 
-        fieldValues["educational_information___credential_status"]
+      // Three-state selects: "yes", "no" or the default "n/a" (unknown).
+      returnObject["credential_status"] =
+        fieldValues["general___credential_status"];
+      returnObject["version"] = fieldValues["general___version"];
       returnObject["lr_outcomes"] = 
         fieldValues["general___lr_outcomes"]
       returnObject["access_conditions"] = 
@@ -964,9 +968,11 @@ export default {
           } else if (elementSub == "usage_info") {
             console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub.replace('-datalist', '')])
             elements[elementID].value = resource[elementSub];
-          } else if (elementSub == "access_cost") {
-            console.log(element, ": ", elementSub, ": Corresponding metadata value: ", (resource[elementSub] == 1))
-            elements[elementID].value = resource[elementSub] == 1;
+          } else if (elementSub == "access_cost" || elementSub == "credential_status") {
+            // Stored as "yes"/"no"/"n/a"; older records may still hold legacy forms.
+            elements[elementID].value = normalizeYesNo(resource[elementSub]);
+          } else if (elementSub == "version") {
+            elements[elementID].value = resource[elementSub] || "";
           } else if (elementSub == "author_org__name-datalist") {
             console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource['author_org']['name'])
             elements[elementID].value = resource["author_org"]["name"];
