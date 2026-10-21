@@ -18,7 +18,7 @@
     <div class="title">
       <router-link :to="`/Resource/${item.id}`"> {{ item.title }} </router-link>
       <img :src="license" class="license, icon" />
-      <img :src="access_cost" class="access_cost, icon" />
+      <img v-if="access_cost" :src="access_cost" class="access_cost, icon" />
     </div>
     <table class="metadata">
       <span class="authors">
@@ -75,8 +75,7 @@
         <tr class="detail_item">
           <td class="element-title">Access Cost:</td>
           <td>
-            <span v-if="item.access_cost"> Fee </span>
-            <span v-else> No fee </span>
+            {{ accessCostLabel(item.access_cost) }}
           </td>
         </tr>
 
@@ -258,7 +257,7 @@
         <tr class="detail_item">
           <td class="element-title">Credential Status:</td>
           <td>
-            {{ item.credential_status }}
+            {{ yesNoLabel(item.credential_status) }}
           </td>
         </tr>
         
@@ -332,6 +331,7 @@
 <script>
 import { sanitizeHtml, textExcerpt } from "../utils/markdown";
 import { safeHttpUrl } from "../utils/links";
+import { normalizeYesNo, accessCostLabel, yesNoLabel } from "../utils/yesNo";
 import access_cost_true from "@/assets/noun-money-3749301_modified.png";
 import access_cost_false from "@/assets/noun-money-free-3749255.png";
 import license_cc_by from "@/assets/cc-by.png";
@@ -356,7 +356,8 @@ export default {
       // Local copy of the workflow state so a change made through CompAuths shows
       // immediately without mutating the item prop or re-running the search.
       pubStatus: this.item.pub_status,
-      access_cost: access_cost_false,
+      // Icon for the access-cost state; null (no icon) when unknown.
+      access_cost: null,
       error: false,
       license: null,
       results: [],
@@ -399,7 +400,9 @@ export default {
     this.abstract_full = sanitizeHtml(this.item.abstract_data);
     this.abstract_short = textExcerpt(this.item.abstract_data, 300);
 
-    if (this.item.access_cost) this.access_cost = access_cost_true;
+    const cost = normalizeYesNo(this.item.access_cost);
+    if (cost === "yes") this.access_cost = access_cost_true;
+    else if (cost === "no") this.access_cost = access_cost_false;
 
     if (this.item.license.includes("CC BY 2.0")) {
       this.license = license_cc_by;
@@ -417,6 +420,8 @@ export default {
   },
 
   methods: {
+    accessCostLabel,
+    yesNoLabel,
     safeHttpUrl,
     onStatusChanged(newStatus) {
       this.pubStatus = newStatus;
