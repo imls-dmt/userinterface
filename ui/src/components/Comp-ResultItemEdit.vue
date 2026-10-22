@@ -95,7 +95,7 @@
         <tr class="detail_item">
           <td class="element-title">Publisher:</td>
           <td>
-            {{ item.Publisher }}
+            {{ item.publisher }}
           </td>
         </tr>
 
