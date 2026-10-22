@@ -394,8 +394,13 @@ export default {
             values = this.filters_selected[key];
             // console.log("values : ", values);
             for (let i = 0; i < values.length; i++) {
+              // Query the exact-string facet_* field the counts are computed
+              // from, not the analyzed text field. A phrase match on the text
+              // field also hits longer values ("Data management" matched
+              // "Data management planning"), so the result count exceeded the
+              // facet count (issue #85).
               filters.push({
-                field: key,
+                field: "facet_" + key,
                 string: values[i],
                 type: "match",
               });
