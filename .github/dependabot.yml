@@ -1,0 +1,13 @@
+# Dependency updates follow the branch policy (devel -> testing -> master):
+# Dependabot opens its pull requests against devel, not the default branch.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/ui"
+    target-branch: "devel"
+    schedule:
+      interval: "weekly"
+    groups:
+      npm-minor-and-patch:
+        update-types: ["minor", "patch"]
+    open-pull-requests-limit: 5
