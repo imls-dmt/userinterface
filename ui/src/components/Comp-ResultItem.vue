@@ -242,6 +242,13 @@
      {{ item.published }}
    </td>
  </tr>
+
+        <tr v-if="item.version" class="detail_item">
+          <td class="element-title">Version:</td>
+          <td>
+            {{ item.version }}
+          </td>
+        </tr>
  
        <tr class="detail_title">
           <td colspan="2">Educational Information</td>

@@ -99,6 +99,13 @@
           </td>
         </tr>
 
+        <tr v-if="item.version" class="detail_item">
+          <td class="element-title">Version:</td>
+          <td>
+            {{ item.version }}
+          </td>
+        </tr>
+
         <tr class="detail_item">
           <td class="element-title">Media Type:</td>
           <td>
