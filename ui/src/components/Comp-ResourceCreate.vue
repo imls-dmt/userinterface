@@ -783,8 +783,12 @@ export default {
              alert("Success, your update to the metadata for record resource ID: " +
               resultResourceID + " was successful.")
           }
-          //this.loadResource(this.resource)
+          // The key bump re-creates the form DOM empty: right for a new
+          // submission, but an edit must show the record that was just saved.
           this.componentKey += 1;
+          if (this.action == "edit") {
+            this.$nextTick(() => this.loadResource(this.resource));
+          }
         } else {
           console.log(response.data);
           alert(
