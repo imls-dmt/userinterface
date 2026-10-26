@@ -733,6 +733,7 @@ export default {
         fieldValues["general___country_of_origin"]
       returnObject["resource_modification_date"] = 
         fieldValues["general___resource_modification_date"]
+      returnObject["published"] = fieldValues["general___published"];
      
       //contributors ============================
       returnObject["contributors"] = this.collectChecked("contributors-list-", true);
@@ -959,7 +960,8 @@ export default {
           } else if (elementSub == "country_of_origin") {
               console.log(element, ": ", elementSub, ": Corresponding metadata value: ", resource[elementSub.replace('-datalist', '')])
               elements[elementID].value = resource[elementSub];
-          } else if (elementSub == "resource_modification_date") {
+          } else if (elementSub == "resource_modification_date" || elementSub == "published") {
+            // Date inputs take YYYY-MM-DD; the API stores a full ISO instant.
             if (resource[elementSub]) {
               let date = resource[elementSub].substring(0, 10);
               console.log(element, ": ", elementSub, ": Corresponding metadata value: ",  resource[elementSub])
